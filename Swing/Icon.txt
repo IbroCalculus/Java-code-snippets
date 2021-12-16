@@ -1,0 +1,7 @@
+
+Images (PNG) can be used.
+
+Copy and paste the image in project folder
+
+        ImageIcon imageIcon = new ImageIcon("img.png");
+        jFrame.setIconImage(imageIcon.getImage());

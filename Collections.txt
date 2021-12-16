@@ -1,0 +1,6 @@
+
+Java collections refer to a collection of individual objects that are represented as a single unit. You can perform all operations such as searching, sorting, insertion, manipulation, deletion, etc., on Java collections just like you do it on data.
+
+They are multiple types of collections in Java; ie:
+
+1- Arraylist

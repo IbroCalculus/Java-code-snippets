@@ -1,0 +1,119 @@
+
+=== Combining both interface and class(or abstract class) ===
+public class Staff extends Salary2 implements Salary, Payment {
+
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+Abstraction can be achieved with either abstract classes or interfaces.
+
+An abstract class is a class that is declared abstract - It may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be subclassed.
+
+An abstract method is a method that is declared without an implementation (without braces, and followed by a semcolon)
+E.g abstract void moveTo(double deltaX, double deltaY);
+An abstract class can also have a concrete method (i.e normal method)
+
+If a class includeds abstract methods, then the class itself must be declared abstract, as in
+
+------- Creating The abstract class --------
+ public abstract class GraphicsObject {
+    // declare fields
+    int x, y;
+
+    // An abstract class may contain constructor
+    public GraphicObject() {
+        System.out.println("This is GraphicObject abstact class constructor");
+    }
+
+    // You may declare a concrete/normal method
+    void moveTo(int newX, int newY){
+        System.out.printf("Move to X: %d, Moved to Y: %d", newX, newY);
+    }
+
+    // declare abstract methods
+    abstract void draw()
+    abstract void resize();
+
+
+------ Create a class (Circle) that extends the abstract method, and implement the abstract methods ---------
+public class Circle extends GraphicObject{
+    @Override
+    void draw() {
+        System.out.println("Drawing a Circle");
+    }
+
+    @Override
+    void resize() {
+        System.out.println("Resizing a Circle");
+    }
+}
+
+------ Create another class (Rectangle) that extends the abstract method, and implement the abstract methods ---------
+
+public class Rectangle extends GraphicObject{
+    @Override
+    void draw() {
+        System.out.println("Drawing rectangle");
+    }
+
+    @Override
+    void resize() {
+        System.out.println("Resizing rectangle");
+    }
+}
+
+----- In main Method ---------
+public class Main {
+    public static void main(String[] args) {
+
+        GraphicObject circle = new Circle();
+        //Circle circle = new Circle();
+        circle.draw();
+        circle.resize();
+
+        GraphicObject rectangle = new Rectangle();
+        //Rectangle circle = new Rectangle();
+        rectangle.draw();
+        rectangle.resize();
+
+
+Abstract keyword adds a layer of security to a program. This can be applied to both classes and methods with the abstract class.
+Abstract class cannot be instantiated, but they can be subclassed.
+Abstract methods are declared without an implementation.
+
+
+Assume a parent class Vehicle which is abstract, and a subclass Car. We cannot instantiate the abstract class. i.e: Vehicle
+
+public abstract class Vehicle {
+
+}
+
+public class Car extends Vehicle{
+    
+}
+
+--- Inside main method ----------
+
+    public static void main(String[] args) {
+
+	Vehicle vehicle = new Vehicle ();	<--- This generates an error, because it is abstract, hence, cannot be instantiated.
+        Car car = new Car();     OR
+        Vehicle car = new Car();
+
+    }
+}
+
+
+==================== ABSTRACT METHODS =================
+Declared within an abstract class. It can not contain a body. ie {}. And the inherited abstract method must be implemented in the child class.
+
+public abstract class Vehicle {
+    abstract void move();
+}
+
+
+public class Car extends Vehicle{
+
+    @Override
+    void move() {
+        System.out.println("The car is moving");
+    }
+}

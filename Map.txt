@@ -1,0 +1,29 @@
+
+	Maps are similar to dictionaries in Python. Store data in Key-Value pair
+
+
+        Map<String, String> eMailList = new HashMap<>();
+        eMailList.put("Ibrahim", "ibrahim@email.com");
+        eMailList.put("Suleiman", "suleiman@email.com");
+        eMailList.put("Mark", "mark@email.com");
+
+
+        ====================== GET THE VALUES OF A HASMAP =========================
+	System.out.printf("Ibrahim's Email is %s \n", eMailList.get("Ibrahim"));
+        System.out.printf("Suleiman's Email is %s \n", eMailList.get("Suleiman"));
+        System.out.printf("Mark's Email is %s \n", eMailList.get("Mark"));
+
+
+	============================ GET THE NUMBER OF ITEMS IN A HASMAP ===================
+        System.out.printf("The number of elements in the Hasmap is: %s \n", eMailList.size());
+
+
+	============================= REMOVE ITEMS =========================================
+        eMailList.remove("Mark");
+        System.out.printf("The number of elements in the Hasmap is: %s \n", eMailList.size());
+
+
+	=========================== CHECK IF HASHMAP CONTAINS A KEY ========================
+        System.out.printf("This map contains the Key Ibrahim, TRUE or FALSE? : %b \n", eMailList.containsKey("Ibrahim"));
+        System.out.printf("This map contains the Value Ibrahim, TRUE or FALSE? : %b \n", eMailList.containsValue("Ibrahim"));
+        

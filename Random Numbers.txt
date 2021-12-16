@@ -1,0 +1,23 @@
+      
+        Random random = new Random();
+        int x = random.nextInt();
+        //double x = random.nextDouble();
+        //Boolean x = random.nextBoolean();
+        System.out.println(x); 
+	
+	OUTPUT range –2,147,483,648 to +2,147,483,647, inclusive.
+	//OUTPUT random values between 0 and 1.
+	//OUTPUT random Boolean values (true or false).
+
+
+        Random random = new Random();
+        int x = random.nextInt(3);
+        System.out.println(x);
+
+	//OUTPUT 0 or 1 or 2. ie: First three digits starting from zero.
+
+FOR A SIX-SIDED DIE:
+
+        Random random = new Random();
+        int x = 1 + random.nextInt(6);
+        System.out.println(x);

@@ -1,0 +1,47 @@
+About 6:25:00
+
+Layout manager defines the natural layout for components within a container.
+
+The default layout for a JFrame is Border Layout
+
+============= AVAILABLE LAYOUTS ==================
+	---	Border Layout	----> Adds widger to the LEFT-CENTER POSITION
+	---	Flow Layout	----> Adds widget to the TOP-CENTER POSITION
+
+
+====== 1. Border Layout: A BorderLayout places components in five areas: NORTH, EAST, WEST, SOUTH, CENTER.
+	All extra space is placed in the center area.
+Check: 6:25:00
+
+----------------  USAGE:  -----------------
+		frame1.setLayout(new BorderLayout());
+		frame1.add(panel1, BorderLayourt.NORTH);
+
+
+====== 2. Flow Layout: A Flow Layout places components in a row, sized at their preferred size. If the horizontal space in the container is too small, the FlowLayout class uses the next available row.
+Positions widget to the top-center of the frame.
+CHECK ABOUT 6:35:00
+
+----------------  USAGE:  -----------------
+		frame1.setLayout(new FlowLayout());
+		frame1.setLayout(new FlowLayout(FlowLayout.CENTER));
+		frame1.add(panel1);
+
+
+----- CHANGE THE LAYOUT MANAGER -------
+        JFrame jFrame = new JFrame();
+        jFrame.setTitle("My New JFrame GUI");
+        jFrame.setSize(420, 420);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //.DISPOSE_ON_CLOSE, .DO_NOTHING_ON_CLOSE, .HIDE_ON_CLOSE
+        jFrame.setResizable(false);
+
+        jFrame.setLayout(null);			// Use no layout manager
+        label1.setBounds(20,20,300,200);	// x,y,width,height
+
+
+        jFrame.setVisible(true);
+
+========= PACK MANAGER ============
+This auto resizes the frame to accomodate every widget on it.
+
+	frame.pack()	Does not require .setBounds(x,y,w,h); nor .setSize(w,h);

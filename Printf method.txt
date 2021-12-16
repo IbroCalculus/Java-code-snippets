@@ -1,0 +1,45 @@
+The printf method is an optional method to control, format and display text to the console window.
+
+SYNTAX: System.out.printf(format, args);
+where args = object/variable/value
+
+
+        System.out.printf("Her name is %s, she is %d years old and lives in %s\n", "Helena",45,"New York");
+	OUTPUT: Her name is Helena, she is 45 years old and lives in New York
+	
+	%d - integer
+	%s - string
+	%b - boolean
+	%c - character (char)
+	%f - float and double
+	%s - string
+
+WIDTH
+        System.out.printf("Hello %10s NOW", "World");	//Right Justify with a width of 10
+	OUTPUT: Hello     World NOW
+
+        System.out.printf("Hello %-10s NOW", "World");	//Left Justify
+	OUTPUT: Hello World      NOW
+
+PAD WIDTH WITH ZEROS
+        System.out.printf("Hello %05d NOW \n", 45);
+	OUTPUT: Hello 00045 NOW
+
+        System.out.printf("Hello %+05d NOW \n", -45);
+	OUTPUT: Hello -0045 NOW
+
+
+FLOAT/DOUBLE NUMBERS PRECISION
+        System.out.printf("The value is %.2f", 45.365487);
+	OUTPUT: The value is 45.37
+
+FLAGS
+	DISPLAY + or - if present in the value
+        System.out.printf("The value is %+.2f \n", +34.5676);
+	OUTPUT: The value is +34.57
+
+
+	SEPARATE EACH THOUSAND WITH COMMA(,)
+        System.out.printf("VALUE IS: %,.2f \n", 10033573523.0);
+	OUTPUT: 10,033,573,523.0
+

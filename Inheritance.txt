@@ -1,0 +1,127 @@
+Check android tutorial 2:50:00
+Check Java full course 3:48:00
+
+==============================
+Inheritance is the process one class acquires the attributes and methods of another.
+Java does not support multiple inheritance, except with the help of interfaces. CHECK Interfaces for this
+
+Assuming main class to inherit from is Vehicles, Class to inherit from Vehicles class are Cars and Bicycles.
+Vehicles class is the Super class also known as the parent class.
+Cars and Bicycles classes sub classes of the vehicle class, aslo known as the child classes.
+
+=== VEHICLES CLASS ===========
+
+public class Vehicles {
+    double speed;
+
+    void go()
+    {
+        System.out.printf("This vehicle is moving");
+    }
+
+    void stop()
+    {
+        System.out.println("This vehicle has stopped moving");
+    }
+
+}
+
+====== CARS CLASS and BICYCLES CLASS ============
+
+public class Cars extends  Vehicles{
+}
+
+public class Bicycles extends Vehicles{
+
+}
+
+
+INSIDE MAIN CLASS
+
+public class SamPle {
+    public static void main(String[] args) {
+
+        Vehicles vehicles = new Vehicles();
+        Bicycles bicycles = new Bicycles();
+        Cars cars = new Cars();
+
+        vehicles.go();
+        bicycles.go();
+        cars.go();
+
+    }
+}
+
+OUTPUT:
+
+	This vehicle is moving
+	This vehicle is moving
+	This vehicle is moving
+
+
+================ OVERRIDE AN INHERITED METHOD (method overriding) ====================
+e.g within the bicycle class
+
+public class Bicycles extends Vehicles{
+
+    @Override
+    public void go(){
+        System.out.printf("The bicycle is moving\n");
+    }
+}
+
+
+=========== SUPER KEYWORD =============
+Inherit constructor from parent class to child class
+
+Assuming Parent class Person, and sub class Hero.
+
+public class Person {
+    String name;
+    int age;
+    
+    Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+
+public class Hero extends Person {
+    String power;
+    Hero(String name, int age, String power){
+        super(name, age);
+        this.power = power;
+    }
+}
+
+
+public class SamPle {
+    public static void main(String[] args) {
+        Person person = new Person("Ibrahim", 26);
+        Hero hero = new Hero("Spiderman", 21, "Spider web");
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

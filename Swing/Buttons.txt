@@ -1,0 +1,63 @@
+Declare JButton as global, outside of the Constructor
+
+Button jButton1;
+
+        jButton1 = new JButton();
+        jButton1.setText("CLICK HERE!");
+        jButton1.setBounds(100,100, 200, 100);
+        this.add(jButton1);
+
+============ HANDLING CLICK EVENT ===================
+There a 2 ways of implementing the click event listener; 1. By implementing an interface, 2. By Lambda Expression (easier)
+
+-----------------	1. BY IMPLEMENTING AN INTERFACE -----------:
+For handling click events, implement the ActionListener interface:
+
+public class GuiClass extends JFrame implements ActionListener {
+
+        jButton1.addActionListener(this);
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == jButton1){
+            System.out.println("You clicked a button");
+        }
+
+    }
+
+
+-------------	2. BY LAMBDA EXPRESSION -----------------------
+
+No need of implementing the ActionListener interface
+
+        jButton1.addActionListener(e -> System.out.println("You clicked a button"));
+
+			OR CREATE A FUNCTION AND CALL THE FUNCTION WITHIN THE LAMBDA EXPRESSION
+
+        jButton1.addActionListener(e -> disp());
+
+=================	CUSTOMIZE THE BUTTON	=======================
+        jButton1.setFocusable(false);
+
+=================	SET BUTTON IMAGE/ICON	=======================
+        ImageIcon imageIcon = new ImageIcon("img.png");
+        jButton1.setIcon(imageIcon);
+
+=================	SET BUTTON FONT	=======================
+        jButton1.setFont(new Font("avinda", Font.PLAIN, 25));
+
+=================	SET BUTTON FOREGROUND & BG COLOR	=======================
+        jButton1.setBackground(Color.RED);
+        jButton1.setForeground(Color.WHITE);
+
+=================	SET BUTTON BORDER	=======================
+        jButton1.setBorder(BorderFactory.createEtchedBorder());
+
+=================	ENABLE/DISABLE BORDER	=======================
+        jButton1.setEnabled(false);
+
+=================	BUTTON VISIBILITY	=======================
+        jButton1.setVisibile(false);
+
+

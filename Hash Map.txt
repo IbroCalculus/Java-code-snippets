@@ -1,0 +1,39 @@
+Similar to dictionary in python
+
+CHECK ALSO; TreeMap (Same as Hashmap, but ordered alphabetically)
+
+CREATE HASHMAP
+        HashMap<String, Integer> map = new HashMap<>(); //String Key, Integer Value
+
+ADD ITEMS       
+        map.put("FirstPerson", 2345);
+        map.put("SecondPerson", 6543);        
+        System.out.println(map);
+
+ACCESS ITEMS
+        System.out.println("The value of SecondPerson is " + map.get("SecondPerson"));
+
+REMOVE ITEM
+        map.remove("FirstPerson");
+
+CLEAR ALL ITEMS
+        map.clear();
+
+SIZE/LENGTH
+        map.size();
+
+ACCESS KEYS:
+        map.keySet()
+
+ACCESS VALUES:
+        map.values()
+
+LOOP THROUGH A HASHMAP
+        for(String i: map.keySet())
+        {
+            System.out.println(i + " = " + map.get(i));
+        }
+
+OTHER METHODS:
+        map.containsKey("FirstPerson");
+        map.containsValue(6543);

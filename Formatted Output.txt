@@ -1,0 +1,34 @@
+DECIMAL FORMATTER
+	String monetaryPattern = "###,###,###.##";
+        DecimalFormat monetaryFormat = new DecimalFormat(monetaryPattern);
+        String formatted_sumTotal = monetaryFormat.format(sumTotal);
+	OUTPUT: E.g: 1,320.86 OR 24,632,123.93
+
+	Pattern		Number		Formatted String
+	###.###		123.456		123.456
+	###.#		123.456		123.5
+	###,###.##	123456.789	123,456.79
+	000.###		9.95		009.95
+	##0.###		0.95		0.95
+
+CURRENCY FORMATTER 
+        
+        NumberFormat currencyformat = NumberFormat.getCurrencyInstance();
+        NumberFormat currencyformat2 = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        NumberFormat currencyformat3 = NumberFormat.getCurrencyInstance(Locale.US);
+        
+        NumberFormat currencyformat4 = NumberFormat.getCurrencyInstance(new Locale("en","NG"));//New Locale for Nigeria
+       //For offline reference, check pdf in resource folder
+       //Search ISO 639 Language Code for Nigeria or English. i.e en 
+       //Search ISO 3166 code for Nigeria. i.e NG, where en-> Language, i.e English
+       //Comprehensive website for those: docs.oracle.com...
+        
+        NumberFormat percentageformat = NumberFormat.getPercentInstance();
+        System.out.println("CURRENCY " + currencyformat4.format(345673));
+        System.out.println("PERCENTAGE " + percentageformat.format(345673));
+
+	OUTPUT: 
+	CURRENCY NGN345,673.00
+	CURRENCY ￥345,673.00
+	CURRENCY 345 673,00 €
+	PERCENTAGE 34,567,300%

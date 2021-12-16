@@ -1,0 +1,29 @@
+
+DATA TYPE CONVERSION
+1- Implicit data type conversion: Save a smaller range value in higher range value. E.g from int to long, from long to float.
+2- Explicit data type conversion: Opposite of implicit. E.g: float x = (float) b. Where b is a double
+
+A primitive-type variable can store exactly one value of its declared type at a time
+Reference-type variable store the location of an object in the computer's memory. ie String, Arrays, Classes, Interfaces etc
+
+THERE ARE TWO DATA TYPES:
+	- Primitive, and
+	- Reference data type
+There are 8 primitive datatypes; (others) and 1 reference datatype (String). ie:
+boolean, byte, char, short, int, long, float and double
+
+Check Amigos about 55:00
+=== PRIMITIVE DATA TYPE ===
+byte	1 byte	Stores whole numbers from -128 to 127
+short	2 byte	Stores whole numbers from -32,768 to 32,767
+int	4 bytes	Stores whole numbers from ...		int number = 5;			//
+long	8 bytes	Stores whole numbers from -32,768 to 32,767	long number = 5L; 		//More int numbers
+float	4 bytes	Stores whole numbers from -32,768 to 32,767	float number = (float) 5.2 or 3.5f	//float are double by defalut, hence; cast
+		double number = 5.2; 		//More float
+		char something = 'M';
+		char something = 'u\00AE';	//Special unicode symbol for registered
+		char something = '\u00A9';	//Special unicode symbol for copyright
+	CHECK OTHER UNICODE SYMBOLS
+
+=== REFERENCE DATA TYPE ===
+

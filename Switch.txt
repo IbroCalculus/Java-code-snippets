@@ -1,0 +1,41 @@
+
+FOR INT
+        int num = 4;
+        switch(num)
+        {
+            case 1:
+                System.out.println("You clicked ONE");
+                break;
+            case 4:
+                System.out.println("You selected FOUR");
+                break;
+            default:
+                System.out.println("Nothing selected");
+        }
+
+
+FOR STRING
+
+	String text = "Test";        
+	switch(text)
+        {
+            case "Test1":
+                System.out.println("You used TEST1");
+                break;
+            case "Test":
+                System.out.println("You used TEST");
+                break;
+            default:
+                System.out.println("Nothing used");
+        }
+
+
+CONVERTING the above to rule switch on Netbeans gives:
+
+	String text = "Test";
+	switch(text)
+        {
+            case "Test1" -> System.out.println("You used TEST1");
+            case "Test" -> System.out.println("You used TEST");
+            default -> System.out.println("Nothing used");
+        }

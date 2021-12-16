@@ -1,0 +1,9 @@
+
+============ JFrame Background Color ===============
+        jFrame.getContentPane().setBackground(Color.DARK_GRAY);
+        jFrame.getContentPane().setBackground(new Color(0,255,0));
+        jFrame.getContentPane().setBackground(new Color(0x123456));
+
+
+---------- LABEL WIDGET FONT COLOR -------------
+        label1.setForeground(new Color(0xFF0000));

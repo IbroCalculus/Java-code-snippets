@@ -1,0 +1,108 @@
+
+Assume we want to create a class for Car. Within that car there are multiple systems. Ie. Engine, Stereo, Fuel system etc
+
+We can create different classes for these systems, and later composes all these classes within the Car class.
+
+E.g Create Class Car and Class CarEngine
+
+
+
+------------------------ CarEngine Class ------------------------------
+public class CarEngine {
+    private int model;
+    private int rpm;
+
+    public CarEngine(int model, int rpm) {
+        this.model = model;
+        this.rpm = rpm;
+    }
+
+    public int getModel() {
+        return model;
+    }
+
+    public void setModel(int model) {
+        this.model = model;
+    }
+
+    public int getRpm() {
+        return rpm;
+    }
+
+    public void setRpm(int rpm) {
+        this.rpm = rpm;
+    }
+}
+
+------------------ Car Class ---------------------------------
+public class Car {
+    private String name;
+    private  int doorNum;
+    private String color;
+    
+    private CarEngine carEngine;
+
+    public Car(String name, int doorNum, String color, CarEngine carEngine) {
+        this.name = name;
+        this.doorNum = doorNum;
+        this.color = color;
+        this.carEngine = carEngine;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDoorNum() {
+        return doorNum;
+    }
+
+    public void setDoorNum(int doorNum) {
+        this.doorNum = doorNum;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public CarEngine getCarEngine() {
+        return carEngine;
+    }
+
+    public void setCarEngine(CarEngine carEngine) {
+        this.carEngine = carEngine;
+    }
+}
+
+-------------------- Main Class ------------------------
+
+    public static void main(String[] args) {
+        
+        Car car = new Car("Honda", 4, "Blue", new CarEngine(3453, 720));
+        System.out.println(car.getCarEngine().getRpm());
+        System.out.println(car.getName()); 
+
+		OR
+
+        CarEngine carEngine = new CarEngine(654, 1080);
+        Car car = new Car("Honda", 4, "Blue", carEngine);
+        System.out.println(carEngine.getRpm());
+        System.out.println(car.getName());
+       
+    }
+
+
+
+
+
+
+
+

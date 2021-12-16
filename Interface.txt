@@ -1,0 +1,86 @@
+
+=== Combining both interface and class(or abstract class) ===
+public class Staff extends Salary2 implements Salary, Payment {
+
+Interface is more restrictive(strict) compared to abstract class
+
+NB: You cannot define concrete methods in interface,
+    Any declared variable must be instantiated
+
+interface is a template that can be applied to a class.
+Similar to a class, but specifies what a class has to/must do.
+classes can apply more than 1 interfaces, inheritance is limited to 1 super class
+
+E.g Assume 3 additional classes, apart from the main class (Rabbit, Hawk, Fish)
+Also, create 2 interfaces, ie Predator, Prey.
+Methods in interfaces do not need a body.
+
+============ CREATE 2 DIFFERENT INTERFACES =================
+public interface Predator {
+    void attack();
+}
+
+public interface Prey {
+    void flee();
+}
+
+
+
+
+==== APPLYING 1 INTERFACE TO A CLASS (i.e Hawk is a predator, Rabbit is a prey) =======
+
+public class Hawk implements Predator{
+    @Override
+    public void attack() {
+        System.out.println("The Hawk is attacking its prey");
+    }
+
+	------ IN MAIN METHOD ------
+        Hawk hawk = new Hawk();
+        hawk.attack();
+
+
+
+public class Rabbit implements Prey {
+
+    @Override
+    public void flee() {
+        System.out.println("The rabbit is fleeing from the predator");
+    }
+}
+
+
+
+
+========= APPLYING MORE THAN 1 INTERFACE TO A CLASS (i.e Fish can be both predator or pray) ===========
+
+public class Fish implements Predator, Prey {
+    @Override
+    public void attack() {
+        System.out.println("The Fish is attacking its prey");
+    }
+
+    @Override
+    public void flee() {
+        System.out.println("The fish is running from its predator");
+    }
+}
+	
+	---- IN MAIN METHOD ----------
+        Fish fish = new Fish();
+        fish.attack();
+        fish.flee();
+
+
+
+
+
+
+
+
+
+
+
+
+
+

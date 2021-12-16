@@ -1,0 +1,26 @@
+
+WHAT ARE DATA STRUCTURES?
+Data structure is the way to store and organise data so that it can be used efficiently.
+
+There are basically 3 types of data structures in java
+
+1. Primitive Data Structure
+	Primitive Data Structure can be defined as those which are predefined ways of storing data by the system. And the set of operations that can be performed on these data are predefined. E.g: Integer, float, double, char etc, +,-,*,/ etc
+
+2. Linear Data Structure
+	Linear Data Structure can be defined as the data structures where data items are arranged in an orderly manner where the elements are arranged adjacent to each other. E.g Arrays, linkedLists, Stacks, Queues
+
+3. Hierachical Data Structure (Tree)
+	A Tree is a non-linear data structure where data objects are organized in terms of hierarchical relationships. The structure is non-linear in the sense that, unlike simple array and linked list implementation, data in a tree is not organized linearly.
+
+3. Graph
+
+4. HashMap
+
+
+Some Algorithms are: 
+1. Sorting
+2. Shuffling
+3. Composition
+4. Data manipulations
+

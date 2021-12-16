@@ -1,0 +1,5 @@
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your fullname: ");
+        String fullname = input.nextLine();
+        System.out.println("You are Welcome " + fullname);

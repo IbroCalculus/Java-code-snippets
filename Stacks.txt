@@ -1,0 +1,25 @@
+
+Stack represents a last-in-first-out (LIFO) stack of objects.
+
+        Stack<String> countries = new Stack<>();
+
+        countries.push("Nigeria");
+        countries.push("Ghana");
+        countries.push("Germany");
+        countries.push("India");
+
+        System.out.printf("COUNTRIES IN STACK: %s", countries);
+
+
+----- Remove (Pop Last Item in the stack) -------
+
+        String poppedItem = countries.pop();
+        System.out.printf("AFTER POP: %s", countries);
+
+
+----- View Top most or Last input element (Peek) -------
+
+        String topElement = countries.peek();
+        System.out.printf("LAST IN: %s", topElement);
+
+

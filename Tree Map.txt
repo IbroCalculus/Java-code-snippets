@@ -1,0 +1,12 @@
+
+Similar to Hash Map, but key data ordered alphabetically.
+CHECK Hash Map, methods applicable to Tree Map
+
+     TreeMap<String, String> treemap = new TreeMap<>();
+     treemap.put("firstName", "Ibrahim");
+     treemap.put("zeeName", "Zidane");
+     treemap.put("surName", "Suleiman");
+
+     for(String i: treemap.keySet()){
+         System.out.printf("KEY: %s, VALUE: %s\n", i, treemap.get(i));
+     }

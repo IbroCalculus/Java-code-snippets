@@ -1,0 +1,17 @@
+
+About Java full course, 5:20:00. Check For more
+
+public class SamPle {
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        Scanner input = new Scanner(System.in);
+
+        File file = new File("file.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);   //Add throws declaration
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);                                                 //Add throws declaration
+        clip.start();
+
+        String response = input.next();
+    }
+}
+

@@ -1,0 +1,25 @@
+
+Operators are used to perform operations on variables and values.
+
+The value is called an operand, while the operation (to be performed between the two operands) is defined by an operator:
+
+    100 	    *		        2
+Operand 	Operator	 Operahand
+
+Java divides the operators into the following groups:
+
+Arithmetic operators
+Assignment operators
+Comparison operators
+Logical operators
+Bitwise operators
+
+Arithmetic operators:	+, -, *, /, %, ++, --
+
+Assignment operators:	=, +=, %=, -=, !=, >>= ...etc
+
+Comparison operators:	==, !=, >, <, >=, <=
+
+Logical operators:	&&, ||, !
+
+Bitwise operators:	

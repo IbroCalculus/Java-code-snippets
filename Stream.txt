@@ -1,0 +1,102 @@
+ 
+ Stream is an API
+ Just like streaming movies on youtube. Get data bit by bit instead of whole.
+
+ E.g1:
+============ Stream Map (like lambda function) ================
+ 1. ---- Create an arraylist of numbers -------
+        List<Integer> numberList = new ArrayList<>();
+        numberList.add(10);
+        numberList.add(20);
+        numberList.add(30);
+        numberList.add(40);
+
+ 2. ---- Create a new arraylist to square numbers, using enhanced for-loop
+        List<Integer> squareList = new ArrayList<>();
+
+        for(Integer i: numberList){
+            int squareValueI = (int) Math.pow(i,2);
+            squareList.add(squareValueI);
+        }
+
+        System.out.println("The numberList contains: " + numberList);
+        System.out.println("The squareList contains: " + squareList);
+
+ 3. ---- Use stream, instead of enhanced for-loop in 2 above
+        List<Integer> squareList2 = numberList.stream().map(x -> x*x).collect(Collectors.toList());
+        System.out.println("The squareList2 contains: " + squareList2);
+
+ Similarly, for Set:
+        Set<Integer> squareSet = numberList.stream().map(x -> x*x).collect(Collectors.toSet());
+        System.out.println("The squareSet contains: " + squareSet);
+
+
+============ Stream Filter ================
+ 1. ---- Create an arraylist of string values, ie languages -------
+        List<String> languages = new ArrayList<>();
+        languages.add("Python");
+        languages.add("PyQt");
+        languages.add("Java");
+        languages.add("Scala");
+
+
+ 2. ---- Filter result using loop and conditionaly statements ------
+        List<String> filterResult = new ArrayList<>();
+        for (String s : languages) {
+            if (s.startsWith("P")) {
+                filterResult.add(s);
+            }
+        }
+        System.out.println("OUTPUT: " + filterResult);
+
+
+ 3. ---- Use stream, instead of enhanced for-loop in 2 above
+        List<String> filterResult = languages.stream().filter(s -> s.startsWith("P")).collect(Collectors.toList());
+        System.out.println("FILTER OUTPUT: " + filterResult);
+
+
+============ Stream API Sorting elements in a collection ================
+ 1. ---- Create an arraylist of string values, ie languages -------
+        List<String> languages = new ArrayList<>();
+        languages.add("Python");
+        languages.add("PyQt");
+        languages.add("Java");
+        languages.add("Scala");
+
+        //Sorted alphabetically, A-Z
+        List<String> sortedList = languages.stream().sorted().collect(Collectors.toList());
+        System.out.println("SORTED LIST: " + sortedList);
+
+
+============ Stream API Iteration (Enhanced for loop is still okay though) ================
+ 1. ---- Create an arraylist of string values, ie languages -------
+        List<String> languages = new ArrayList<>();
+        languages.add("Python");
+        languages.add("PyQt");
+        languages.add("Java");
+        languages.add("Scala");
+
+
+        --- For one line of code ----
+        languages.stream().forEach(y-> System.out.printf(" %s ", y));
+        System.out.println();
+        languages.stream().forEachOrdered(y-> System.out.printf(" %s ", y));
+
+        ---- Same as above, but accepts multiple lines of code during the iteration ---
+        languages.stream().forEach(y-> {
+            System.out.printf(" %s ", y);
+            System.out.println("<Just for test>");
+                }
+        );
+
+
+============ Stream API Reduce function ================
+ Used for iterating through and summing the values of a collection
+        List<Integer> numberList = new ArrayList<>();
+        numberList.add(10);
+        numberList.add(20);
+        numberList.add(30);
+        numberList.add(40);
+
+        int answer = numberList.stream().reduce(0,(ans,i)-> ans+i);
+        System.out.printf("THE ANSWER = %d", answer);

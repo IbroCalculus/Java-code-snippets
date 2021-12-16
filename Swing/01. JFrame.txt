@@ -1,0 +1,46 @@
+
+A Frame is a GUI window to add components to.
+
+There are 2 ways we can create a Swing GUI:
+
+=============== 1. Create an instance of Frame Class within the main Java class: =============
+
+    public static void main(String[] args) {
+        
+        JFrame jFrame = new JFrame();
+        jFrame.setTitle("My New JFrame GUI");
+        jFrame.setSize(420, 420);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //.DISPOSE_ON_CLOSE, .DO_NOTHING_ON_CLOSE, .HIDE_ON_CLOSE
+        jFrame.setResizable(false);
+        jFrame.setVisible(true);
+        
+    }
+
+
+
+============== 2. Create another class for the GUI code, and instantiate that class within the main class: =============
+Assuming new Class is GuiClass;
+
+public class GuiClass extends JFrame {
+    GuiClass(){
+        this.setTitle("My New this GUI");
+        this.setSize(420, 420);
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);  //.DISPOSE_ON_CLOSE, .DO_NOTHING_ON_CLOSE, .HIDE_ON_CLOSE
+        this.setResizable(false);
+
+        ImageIcon imageIcon = new ImageIcon("img.png");
+        this.setIconImage(imageIcon.getImage());
+
+//        this.getContentPane().setBackground(Color.DARK_GRAY);
+        this.getContentPane().setBackground(new Color(0,255,0));
+//        this.getContentPane().setBackground(new Color(0x123456));
+
+        this.setVisible(true);
+    }
+}
+
+------------	IN MAIN CLASS --------------
+
+    public static void main(String[] args) {
+        GuiClass guiClass = new GuiClass();
+    }

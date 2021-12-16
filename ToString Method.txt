@@ -1,0 +1,28 @@
+
+toString() - This is a special method that all objects inherit, that returns a string that "textually represents" an object.
+It can be used both implicitly and explicitly.
+
+Assume a class "Car" with varibles String name, String model, int number;
+
+in main class:
+	Car car = new Car();
+to Access the textual values of the variables:
+	- System.out.println(car.name);
+	- System.out.println(car.model);
+	- System.out.println(car.number);
+
+Now, 	- System.out.println(car);	OUTPUT: Something like: Car@36baf30c 	<--- Addr. of car object in memory
+Likewise: - System.out.println(car);	OUTPUT: Same as above, implicitly
+
+Override the toString method in the class Car
+
+Public String toString() {
+	return name + "\n" + model + "\n" + number;
+}
+
+------ main class -----------
+	System.out.println(car.toString());	<--- Explicityly
+
+	OUTPUT: name (value)
+		model (value)
+		number (value)

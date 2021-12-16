@@ -1,0 +1,60 @@
+
+A constructor has the same name as the class
+
+Assume class Car, the constructor will be;
+
+
+========= TO USE A CONSTRUCTOR WITHOUT NEED TO USE THE PARAMETERS PASSED INTO IT ========================
+
+public class Car {  
+  
+    Car(String name, String model, int price){
+        System.out.printf("The name of the car is: %s, of model %s, which costs %s",name, model, price);
+}
+    
+}
+
+========= TO BE ABLE TO ACCESS THE ARGUMENTS IN THE CONSTRUCTOR: ==========
+
+public class Car {
+
+    String name;
+    String model;
+    int price;
+
+    Car(String name, String model, int price){
+        this.name = name;
+        this.model = model;
+        this.price = price;        
+        System.out.printf("The name of the car is: %s, of model %s, which costs %s",name, model, price);
+}    
+}
+
+	----------- ACCESSING THE CONSTRUCTOR IN THE MAIN CLASS ---------------
+	//NB: For this, it is better to generate and use getters and setters
+
+    public static void main(String[] args) 
+	{
+        Car car1 = new Car("Honda", "Civic",40000);
+        System.out.printf("\n The name of the car is %s, of model no. %s, which costs %,.2f \n\n", car1.name, car1.model,car1.price);
+
+        Car car2 = new Car("Toyota", "ES81F", 500000);
+        System.out.printf("\n The name of the car is %s, of model no. %s, which costs %,.2f \n", car2.name, car2.model,car2.price);
+	}
+}
+	OUTPUT:
+	The name of the car is: Honda, of model Civic, which costs 40,000.00
+ 	 The name of the car is Honda, of model no. Civic, which costs 40,000.00 
+
+	The name of the car is: Toyota, of model ES81F, which costs 500,000.00
+ 	 The name of the car is Toyota, of model no. ES81F, which costs 500,000.00 
+
+===========================================================
+
+
+====== CONSTRUCTOR OVERLOADING =======================
+Overloaded constructors are constructors within same class that share the same name but have different parameters.
+NB: constructor name + constructor parameter = constructor signature. -> Same name, but different parameters = different constructor signature.
+
+
+

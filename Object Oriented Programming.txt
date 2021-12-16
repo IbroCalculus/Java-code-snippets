@@ -1,0 +1,23 @@
+
+CHECK TUTORIAL: "Android Development for Beginners - Full Course: 2:30:00"
+
+Class is the main part of OOP
+A class represents an object. E.g:
+
+//This is a Phone class, Phone is the objec
+public class Phone{
+	
+}
+
+NB: Objects can have different properties and methods(behaviours)
+
+=============================================================================
+WELL EXPLAINED IN JAVA Full Course about 2:55:00
+
+An object is an instance of a class that may contain attributes and methods.
+NB: Attribute (same as properties), Methods (same as action the object can perform)
+E.g Car is an object.
+	Some car attributes; color, size, speed.
+	Some methods; move, accelerate, stop moving
+
+=========== COPY OBJECTS ======================

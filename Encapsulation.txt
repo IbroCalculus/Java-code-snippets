@@ -1,0 +1,9 @@
+Restricting accessing properties of a class to the outside world
+Adds a layer of security
+
+This is when attributes of a class will be hidden or private,
+can be accessed only through methods (getters and setters)
+You should make attributes private if you don't have a reason to make them public/protected.
+
+Use generate getters and setters
+Then, instance.get(), instance.set()

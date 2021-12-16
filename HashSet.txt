@@ -1,0 +1,17 @@
+CHECK ALSO: TreeSet.
+
+Stores data in the array randomly, unlike TreeSet which is ordered alphabetically.
+
+ Similar to arrays and linkedList, but does not keep duplicate, like set in python
+
+    HashSet<String> cars = new HashSet<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("BMW");
+    cars.add("Mazda");
+    System.out.println(cars);
+
+-- Some methods: ----
+.contains() 
+.remove("Volvo")

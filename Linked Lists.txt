@@ -1,0 +1,10 @@
+Linear data structures, Data are not saved sequentially.
+
+Similar to arraylist, more methods
+
+        LinkedList<String> myList = new LinkedList<>();
+        myList.add("First");
+        myList.add("Second");
+        myList.addFirst("Added First");
+        myList.addLast("Added Last");
+        myList.add(1, "Added @ index 1");

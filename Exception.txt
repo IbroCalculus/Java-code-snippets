@@ -1,0 +1,86 @@
+
+ArithmeticException
+NullPointerException
+NumberFormatException -> Cannot convert(cast) String variable to int
+
+=== CHECK / UNCHECKED EXCEPTION ===
+ --- Checked exceptions: Java force you to throw the exceptions; ie ALT + INS, Unchecked, opposite
+
+	try
+        {
+            int nums[] = {1,2,3,5};
+            System.out.println(nums[10]);
+        }
+
+        catch(ArithmeticException e)
+        catch(Exception e)
+        {
+            System.out.println("An error occurred of type " + e);
+        }
+
+FINALLY
+The finally statement lets you execute code, after try...catch, regardless of the result:
+
+	try
+        {
+            int nums[] = {1,2,3,5};
+            System.out.println(nums[10]);
+        }
+        catch(Exception e)
+        {
+            System.out.println("An error occurred of type " + e);
+        }
+        finally
+	{
+            System.out.println("This is the finally statement");
+        }
+
+----------- Catching more than 1 type of exception -------------
+
+	try
+        {
+            int nums[] = {1,2,3,5};
+            System.out.println(nums[10]);
+        }
+        catch(IOException| SQLException e)
+        {
+            System.out.println("An error occurred of type " + e);
+        }
+
+THE THROW KEYWORD
+The throw statement allows you to create a custom error.
+
+The throw statement is used together with an exception type. There are many exception types available in Java: i.e: ArithmeticException,
+ClassNotFoundException, 
+ArrayIndexOutOfBoundsException, 
+SecurityException, etc.
+
+The exception type is often used together with a custom method.
+
+e.g: A method:
+
+    private static void checkAge(int age) {
+        if (age < 18)  
+        {
+            throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+        }
+        else
+        {
+            System.out.println("Access granted - You are old enough!");
+        }
+    }
+}
+
+The method call
+public static void main(String[] args) throws FileNotFoundException {
+        checkAge(15);
+    }
+
+
+
+
+
+
+
+
+

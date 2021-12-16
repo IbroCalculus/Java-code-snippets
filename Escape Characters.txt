@@ -1,0 +1,17 @@
+
+\n	- New Line
+\t	- Tab
+\b	- Backspace
+\r	- Carriage return
+\f	- Form feed
+
+E.g:	 System.out.println("Welc\b\bome");
+	 OUTPUT: weome
+
+E.g:	 System.out.println("this is a state\rment");
+	 OUTPUT: ment
+
+E.g:	 System.out.println("this is a state\f\f\fment");  
+	 this is a statement
+
+ 

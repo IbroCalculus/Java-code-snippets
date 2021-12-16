@@ -1,0 +1,19 @@
+SYNTAX:
+	 variable = (condition) ? expressionTrue : expressionFalse;
+
+E.g:
+        int x = 34;
+        String response = (x <30)? "Condition true" : "Condition not true";
+        System.out.println(response);
+
+ALTERNATIVE:
+
+        int x = 34;
+        if(x <30)
+        {
+            System.out.println("Condition true");
+        }
+        else
+        {
+            System.out.println("Condition not true");
+        }

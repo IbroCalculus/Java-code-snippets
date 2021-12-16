@@ -1,0 +1,6 @@
+
+Reference: W3Schools
+
+JSON (JavaScript Object Notation) is a text format for storing and transporting data.
+E.g: {"name":"John", "age":30, "car":null}'
+It defines an object with 3 properties: name, age, car. Each property has a value: John, 30, null

@@ -1,0 +1,32 @@
+
+ NB: I still find the ordering in the queue confusing, it is random
+
+ Works on the First-In-First-Out (FIFO) arrangement.
+ NB: Head-> first element, Tail->last element.
+
+
+        NB: Arranged alphabetically, A is first, Z is last on the queue
+        Queue<String> countries = new PriorityQueue<>();
+
+        countries.add("Nigeria");
+        countries.add("Ghana");
+        countries.add("Germany");
+        countries.add("India");
+
+        System.out.printf("COUNTRIES IN QUEUE: %s\n", countries);
+
+
+ --- Remove first-most element in the queue ----
+        String removedItem = countries.remove();
+        System.out.printf("AFTER REMOVE: %s\n", countries
+
+ --- Peek / View front-most element in the queue ---
+        String topElement = countries.peek();
+        System.out.printf("LAST IN: %s", 
+
+ --- Remove topmost element ---
+        String removedTopMostElement = countries.poll();
+        System.out.printf("REMOVED TOPMOST ELEMENT: %s", removedTopMostElement);
+
+
+

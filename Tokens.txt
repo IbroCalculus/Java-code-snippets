@@ -1,0 +1,8 @@
+Tokens are reserved expressions or symbols that have a pre-defined meaning in Java, and you cannot overried this meaning.
+
+Theses tokens are divided into 5 categories;
+1- Keywords; E.g: int, boolean, switch, etc
+2- Identifiers; Any variable names you declare in your program
+3- Constants; final variables
+4- Special Symbols; E.g: [], (), {}, ;, *, =
+5- Operators; E.g arithmetic, comparison, logical, bitwise, etc.

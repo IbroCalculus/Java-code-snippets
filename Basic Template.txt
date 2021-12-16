@@ -1,0 +1,7 @@
+Working with Apache Netbeans:
+
+New Project -> Java With Ant -> Java Application
+
+For Intelij; Check "Create project from template"
+
+SHORTCUT for System.out.println("Hello Netbeans"); -> type: sout + Tab

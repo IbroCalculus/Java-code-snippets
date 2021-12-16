@@ -1,0 +1,4 @@
+CHECK ALSO; HashSet
+
+
+Similar to HashSet, but items ordered alphabetically

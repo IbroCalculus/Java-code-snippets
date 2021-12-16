@@ -1,0 +1,18 @@
+
+CHECK Data Types
+
+Data types: String, int, float, char, boolean.
+
+Declaration:
+
+String name;
+int number;
+float another_number;
+char value;
+boolean state:
+
+name = "My name";
+number = 34;
+another_number = 34.2345f;
+value = 'A';
+state = true;

@@ -1,0 +1,7 @@
+
+        String x = "Ibrahim Suleiman";
+        char b[] = x.toCharArray();
+        for(char i : b)
+        {
+            System.out.println(i);
+        }

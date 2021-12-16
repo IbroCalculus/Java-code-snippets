@@ -1,0 +1,14 @@
+
+        
+        Scanner input  = new Scanner(System.in);
+
+        System.out.println("Enter Username: ");
+        String username = input.nextLine();
+        
+        System.out.print("Enter Age: ");
+        int age = input.nextInt();
+        
+        System.out.println("You are ".concat(username).concat(", age ").concat(String.valueOf(age)));
+
+
+INPUT TYPES: nextLine(), nextInt(), nextBoolean(), nextByte(), nextDouble(), nextFloat(), nextLong(), nextShort()

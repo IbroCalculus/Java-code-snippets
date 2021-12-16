@@ -1,0 +1,158 @@
+
+A thread is a unit of execution in a program (Kind of like a virtual CPU)
+The JVM allows an application to have multiple threads running concurrently.
+Each thread can execute parts of your code in parallel with the main thread.
+Each thread has a priority.
+Threads with higher priority are executed in preference compared to threads with lower priority.
+
+The JVM continues to execute threads until either of the following occures:
+1. The exit method of class Runtime has been called 
+2. All user threads have died.
+
+NB: There are 2 different kinds of threads: Daemon threads and user threads(Non-Daemon thread)
+
+When a JVM starts up, there is a thread which calls the main method, this thread is called "main"
+
+Daemon thread is a low priority thread that runs in background to perform tasks such as garbage collection
+JVM terminates itself when all user threads (non-daemon threads) finish their execution.
+
+
+
+============ SHOW NUMBER OF THREADS RUNNING ============
+        System.out.println(Thread.activeCount());
+
+========== SHOW NAME OF CURRENT THREADS ===========
+        System.out.println(Thread.currentThread().getName());
+
+========= RENAME THREAD ====================
+        Thread.currentThread().setName("Thread New Name");
+
+========== GET THREAD PRIORITY =============
+        System.out.println(Thread.currentThread().getPriority());	\\Scale of 1-10. scale is directly proportional to priority
+
+========== SET THREAD PRIORITY =============
+        Thread.currentThread().setPriority(9);				\\Scale of 1-10. scale is directly proportional to priority
+
+========== CHECK IF THREAD IS ALIVE =============
+        System.out.println(Thread.currentThread().isAlive());
+
+=========== CHECK IF THREAD DAEMON ================
+        System.out.println(newThread1.isDaemon());
+
+=========== SET THREAD TO DAEMON ================
+        NewThread1 newThread1 = new NewThread1();
+        newThread1.setDaemon(true);
+
+========= SLEEP THREAD (like pause the thread)	===========
+        System.out.println(newThread1.isDaemon());
+
+    public static void main(String[] args) throws InterruptedException {
+        for (int i=3; i>=0; i--){
+            System.out.println(i);
+            Thread.sleep(1000);				//milliseconds
+        }
+    }
+
+
+
+
+================= MULTI-THREADING =========
+
+Multithreading is the process of executing multiple threads simultaneously.
+It helps maximum utilization of CPU.
+Threads are independent, they don't affect the execution of other threads. 
+An exception in one thread will not interrupt other threads
+useful for serving multiple clients, multiplayer games, or other mutually independent tasks.
+
+There are 3 methods to doing this. I find method 3 Best, easiest.
+
+------- Method 1 - Create a class for the thread and extends Thread ---------------
+
+public class NewThread1 extends Thread{
+    @Override
+    public void run() {
+        System.out.println("NewThread1 has been created successfully!");
+    }
+}
+
+-------	IN MAIN CLASS: 
+
+        NewThread1 newThread1 = new NewThread1();
+        System.out.println(newThread1.isAlive());   //Returns false, unless thread is started.
+        newThread1.start();
+        System.out.println(newThread1.isAlive());   //Returns true;
+        System.out.printf("The name of this thread is: %s\n", newThread1.getName());
+
+
+------ Method 2: Create a new class and implement Runnable ----------
+
+public class MyRunnable implements Runnable{
+    @Override
+    public void run() {
+
+        for (int i=1; i<=10; i++){
+            System.out.println(i);
+            try {
+                Thread.sleep(1000);				//milliseconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("ITERATION COMPLETED FOR T-2");        
+    }
+}
+
+---------- IN MAIN CLASS:
+        MyRunnable myRunnable = new MyRunnable();
+        Thread newThread2 = new Thread(myRunnable);
+        newThread2.start();
+
+
+------- Method 3: (E.g below consists of 2 custom thread + the main thread) ------
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.printf("Running loop: %d\n", i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int j=11; j<=20; j++){
+                    System.out.printf("Runngin loop: %d\n", j);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        thread.start();
+        thread2.start();
+
+        for(int k=21; k<=30; k++){
+            System.out.printf("Executing loop: %d\n", k);
+            Thread.sleep(1000);
+        }
+
+
+============ JOIN METHOD IN THREAD =====================
+This is used to join 2 threads such as one thread will not start until the other thread has finished execution.
+Assuming thread1 and thread2.
+Want thread2 to begin only after thread1: 
+
+thread1.start();
+thread1.join();
+thread1.join(3000);	//Delay of 300 miliseconds
+thread2.start();

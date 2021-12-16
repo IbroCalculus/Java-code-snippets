@@ -1,0 +1,32 @@
+
+CHECK ALSO; Stream   ----> Use the stream API to iterate over a collection; i.e; Arraylist, set etc.
+
+
+===== FOR LOOP =========
+
+        for(int i=0; i<=10; i++){
+            System.out.println("This is loop number " + i);
+        }
+
+===== WHILE LOOP ============
+
+        int a = 1;
+        while(a <10){
+            System.out.println("This is while loop number " + a);
+            a++;
+        }
+
+====== DO WHILE LOOP ===========
+
+        int a = 1;
+        
+        do{
+            System.out.println("This is do while loop number " + a);
+            a++;
+        }while(a < 10);
+
+====== FOR-EACH LOOP (ENHANCED FOR LOOP) ===========
+LOOP THROUGH AN ARRAY OR ARRAYLIST USING FOR-EACH LOOP
+        for (String i: students){
+            System.out.println(i);
+        }

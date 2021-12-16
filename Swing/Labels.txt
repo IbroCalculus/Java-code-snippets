@@ -1,0 +1,46 @@
+
+============= LABELS ================
+A JLabel is a GUI display area for a string of text, an image, or both
+
+---------- ADD TEXT TO A LABEL -----------------
+
+        JLabel label1 = new JLabel();			// OR J Label label1 = new JLabel("This is a text on a label);
+        label1.setText("This is a text on a label");
+        this.add(label1);
+ 
+--------------- ADD IMAGE TO A LABEL ------------------
+
+        JLabel label1 = new JLabel();
+        label1.setText("This is a text on a label");
+        label1.setIcon(image1);					//Place text to the right of the image by default
+        this.add(label1);
+
+
+-----------	POSITION IMAGE/TEXT ON A LABEL RELATIVE TO EACH OTHER ----------------:
+
+        ImageIcon image1 = new ImageIcon("img_1.png");
+
+        JLabel label1 = new JLabel();
+        label1.setText("This is a text on a label");
+        label1.setIcon(image1);
+        label1.setHorizontalTextPosition(JLabel.CENTER);
+        label1.setVerticalTextPosition(JLabel.TOP);
+        this.add(label1);
+
+-----------	POSITION A LABEL RELATIVE TO THE JFrame ----------------:
+
+        label1.setHorizontalAlignment(JLabel.CENTER);	//.LEFT, .RIGHT
+        label1.setVerticalAlignment(JLabel.CENTER);	//.TOP, .BOTTOM
+
+-------- LABEL BACKGROUND COLOR ---------------
+        label1.setBackground(Color.PINK);
+        label1.setOpaque(true);
+
+---------- LABEL FONT COLOR -------------
+        label1.setForeground(new Color(0xFF0000));
+
+--------- LABEL FONT STYLE -------------
+        label1.setFont(new Font("Decay",Font.ITALIC, 20));
+
+----------- LABEL ICON-TEXT GAP -----------
+        label1.setIconTextGap(100);	// -100

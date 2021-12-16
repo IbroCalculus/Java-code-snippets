@@ -1,0 +1,100 @@
+NB: 2D ArrayList section down below
+
+The ArrayList is a resizeable array.
+
+ArrayList is a java class that implements the list interface.
+
+The difference between a built-in array and an ArrayList in Java, is that the size of an array cannot be modified (if you want to add or remove elements to/from an array, you have to create a new one). While elements can be added and removed from an ArrayList whenever you want.
+
+NB: THERE ARE TWO WAYS OF DIFINING AN ARRAYLIST: ie;
+
+        1- ArrayList<String> students  = new ArrayList<>(); OR (Deprecated for Java Version < 1.8) ... new ArrayList<String>();
+        2- List<String> myList2 = new ArrayList<>();    "BETTER METHOD"
+
+
+        ArrayList<Integer> myNumber = new ArrayList<>();
+        ArrayList<String> students  = new ArrayList<String>();
+        students.add("Ibrahim");
+        students.add("Musa");
+        students.add("Suleiman");
+        System.out.println(students);
+
+ACCESSING ITEMS
+        System.out.println("The first item in the arraylist is: " + students.get(0));
+
+
+CHECK IF ITEM IN ARRAYLIST
+        boolean containsValue = myList1.contains("Ibrahim");	
+
+CHECK IF ARRAYLIST IS EMPTY
+        boolean emptyOrNot = myList1.isEmpty();
+
+CHANGE ITEM AT A PARTICULAR INDEX
+        students.set(1, "Muhammed");
+        System.out.println(students);
+
+REMOVE ITEM
+        students.remove(2);			//REMOVE BY INDEX
+	students.remove("Musa");		//REMOVE BY ITEM NAME
+        System.out.println(students);
+
+REMOVE ALL ITEMS
+        students.clear();
+        System.out.println(students);
+
+ARRAY SIZE (length)
+        System.out.println(students.size());	//3
+
+LOOP THROUGH AN ARRAYLIST
+        for(int i=0; i<students.size(); i++){
+            System.out.println(i + " " + students.get(i));
+
+LOOP THROUGH AN ARRAYLIST USING FOR-EACH LOOP
+        for (String i: students){
+            System.out.println(i);
+        }
+
+GET INDEX OF ITEM
+        int indexOfItem = myList1.indexOf("Ibrahim"); \\Else returns -1
+
+=============================================== 2D ARRAYLIST ======================================
+2D Arraylist is a dynamic list of lists. It's a list of separate lists.
+
+        ArrayList<String> lists1 = new ArrayList<>();
+        lists1.add("Item 1");
+        lists1.add("Item 2");
+        lists1.add("Item 3");        
+        System.out.println(lists1);
+        
+        ArrayList<String> lists2 = new ArrayList<>();
+        lists2.add("Object 1");
+        lists2.add("Object 2");
+        lists2.add("Object 3");
+        System.out.println(lists2);
+        
+        ArrayList<String> lists3 = new ArrayList<>();
+        lists3.add("list 1");
+        lists3.add("list 2");
+        System.out.println(lists3);
+        
+       
+        ArrayList<ArrayList<String>> allLists = new ArrayList<>(); 
+        allLists.add(lists1);
+        allLists.add(lists2);
+        allLists.add(lists3);
+        
+        System.out.println(allLists);
+
+	OUTPUT:	
+	[Item 1, Item 2, Item 3]
+	[Object 1, Object 2, Object 3]
+	[list 1, list 2]
+	[[Item 1, Item 2, Item 3], [Object 1, Object 2, Object 3], [list 1, list 2]]
+
+	
+ACCESSING ELEMENTS IN A 2D ARRAYLIST
+        System.out.println(allLists.get(0).get(1));
+
+
+
+

@@ -1,0 +1,73 @@
+
+Polymorphism is the greek word for poly-"many", morph-"form".
+It is the ability of an object to identify as more than one type.
+
+Assuming a class called Vehicle (Parent), and 3 other classes, Bicycle, Boat, Car.
+To store the objects as an array;
+
+
+public class Vehicle {
+    public void go(){
+        
+    }
+}
+
+
+public class Car extends Vehicle{
+    public void go(){
+        System.out.println("The Car is going forward");
+    }
+}
+
+
+public class Bicycle extends Vehicle{
+    public void go(){
+        System.out.println("The Bicycle is going forward");
+    }
+}
+
+
+public class Boat extends Vehicle{
+    public void go(){
+        System.out.println("The Boat is going forward");
+    }
+}
+
+
+
+--- in main method ---
+
+public class SamPle {
+    public static void main(String[] args) {
+
+        Boat boat = new Boat();
+        Car car = new Car();
+        Bicycle bicycle = new Bicycle();		
+
+        Vehicle[] vehicles = {boat,car,bicycle};	//car object identifies as a Car as well as a vehicle, likewise the others.
+	
+        for (Vehicle x: vehicles){
+            x.go();
+        }
+
+
+    }
+}
+
+
+==================	DYNAMIC POLYMORPHISM	==============================
+It is polymorphism during runtime
+
+
+
+
+===================== FROM ANOTHER LECTURE =================
+========================== Polymorphism are of different kinds. (3) =======================
+------------------- 1. Creating multiple constructor for same class. Constructor overloading.
+
+------------------- 2. Two methods inside a parent and a child class, doing the same thing differently. ie Overriding a Parent class method in child class. 
+
+------------------- 3. Creating multiple methods with the same name, but different parameter types and/or number of arguments. Method Overloading.
+
+
+

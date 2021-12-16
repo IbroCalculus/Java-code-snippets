@@ -1,0 +1,95 @@
+
+public class Test {
+    public static void main(String[] args){
+        for(int i = 0; i<=5; i++){
+            sayHello();
+        }
+    }    
+
+
+    private static void sayHello() 
+    {
+        System.out.println("Good morning");
+    }
+	}
+
+METHOD WITH PARAMETERS
+Tip: Create the method call first in main, click on red warning and auto-create method
+
+public class Test {
+    public static void main(String[] args) {
+
+        for(int i = 0; i<=5; i++){
+            sayHello("Ibrahim", "Suleiman");
+        }
+    }
+
+    private static void sayHello(String fname, String sname) {
+        System.out.println("Welcome Mr " + fname + " " + sname);
+    }
+}
+
+
+STATIC VS PUBLIC function declaration
+
+By STATIC, you can call the function directly without declaring an object.
+
+E.g:    static void say()
+	    {
+        	System.out.println("This is for test");
+    	    }
+-method call
+	say();
+
+
+By PUBLIC, you must create an object of the class and call the function as a method.  can only be accessed by objects
+
+E.g:	public void say()
+    		{
+        		System.out.println("This is for test");
+    		}
+-method call
+	Test testObj = new Test();
+	testObj.say():
+
+
+RETURN STATEMENT
+NB: In the method, change void to int, String or any as needed.
+
+public static void main(String[] args) {
+       int ans =  product(5,3);
+       int ans1 = ans + 3;
+        System.out.println("Answer = " + ans1);
+    }
+
+    private static int product(int x, int y) {
+       int z = x * y;
+       return z;
+    }
+
+
+============ METHOD OVERLOADING ================
+Overloaded methods are methods that share the same name but have different parameters.
+NB: Method name + method parameter = method signature. -> Same name, but different parameters = different method signature.
+
+E.g: Using the method "summation" as an example:
+
+    static void summation(int a, int b){
+        int z = a + b;
+        System.out.println(z);
+    }
+
+    static void summation(int a, int b, int c){
+        int z = a + b + c;
+        System.out.println(z);
+    }
+
+    static void summation(String fName, String sName){
+        String msg = "Full Name is: " + fName + " " + sName;
+        System.out.println(msg);
+    }
+
+METHOD CALL
+	summation(34,2);
+	summation(34,2, 657);
+	summation("Johnson", "Musa");

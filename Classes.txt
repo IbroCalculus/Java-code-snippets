@@ -1,0 +1,94 @@
+Create new Java Class i.e TestClass
+
+public class TestClass {
+    String fname = "Ibrahim";
+}
+
+
+CREATE an object of the class in main
+
+        TestClass testClassObj = new TestClass();
+        System.out.println(testClassObj.fname);
+
+
+MULTIPLE objects are allowed:
+
+
+        TestClass testClassObj = new TestClass();
+        TestClass testClassObj1 = new TestClass();
+        TestClass testClassObj2 = new TestClass();
+        System.out.println(testClassObj1.fname);
+        System.out.println(testClassObj2.fname);
+
+
+MAY CREATE MULTIPLE CLASSES AS YOU NEED
+
+JAVA class attributes
+class attributes are variables within a class: i.e: fname. or functions within a class known as methods
+
+Another name for class attributes is fields.
+
+Access atributes as shown above. i.e: obj.attribute
+
+Attributes withing a class can be modified. i.e myObj.x = "Modified text", hence overrid the value of variable x.
+
+To disable overried of variable, declare as final. E.g final String x = "Text"
+
+
+
+CLASS METHODS
+
+public class TestClass {
+    String fname = "Ibrahim Suleiman";
+    
+    static void greet(){
+        System.out.println("Hello to you");
+    }
+    
+    static void msg(String fname){
+        System.out.println("Welcome Mr " + fname);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        TestClass testClassObj = new TestClass();
+        System.out.println(testClassObj.fname);
+        testClassObj.greet();
+        testClassObj.msg("Ib");
+    }
+
+}
+
+PUBLIC VS STATIC METHODS IN CLASSES
+
+By STATIC, you can call the function directly without declaring an object.
+
+E.g:
+public class TestClass {
+    
+    static void greet(){
+        System.out.println("Hello to you");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        TestClass.greet();
+    }
+
+By PUBLIC, you must create an object of the class and call the function as a method.  can only be accessed by objects
+E.g:
+public class TestClass {
+    
+    public void greet(){
+        System.out.println("Hello to you");
+    }
+
+public class Test {
+    public static void main(String[] args) {
+        
+        TestClass testClassObj = new TestClass();
+        testClassObj.greet();
+        
+    }

@@ -1,0 +1,12 @@
+
+Access modifiers add layers of security to programs.
+The are basically: 
+
+DEFAULT: (ie String fName): can only be accessed by classes within the same package.
+
+PUBLIC:  (ie. public String fName): can be accessed by any class from any package.
+
+PRIVATE: (ie private String fName): can be accessed from only within the class itself.
+
+PROTECTED: (ie protected String fName): can be accessed from any package provided the class in that package is a sub class of the class where the 	    	    protected variable is contained.
+	    E.g: A is the parent class of B, and A contains the protected fName. B can access fName.

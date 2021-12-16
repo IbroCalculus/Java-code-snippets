@@ -1,0 +1,45 @@
+import java.time package
+
+Date/Time Classes and Description
+
+*LocalDate		Represents a date (year, month, day (yyyy-MM-dd))
+*LocalTime		Represents a time (hour, minute, second and microsecond (HH-mm-ss-zzz))
+*LocalDateTime		Represents both a date and a time (yyyy-MM-dd-HH-mm-ss.zzz)
+*DateTimeFormatter	Formatter for displaying and parsing date-time objects
+Also
+*Date
+
+TODAY'S DATE
+
+        LocalDate date = LocalDate.now();
+        System.out.println("Todays date; " + date);
+	//Also, date.other methods like getMonth, etc
+
+TODAY'S TIME
+
+        LocalTime time = LocalTime.now();
+        System.out.println("The time now is: " + time);
+
+TODAY'S DATETIME
+        LocalDateTime datetime = LocalDateTime.now();
+        System.out.println("The date and time now is: " + datetime);
+
+FORMATTING THE DATETIME
+
+        LocalDateTime datetime = LocalDateTime.now();
+        System.out.println("Before format: " + datetime);
+        
+        DateTimeFormatter datetimeformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDateTime = datetime.format(datetimeformatter);
+        System.out.println("After Formatting: " + formattedDateTime);
+
+
+
+SOME dateformatter patterns
+
+yyyy-MM-dd						1988-09-29
+dd/MM/yyyy						9/09/1988
+dd-MMM-yyyy						29-Sep-1988
+E, MMM dd yyyy						Thu, Sep 29 1988
+E, 'the' dd'th' 'day' 'of' MMM, yyyy HH:mm:ss		Wed, the 09th day of Sep, 2020 11:20:06
+
