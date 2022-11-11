@@ -1,3 +1,4 @@
+CHECK also Heap
 
 Stack represents a last-in-first-out (LIFO) stack of objects.
 

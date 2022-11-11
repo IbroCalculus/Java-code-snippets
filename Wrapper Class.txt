@@ -17,9 +17,23 @@ double			Double
 
 NB: Primitive values are a lot faster than reference data types.
 
+--Conversion of primitive type to wrapper class
+1. Integer firstObject = new Integer(20);
+2. Integer secondObject = Integer.valueOf(20);
 
+-- Conversion of wrapper class to primitive type
+1. If Integer object = new Integer(20); (wrapper class), then;
+   int value = object.intValue();
+
+==== Automatic conversion using Autoboxing and Unboxing =====
 Autoboxing: It is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes.
+E.g: Double db = 12.8;  //Auto-boxing of double
+     Integer in = 5;    //Auto-boxing of int
+
 Unboxing:   It is the reverse of autoboxing. Automatic conversion of wrapper class to primitive.
+E.g: double d = 12.8; //Auto-unboxing of double
+     int i = 5;
+
 
 E.g Boolean a = true;	<--- Autoboxing
     Character b = '@';

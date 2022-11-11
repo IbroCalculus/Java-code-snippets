@@ -1,3 +1,7 @@
+
+In simple term, encapsulation makes the java code secure.
+Data is stored within the classes, and it is not easy to access the data.
+
 Restricting accessing properties of a class to the outside world
 Adds a layer of security
 

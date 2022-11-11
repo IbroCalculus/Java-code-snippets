@@ -1,0 +1,12 @@
+
+CHECK ALSO; String Builder
+
+This is used to create mutable strings.
+
+        StringBuffer fullName = new StringBuffer("Ibrahim");
+        fullName.append(" Musa");
+        System.out.println(fullName);
+        System.out.println(fullName.length());
+
+Some methods include;
+length, insert, reverse, delete. etc

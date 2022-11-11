@@ -1,14 +1,18 @@
 
+NB: int x = Integer.MAX_VALUE, Byte.MAX_VALUE etc shows the maximum value those data types can take. ie For Byte it is 127
+
+
+
 DATA TYPE CONVERSION
 1- Implicit data type conversion: Save a smaller range value in higher range value. E.g from int to long, from long to float.
 2- Explicit data type conversion: Opposite of implicit. E.g: float x = (float) b. Where b is a double
 
 A primitive-type variable can store exactly one value of its declared type at a time
-Reference-type variable store the location of an object in the computer's memory. ie String, Arrays, Classes, Interfaces etc
+Reference(Non-primitive)-type variable store the location of an object in the computer's memory. ie String, Arrays, Classes, Interfaces, Enum etc
 
 THERE ARE TWO DATA TYPES:
-	- Primitive, and
-	- Reference data type
+	- Primitive (hold single values, with no special capability), and
+	- Reference(Non-primitive) data type
 There are 8 primitive datatypes; (others) and 1 reference datatype (String). ie:
 boolean, byte, char, short, int, long, float and double
 

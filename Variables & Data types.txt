@@ -1,6 +1,16 @@
 
 CHECK Data Types
 
+There are 3 type of variables;
+1. Instance variables: <=== Declared globally without the static keyword
+    ie int speed = 100;
+2. Static variables:   <=== There are initialized only once at the start of the program execution. There should be initialized first before initializing any instance variable
+    ie static int x = 10;
+3. Local variables:    <=== Declared locally within a function
+    ie void method(){
+        int y = 50
+}
+
 Data types: String, int, float, char, boolean.
 
 Declaration:

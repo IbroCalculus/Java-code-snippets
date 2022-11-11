@@ -2,6 +2,9 @@
 === Combining both interface and class(or abstract class) ===
 public class Staff extends Salary2 implements Salary, Payment {
 
+In simple term, abstraction means showing the relevant information that is needed for a task. E.g Name and Address are relevant,
+while favorite foods and favorite sports are not.
+
 Data abstraction is the process of hiding certain details and showing only essential information to the user.
 Abstraction can be achieved with either abstract classes or interfaces.
 

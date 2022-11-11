@@ -1,0 +1,1 @@
+ Similar to stringbuffer, but faster. research.
