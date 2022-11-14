@@ -1,6 +1,8 @@
 
 In simple terms, polymorphism means using the same method for different tasks.
 
+Polymorphism is of 2 types, ie Static (E.g Method overloading) and Dynamic (E.g Method overriding)
+
 
 Polymorphism is the greek word for poly-"many", morph-"form".
 It is the ability of an object to identify as more than one type.

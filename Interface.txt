@@ -70,17 +70,3 @@ public class Fish implements Predator, Prey {
         Fish fish = new Fish();
         fish.attack();
         fish.flee();
-
-
-
-
-
-
-
-
-
-
-
-
-
-

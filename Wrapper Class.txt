@@ -1,5 +1,10 @@
 
 Wrapper class provides a way to use primitive data types as reference data types.
+wrapper classes are used for converting primitive datatypes into objects. E.g byte->Byte, int->Integer, etc
+primitive data types are not objects, so they don't belong to any class.
+
+The wrapper class of a particular primitive object can hold a lot of information, and provide useful functions such as, conversion of one type to another, etc.
+
 	reference data types contain useful methods
 	can be used with collections. E.g ArrayList
 
