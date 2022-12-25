@@ -1,6 +1,11 @@
+Character Arrays
 
         String x = "Ibrahim Suleiman";
-        char b[] = x.toCharArray();
+        char h[] = {'h','e','l','l','o'};  //OUTPUT: hello
+
+        char b[] = x.toCharArray();   //Char to String
+        String g = new String(h);     //String to Char
+
         for(char i : b)
         {
             System.out.println(i);

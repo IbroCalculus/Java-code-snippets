@@ -1,7 +1,19 @@
 
-CHECK ALSO; StringBuffer ---> This is used to create mutable strings.
+Strings are immutable
 
-        String value = "This is a string";
+CHECK ALSO; StringBuffer and StringBuilder ---> This is used to create mutable strings.
+CHECK ALSO: Char Arrays.txt  ---> Similar to Strings
+
+
+=============== MULTILINE STRING ==================
+        String v = """
+                Hello, 
+                     My name is 
+                               Ibrahim M. Suleiman
+                """;
+
+        String value = "This is a string";  //This creates the string within the string pool
+        String value2 = new String("This is another string");   //creates the string outside the string pool, within the heap memory.
         int x = value.length();
 
 OTHER methods can be seen after value. E.g: .concat(parameter), .toLowerCase(), .endswith ...
@@ -19,11 +31,49 @@ OTHER methods can be seen after value. E.g: .concat(parameter), .toLowerCase(), 
         }
         System.out.println("The number of characters are: " + count);
 
+==== SUBSTRING ===
+
+        String s = "I love programming. Programming is awesome";
+        
+        String s2 = s.substring(2);    OUTPUT: love programming. Programming is awesome
+        String s3 = s.substring(2,6);    OUTPUT: love
+
+
+==== REVERSING A STRING (2 ways; second way seem easier) ====
+
+  ----- METHOD 1 (Looping over string) -----
+        String name = "Ibrahim Musa Suleiman";
+        String revName = "";
+
+        for(int i = name.length()-1; i>=0; i--){
+            revName += name.charAt(i);
+        }
+        System.out.println("REVERSED: " + revName);
+
+  ----- METHOD 2 (using StringBuilder. Can check StringBuilder.txt) -----
+        StringBuilder text1 = new StringBuilder("Sample text");
+        String text1Reversed = text1.reverse().toString();
+        System.out.println("REVERSED: " + text1Reversed);
+
+
+==== CAPITALISE FIRST LETTER OF EACH WORD IN A SENTENCE ====
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter some texts: ");
+        String text = sc.nextLine();
+
+        String[] textSplitted = text.split(" ");
+
+        for(String i : textSplitted){
+            System.out.print(i.substring(0, 1).toUpperCase() + i.substring(1) + " ");
+        }
+
 
 ==== STRING METHODS ===========
 equals()
 equalsIgnoreCase()
 length()
+indexOf(i) It returns the index of the first occurrence of i(i is a character or string of characters).
 charAt(i) Returns character at index i
 toUpperCase()
 toLowerCase()
@@ -50,3 +100,5 @@ replace("OldString", "NewString")
 --- SUBSTRING ---
         String subString = fullName.substring(8,12);
         System.out.println(subString);      // output: Musa
+
+

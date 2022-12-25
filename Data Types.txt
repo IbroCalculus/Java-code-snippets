@@ -31,3 +31,11 @@ float	4 bytes	Stores whole numbers from -32,768 to 32,767	float number = (float)
 
 === REFERENCE DATA TYPE ===
 
+
+=== GETTING SIZE OF A DATA TYPE ====
+        System.out.println("MAX INT: " + Integer.MAX_VALUE);
+        System.out.println("MIN BYTE: " + Byte.MIN_VALUE);
+
+
+=== CONVERTING INTEGER DATATYPES TO BINARY ====
+        System.out.println("Binary equivalent of Decimal: " + 100 + " is = " + value);

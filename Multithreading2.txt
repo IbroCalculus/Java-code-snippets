@@ -1,0 +1,17 @@
+======= SYNCHRONISATION (Sync)  ========
+It is the coordination or understanding inbetween two entities. ie 2 people, 2 process, 2 threads.
+
+
+=== TERMS ASSOCIATED WITH SYNCHRONISATION ====
+-1. Resource sharing: Accessing same data by multiple threads from. The data shared is known as a shared object or shared resource.
+
+-2. Critical section: Particular lines of codes from multiple threads that are accessing the shared resource
+
+-3. Mutual Exclusion: More than one thread cannot access a shared resource at the same time. It is preventing thread B from accessing shared resource when thread A is already accessing the shared resource.
+
+ --- methods used to achieve Mutual Exclusion ---
+-4. Locking/Mutex: 
+-5. Semaphore:
+-6. Monitor (most recommended):
+-7. Race condition:
+-8. Inter-Thread communication:

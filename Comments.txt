@@ -2,3 +2,9 @@ Single Line: // ----------
 
 Multi-Line: /*-------
 -----------*/
+
+DocString:     /** statments */
+        /**
+         * Line 1
+         * Line 2
+         * */

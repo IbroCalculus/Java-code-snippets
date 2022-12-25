@@ -1,1 +1,36 @@
  Similar to stringbuffer, but faster. research.
+
+Java strings are by default immutable.
+The StringBuilder class is used to create mutable strings
+
+
+ ----- 1. INITIALIZING A STRINGBUILDER INSTANCE ------
+        StringBuilder sb = new StringBuilder("I love programming"); //Can be initialized to an empty string
+
+ ----- 2. APPEND STRING TO THE END OF THE EXISTING STRING ------
+        sb.append("\nI love mathematic");
+
+ ----- 3. INSERT STRING FROM A PARTICULAR INDEX ------
+        sb.insert(6, " computer");// Insert string from a particular index
+        System.out.println(sb);
+
+ ----- 4. REPLACING STRINGS ------
+        StringBuilder sb2 = new StringBuilder("My name is Suleiman Ibrahim");
+        sb2.replace(3,7, "first name");
+        System.out.println(sb2);
+
+ ----- 5. REVERSING STRINGS ------
+        StringBuilder text1 = new StringBuilder("Sample text");
+        String text1Reversed = text1.reverse().toString();
+        System.out.println("REVERSED: " + text1Reversed);
+
+ ----- 6. DELETING STRINGS ------
+        StringBuilder sb3 = new StringBuilder("Ibrahim Musa Suleiman");
+        sb3.delete(8,13);
+        System.out.println("Deleted: " + sb3);
+
+ ----- 7. CONVERTING STRINGBUILDER INSTANCES TO STRINGS ------
+        Converting a StringBuilder instance to a string
+        String sb3String = sb3.toString();
+        System.out.println("To String: " +sb3String);
+

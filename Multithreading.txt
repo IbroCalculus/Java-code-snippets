@@ -1,0 +1,226 @@
+CHECK ALSO: Thread.txt
+
+=== Multiprogramming ===
+ Multiprogramming is a term associated with multithreading.
+ Multiprogramming is running multiple programs on a single computer
+
+--- Forms of multiprogramming ---
+1. Muti-user: Where more than one user will be using and running their individual programs simultaneously on the same machine.
+2. Multi-tasking: A single user running multiple programs on the same machine simultaneously.
+   --- A form of multi-tasking is multi-threading:
+     Multithreading is a type of multi-tasking. It is when multiple operations are running in a particular single application or program.
+     E.g: A single webpage having more than one operations running on the same page
+
+
+
+======= 2 WAYS OF ACHIEVING MULTITHREADING =======
+1. Thread class
+2. Runnable interface
+
+
+
+--------- 1. Using Thread Class ----------
+
+E.g: create 2 class which should run on separate threads. ie Thread1 and Thread2. Override public void run() method and place code within it
+
+    public static void main(String[] args) {
+        Thread1 thread1 = new Thread1();
+        Thread2 thread2 = new Thread2();
+
+        thread1.start();
+        thread2.start();
+
+    }
+
+class Thread1 extends Thread{
+    @Override
+    public void run() {
+
+        int i = 0;
+        while (i <= 100){
+            System.out.println(i + " Hello");
+            i++;
+        }
+        System.out.println("Iteration for LOOP 1 completed");
+
+    }
+}
+
+
+class Thread2 extends Thread{
+    @Override
+    public void run() {
+
+        int i = 0;
+        while (i <= 100){
+            System.out.println(i + " world");
+            i++;
+        }
+        System.out.println("Iteration for LOOP 2 completed");
+
+    }
+}
+
+
+
+
+--------- 2. Using Runnable interface ----------
+NB: This code used both Runnable interface (in Runnable1 class) combined with Thread Class (in Thread1 class) to show how both can be used simultaneously.
+
+
+    public static void main(String[] args) {
+
+        Runnable1 runnable1 = new Runnable1();
+        Thread thread1 = new Thread(runnable1);
+        thread1.start();
+        
+        Thread2 thread2 = new Thread2();
+        thread2.start();
+
+    }
+
+class Runnable1 implements Runnable{
+    @Override
+    public void run() {
+        loop1();    //I decided to create this code as a function and call it within the run method of the Runnable interface
+    }
+
+    public static void loop1(){
+        int i = 0;
+        while (i <= 100){
+            System.out.println(i + " Hello");
+            i++;
+        }
+        System.out.println("Iteration for LOOP 1 completed");
+    }
+}
+
+class Thread2 extends Thread{
+    @Override
+    public void run() {
+        loop2();
+    }
+    public static void loop2(){
+        int i = 0;
+        while (i <= 100){
+            System.out.println(i + " Hello");
+            i++;
+        }
+        System.out.println("Iteration for LOOP 1 completed");
+    }
+}
+
+
+==== DAEMON THREAD ==========
+A daemon thread is background thread with least priority.
+It works in the background, no user interaction.
+E.g - Garbage collector
+    - MSWord autoSave thread (least priority running in the background)
+
+A daemon thread terminates when the main thread terminates.
+
+
+
+========== THREAD STATES ==================
+BLOCKED, NEW, RUNNABLE, TERMINATED, TIMED_WAITING, WAITING
+
+
+========== THREAD PRIORITY ==================
+Thread priority is how much priority that is given to a given thread
+The max value for priority is 10, min value is 1. Priority is in direct proportion to how much CPU dedication to a thread.
+- Thread.MIN_PRIORIRY = 1
+- Thread.NORM_PRIORIRY = 5
+- Thread.MAX_PRIORIRY = 10
+
+
+======= THREAD CLASSES ==============
+  ---- Constructors ----
+- Thread()  // Similar to Thread(String nameOfThread)    //Used this above in creating thread using the Thread class
+- Thread(Runnable r)                                     //Used this above in creating thread by implementing the runnable interface
+- Thread(Runnable r, String nameOfThread)
+- Thread(ThreadGroup g, String nameOfThread)             //Can create a threadgroup to group some number of threads.
+
+      --------- EXAMPLES ------------
+  - A. Giving name to a thread
+
+     --- Method 1 (create a class by implementing the runnable interface) ----
+
+class Runnable1 implements Runnable{
+    @Override
+    public void run() {
+        loop1();
+    }
+
+    public static void main(String[] args) {
+
+        Runnable1 runnable1 = new Runnable1();
+        Thread thread1 = new Thread(runnable1, "My ThreadName");
+
+    }
+
+
+     --- Method 2 (create a class by extending from the Thread class) ----
+
+class Thread2 extends Thread{
+    public Thread2(String threadName) {
+        super(threadName);
+        // setPriority(THREAD.MAX_PRIORITY)
+    }
+
+    @Override
+    public void run() {
+        MethodClass methodClass = new MethodClass();
+        methodClass.loop2();
+    }
+}
+
+    public static void main(String[] args) {
+        Thread2 thread2 = new Thread2("My thread name");
+
+    }
+
+
+
+====== THREAD METHODS (getter, setters and enquiry methods) =======
+
+--- Getter methods ---
+- long getId()
+- String getName()
+- int getPriority()
+- ThreadState getState() 
+- ThreadGroup getThreadGroup()
+
+      --------- EXAMPLES ------------
+      thread1.getId()
+      thread1.getName()
+      thread1.getPriority()
+      thread1.getState()
+
+
+--- Setter methods ---
+- void setName(String threadName)
+- void setPriority(int priorityValue)
+- void setDaemon(boolean d)
+
+--- Enquiry methods ---
+- boolean isAlive()    E.g thread1.isAlive()
+- boolean isDaemon()
+- boolean isInterrupted() (e.g: interrupt a thread from waiting, sleeping etc Either by itself or another thread)
+
+
+--- Instance methods ---
+- void interrupt()
+- void join()
+- void join(long millis)
+- void run()
+- void start()
+
+
+--- Static methods ---
+- int activeCount()
+- Thread currentThread()  // Reference to the current thread
+- void yield()            // Give chance to a lower priority thread to catch up with a higher priority thread. ie Thread.yield()
+- void dumpStack()        // Stack of an application. Which methods call which other methods and how the thread is called.
+
+
+
