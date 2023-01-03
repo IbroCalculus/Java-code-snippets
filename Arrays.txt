@@ -13,8 +13,9 @@ String cars[] = {"first Car", "Second car", "Third car"};
 
 ACCESS ARRAY ELEMENT
         String cars[] = {"first Car", "Second car", "Third car"};
-        System.out.println(cars[1]);
-
+        System.out.println(cars[1]);;
+        System.out.println(cars.length - 1); l
+l
 CHANGE ARRAY ELEMENT
         String cars[] = {"first Car", "Second car", "Third car"};
         cars[1] = "New Second car";

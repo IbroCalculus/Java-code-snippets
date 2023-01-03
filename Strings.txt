@@ -3,6 +3,7 @@ Strings are immutable
 
 CHECK ALSO; StringBuffer and StringBuilder ---> This is used to create mutable strings.
 CHECK ALSO: Char Arrays.txt  ---> Similar to Strings
+CHECK ALSO: StringTokenizer.txt
 
 
 =============== MULTILINE STRING ==================
@@ -67,6 +68,10 @@ OTHER methods can be seen after value. E.g: .concat(parameter), .toLowerCase(), 
         for(String i : textSplitted){
             System.out.print(i.substring(0, 1).toUpperCase() + i.substring(1) + " ");
         }
+
+
+===== NULL POINTER EXCEPTIONS ====
+Check: NullPointer Exception.txt
 
 
 ==== STRING METHODS ===========

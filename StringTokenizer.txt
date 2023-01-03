@@ -1,0 +1,57 @@
+
+//The delimeter here is space by default, others can be carriage returns ie \n, \t, \a etc
+
+        String statement1 = "You are welcome to the StringTokenizer class";
+        StringTokenizer stringTokenizer1 = new StringTokenizer(statement1);
+
+
+        System.out.println(stringTokenizer1.countTokens());   // 7. ie 7 tokens or statements separated by the space delimeter remaining
+
+        System.out.println(stringTokenizer1.nextToken());  // You
+        System.out.println(stringTokenizer1.nextToken());  // are
+        System.out.println(stringTokenizer1.nextToken());  // welcome
+        System.out.println(stringTokenizer1.nextToken());  // to
+
+
+        System.out.println(stringTokenizer1.countTokens());  // 3. ie 3 tokens or statements separated by the space delimeter remaining
+
+
+ie
+        int tokenizerLength = stringTokenizer1.countTokens();
+        
+        for ( int i=0; i<tokenizerLength; i++){
+            System.out.println(stringTokenizer1.nextToken());
+        }
+        System.out.println(stringTokenizer1.countTokens());
+
+
+--------------- Adding delimeter (@ in this case) -------------------------
+
+        String email = "mymail@somemail.com";
+        StringTokenizer stringTokenizer3 = new StringTokenizer(email, "@");
+        int tokensize3 = stringTokenizer3.countTokens();
+        System.out.println(tokensize3);  // 2
+
+        for(int i=0; i<tokensize3; i++){
+            System.out.print(stringTokenizer3.nextToken() + " - ");  //mymail - somemail.com - 
+        }
+        System.out.println();
+
+
+--------------- hasMoreTokens method -------------------------
+
+        String st1 = "This is a sample statement";
+        StringTokenizer stringTokenizer = new StringTokenizer(st1);
+
+        boolean iterable = true;
+        while (iterable){
+            if (stringTokenizer.hasMoreTokens()){
+                System.out.println(stringTokenizer.nextToken());
+            }else{
+                iterable = false;
+            }
+        }
+        System.out.println("\n--------Iteration completed!--------");
+
+
+

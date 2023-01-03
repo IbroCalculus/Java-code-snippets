@@ -1,0 +1,4 @@
+
+--- Null Pointer Exception or error ---
+This error usually occurs when you declare a variable, and trying to call the value of the variable without initializing it.
+ie the value is null.

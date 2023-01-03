@@ -16,7 +16,6 @@ CREATE an object of the class in main
 
 MULTIPLE objects are allowed:
 
-
         TestClass testClassObj = new TestClass();
         TestClass testClassObj1 = new TestClass();
         TestClass testClassObj2 = new TestClass();
@@ -25,6 +24,34 @@ MULTIPLE objects are allowed:
 
 
 MAY CREATE MULTIPLE CLASSES AS YOU NEED
+
+
+
+========== CONSTRUCTOR ================
+NB: Constructor does not have a return type. ie always return void
+
+public class Lion {
+
+    public Lion(){
+        System.out.println("This is the primary constructor");
+    }
+    public Lion(String name){
+        System.out.println("Constructor overloading with passed parameter: " + name);
+    }
+}
+
+        Lion h1 = new Lion();
+        Lion h2 = new Lion("Baby Lion");
+
+ ------ Calling a constructor from within another constructor ----------
+
+    public Lion(){
+        this("Lion 1", 23, false);
+    }
+
+    public Lion(String name, int age, boolean isMale) {
+    }
+
 
 JAVA class attributes
 class attributes are variables within a class: i.e: fname. or functions within a class known as methods
