@@ -1,0 +1,126 @@
+Task list on MS/EXCEL
+OBJECTIVE SETTING
+
+
+
+Enum is used for enumerator data types, we can define our own data type.
+
+Just like classes are used to define user-defined datatypes, enum is also used for user-defined datatypes
+
+
+------------------------------------------------------
+        enum Dept{
+            CS, IT, CIVIL, ECE
+        }
+
+        Dept d1 = Dept.CIVIL;  // Dept.X (Where X can be only any one of the 4 declared enum values).
+
+        System.out.println(d1.ordinal());  //Returns the index, ie 2 in this case.
+        System.out.println(d1.name());     //Returns the name, ie CIVIL in this case.
+        System.out.println(Dept.valueOf("ECE"));  //Returns the name, ie ECE in this case.
+
+        Dept deptList [] = Dept.values();  //Returns the list of all values. ie CS, IT, CIVIL, ECE.
+        for(Dept x: deptList){
+            System.out.println(x);
+        }
+
+-------------------- USE CASE, ie Switch Statement -------------------------------
+
+        Dept d1 = Dept.CIVIL;  // Dept.X (Where X can be only any one of the 4 declared enum values).
+
+        switch (d1){
+            case CS:
+                System.out.println("Department of Computer Science");
+                break;
+            case IT:
+                System.out.println("Department of Information Technology");
+                break;
+            case CIVIL:
+                System.out.println("Department of Civil Engineering");
+                break;
+            case ECE:
+                System.out.println("Department of Electrical and Communication Engineering");
+                break;
+        }
+
+
+=================== ENUM CONSTRUCTOR AND FUNCTIONS =====================
+The constructor's access modify can only be either private or default. Public not allowed.
+But functions/methods can be of public access modifiers
+
+        enum Dept{
+            CS, IT, CIVIL, ECE;
+
+            private Dept(){
+                // System.out.println("::" + this.name());  //ie ::CS ::IT ::CIVIL ::ECE
+
+                System.out.println("Welcome");   //Prints Welcome 4 times
+            }
+        }
+
+        Dept d1 = Dept.CIVIL; //Constructor is called
+
+
+
+
+================ ENUM FUNCTIONS ==================
+
+        enum Dept{
+            CS, IT, CIVIL, ECE;
+
+            public void display(){
+                System.out.println("NAME: " + this.name() + ", INDEX: " + this.ordinal());
+            }
+        }
+
+        Dept d1 = Dept.CIVIL;
+        d1.display();
+
+--OUTPUT: NAME: CIVIL, INDEX: 2
+
+
+============== ASSIGNING VALUES TO THE IDENTIFIERS OF THE ENUM CLASS ==========
+
+        enum Dept{
+            CS("John", "Block A"), IT("Jane", "Block B"), CIVIL("Tom", "Block C"), ECE("Nelson", "Block D");
+
+            String fname;
+            String location;
+
+            Dept(String fname, String location) {
+                this.fname = fname;
+                this. location = location;
+
+                System.out.println("Firstname: " + this.fname + ", Location: " + this.location);
+            }
+
+            public void display(){
+                System.out.println("NAME: " + this.fname + ", INDEX: " + this.ordinal());
+            }
+        }
+
+        Dept d1 = Dept.CIVIL; 
+        d1.display();
+
+
+
+============================================================================
+
+Enum is just a way to create our own customozied types. (Enumerator data types)
+
+
+        enum  Player{
+            ONE, TWO, THREE, FOUR
+        }
+
+        Player currentPlayer = Player.ONE;
+
+        if(currentPlayer == Player.ONE){
+            System.out.println("Player One is current");
+        } else if(currentPlayer == Player.TWO){
+            System.out.println("Current player is Player One");
+        } else if (currentPlayer == Player.THREE) {
+            System.out.println("Current player is Player Three");
+        } else if (currentPlayer == Player.FOUR) {
+            System.out.println("Current player is Player Four");
+        }

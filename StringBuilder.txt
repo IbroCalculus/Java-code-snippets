@@ -1,7 +1,16 @@
- Similar to stringbuffer, but faster. research.
+Similar to stringbuffer, but faster. research.
 
 Java strings are by default immutable.
 The StringBuilder class is used to create mutable strings
+
+
+NB: Difference between StringBuilder and StringBuffer:
+StringBuffer is thread-safe but slower, while StringBuilder is not thread-safe but faster.
+
+thread-safe means multiple threads cannot utilize the same string buffer object simultaneously.
+
+Because StringBuffer is thread-safe, this makes it a little slower compared to StringBuilder which is not thread-safe.
+
 
 
  ----- 1. INITIALIZING A STRINGBUILDER INSTANCE ------

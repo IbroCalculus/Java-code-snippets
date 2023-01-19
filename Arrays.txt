@@ -2,6 +2,8 @@ Array can be any data type. i.e String, int etc
 Arrays store values of thesame data type
 Arrays can not be modified, unless a new array is created, for modifiable arrays, use arraylists
 
+We use arrays in place of arraylists because arrays perform faster.
+
 DECLARE ARRAY
 String cars = new String[5];	//Size is immutable, OutofBoundException
 cars[0] = "First Car";
@@ -23,6 +25,12 @@ CHANGE ARRAY ELEMENT
 
 ARRAY LENGTH
         System.out.println(cars.length);
+
+
+ARRAYS TO ARRAYLIST
+        String[] names = {"John", "James", "Kamal"};
+        ArrayList<String> names2 = (ArrayList<String>) Arrays.asList(names);
+        names2.add("Sammy");
 
 
 LOOP THROUGH ARRAY USING FOR LOOP

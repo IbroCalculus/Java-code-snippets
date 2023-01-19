@@ -1,5 +1,7 @@
 NB: 2D ArrayList section down below
 
+We use arrays in place of arraylists because arrays perform faster.
+
 The ArrayList is a resizeable array.
 
 ArrayList is a java class that implements the list interface.

@@ -1,1 +1,24 @@
 E.g: Math.random(), Math.abs(-345), Math.sqrt(25)...
+
+        System.out.println(Math.pow(2,3));  //2 power 3 = 8
+
+        System.out.println(Math.cbrt(8));  //Cube root
+
+        System.out.println(Math.floorDiv(22,3));  //Does not return decimal value after division, similar to: System.out.println(22/3);
+        System.out.println((float) 22/3);   // Gets also the decimal value
+
+
+        System.out.println(Math.sin(45));  //Where 45 is Radian value, not degree value
+        System.out.println(Math.toDegrees(45));
+        System.out.println(Math.toRadians(45));
+        System.out.println(Math.sin(Math.toRadians(90)));  //Same as sin(90) where 90 is in degree
+
+
+
+NOTE ALSO: StrictMath. ie StrictMath.abs(-345).
+            StrictMath gives more precise result. Downside is that it takes more time to compute.
+
+            Math is the most used.
+
+        System.out.println(Math.PI);
+        System.out.println(StrictMath.PI);

@@ -1,6 +1,14 @@
 
 CHECK ALSO; String Builder
 
+NB: Difference between StringBuilder and StringBuffer:
+StringBuffer is thread-safe but slower, while StringBuilder is not thread-safe but faster.
+
+thread-safe means multiple threads cannot utilize the same string buffer object simultaneously.
+
+Because StringBuffer is thread-safe, this makes it a little slower compared to StringBuilder which is not thread-safe.
+
+
 This is used to create mutable strings.
 
         StringBuffer fullName = new StringBuffer("Ibrahim");
