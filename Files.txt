@@ -1,3 +1,6 @@
+NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash
+    E.g C:\\Users\\isuleiman\\IdeaProjects\\JavaPractice1
+
 import java.io.File;
         
         File myFile = new File("myNewFile.txt");
@@ -8,7 +11,7 @@ METHOD			TYPE			DESCRIPTION
 
 canRead()		Boolean			Tests whether the file is readable or not
 canWrite()		Boolean			Tests whether the file is writable or not
-createNewFile()		Boolean			Creates an empty file
+createNewFile()	Boolean			Creates an empty file
 delete()		Boolean			Deletes a file
 exists()		Boolean			Tests whether the file exists
 isFile()		Booleean		Returns false if it's a folder or anything else not file.

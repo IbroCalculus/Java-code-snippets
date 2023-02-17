@@ -1,11 +1,37 @@
+Exceptions are runtime errors.
 
-ArithmeticException
-NullPointerException
-NumberFormatException -> Cannot convert(cast) String variable to int
+They are 3 types of errors, ie;
+- Syntax errors
+- Logical errors
+- Runtime errors (exceptions)
 
-=== CHECK / UNCHECKED EXCEPTION ===
- --- Checked exceptions: Java force you to throw the exceptions; ie ALT + INS, Unchecked, opposite
+Of the 3, the first two are experienced by the programmer, while the last is experienced by the user of the program.
+- The compiler detects and notifies the programmer of syntax errors.
+- To detect and fix logical errors, the programmer has to trace the code or debug to find out where the error occurs.
 
+
+============= Some built in exceptions. (CAN CONTAIN PARENT AND CHILDREN CLASSES) ===========
+*1 ClassNotFoundException
+*2 IOException:  ie, exception thrown when accessing files from the device.
+  - FileNotFoundException Unable to access or read the file, or file does not exist.
+*3 RuntimeException:
+  - ArithmeticException
+  - IndexOutOfBoundException
+  - NullPointerException
+*4 NumberFormatException
+*5 InputMismatchException
+*6 NullPointerException
+*7 NumberFormatException -> Cannot convert(cast) String variable to int
+*8 InterruptedException: This is related to multithreading. ie If a thread stops abruptly/abnormally.
+
+=== CHECKED vs UNCHECKED EXCEPTION ===
+ --- Checked exceptions: Java force you to throw the exceptions; ie ALT + INS. While Unchecked is the opposite.
+
+Example of checked exceptions:  ClassNotFoundException, IOException, InterrruptedException, NumberFormatException.
+Example of unchecked exceptions: RuntimeException (ie ArithmeticException, IndexOutOfBoundException, NullPointerException), FileInputStream, etc
+
+
+----------------------------- -----------------------------------------------------------------------
 	try
         {
             int nums[] = {1,2,3,5};
@@ -47,33 +73,110 @@ The finally statement lets you execute code, after try...catch, regardless of th
             System.out.println("An error occurred of type " + e);
         }
 
-THE THROW KEYWORD
-The throw statement allows you to create a custom error.
 
-The throw statement is used together with an exception type. There are many exception types available in Java: i.e: ArithmeticException,
-ClassNotFoundException, 
-ArrayIndexOutOfBoundsException, 
-SecurityException, etc.
+=================== Exception Classess ===================
+Some are; 
+- String getMessage. ie e.getMessage()
+- String toString. ie e
+- void printStackTracke()
 
-The exception type is often used together with a custom method.
-
-e.g: A method:
-
-    private static void checkAge(int age) {
-        if (age < 18)  
-        {
-            throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+E.g: 
+        }catch (Exception e){
+            System.out.println(e.getMessage());   OUTPUT: / by zero
+            System.out.println(e);                OUTPUT: java.lang.ArithmeticException: / by zero
+            e.printStackTrace();                  OUTPUT: It will show the sequence of methods call where exception was called.
         }
-        else
-        {
-            System.out.println("Access granted - You are old enough!");
-        }
+
+
+====================== CREATE A USER-DEFINED EXCEPTION (MUST extend from Exceptions class) ======================
+
+NB: Check udemy course "Learn JAVA programmin - Beginner to Master", Section 18 (Exception handling), No. 170 (Class Exception)
+E.g create an exception class for minimum balance in a bank account.
+If balance is less than 5000, the exception is called.
+
+
+--- Create custom exception class ----
+
+public class LowBalanceException extends Exception{
+    @Override
+    public String toString() {
+        return "Balance should not be less than 5000";
     }
 }
 
-The method call
-public static void main(String[] args) throws FileNotFoundException {
-        checkAge(15);
+
+---- In Main.jav ----
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter any number: ");
+        int number = input.nextInt();
+        if(number <5000){
+            try {
+                throw new LowBalanceException();
+            } catch (LowBalanceException e) {
+                System.out.println(e);
+            }
+        }else{
+            System.out.println(number);
+        }
+
+    }
+
+
+============ THROW vs THROWS ==============
+
+throws like its name suggests, throws the exception-handling forward to the next method to handle.
+The exception must be handled somewhere within a try-catch block, even if it is at the last method call, which is main
+throw is used to call an exception, default or custom
+
+    static int area(int l, int b) throws Exception {
+        if(l<0 || b<0){
+            throw new Exception();
+        }
+        return l*b;
+    }
+
+    static void meth1() throws Exception {
+        System.out.println("Area is: " + area(40,-4));
+    }
+    public static void main(String[] args) {
+        try {
+            meth1();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+---------------------- OR, Using a custom exception inplace of Exception -----------------------------------
+
+public class NegativeDimensionException extends Exception{
+    @Override
+    public String toString() {
+        return "Dimension of a rectangle cannot be negative";
+    }
+}
+---END OF CUSTOM EXCEPTION CLASS ---
+
+    static int area(int l, int b) throws NegativeDimensionException {
+        if(l<0 || b<0){
+            throw new NegativeDimensionException();
+        }
+        return l*b;
+    }
+
+    static void meth1() throws NegativeDimensionException {
+        System.out.println("Area is: " + area(25,-4));
+    }
+    public static void main(String[] args) {
+        try {
+            meth1();
+        } catch (NegativeDimensionException e) {
+            e.printStackTrace();
+        }
     }
 
 

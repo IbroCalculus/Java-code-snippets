@@ -1,0 +1,45 @@
+==== Date and Time ==========
+
+Check also Calender.txt
+
+NOTE: This method is deprecated. Use Date.txt instead
+
+modern java date and time package is java.time introduced in java 8.
+Before that, it was java.util, which is now deprecated.
+
+
+=========== Deprecated Date and time class (java.util) ============
+Date datatype is a long. It contains data as milliseconds from Jan. 1, 1970 as starting time to present.
+while starting calendar year is 1900.
+
+--------------- Time from 1970 ---------
+        System.out.println(System.currentTimeMillis());  //Milliseconds since Jan-1-1970 until present
+
+
+---------- Present Date --------
+        Date d = new Date();    //The same as; Date d = new Date(System.currentTimeMillis());
+        
+        System.out.println(d);   //OUTPUT: Tue Jan 31 10:50:09 WAT 2023
+
+
+--------- Any specified date ---------
+
+        Date d = new Date("15/12/2019");   //OUTPUT: Thu Mar 12 00:00:00 WAT 2020. NOTE: 2019/2020
+
+
+--------- Methods associated with Date class ------
+
+        Date d = new Date();
+        
+        System.out.println(d.getTime());  //OUTPUT: 1675165494709
+
+        System.out.println(d.getDate());  //OUTPUT: 31
+
+        System.out.println(d.getDay()); //OUTPUT: 2, ie Second day of the week, Tuesday. Sunday = 0
+
+        System.out.println(d.getMonth()); //OUTPUT: 0, ie January
+
+        System.out.println(d.getYear());              //OUTPUT: 123
+        System.out.println(d.getYear() + 1900);       //OUTPUT: 2023. Always + 1900(starting calendar year)
+
+

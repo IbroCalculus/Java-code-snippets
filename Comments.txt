@@ -1,8 +1,14 @@
+
+Note also; Javadoc.txt
+
+
 Single Line: // ----------
 
 Multi-Line: /*-------
 -----------*/
 
+
+NB: This is same as javadoc. (CHECK Javadoc.txt)
 DocString:     /** statments */
         /**
          * Line 1

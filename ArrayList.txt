@@ -12,6 +12,10 @@ NB: THERE ARE TWO WAYS OF DIFINING AN ARRAYLIST: ie;
 
         1- ArrayList<String> students  = new ArrayList<>(); OR (Deprecated for Java Version < 1.8) ... new ArrayList<String>();
         2- List<String> myList2 = new ArrayList<>();    "BETTER METHOD"
+        3- List<String> myList3 = new ArrayList<>(List.of("John","Doe"));   // Arraylist with values.
+
+        String[] namess = {"Samuel", "Kehinde", "Thompson"};   // Arraylist from Array
+        ArrayList<String> names2 = new ArrayList<>(List.of(namess));
 
 
         ArrayList<Integer> myNumber = new ArrayList<>();
@@ -20,6 +24,10 @@ NB: THERE ARE TWO WAYS OF DIFINING AN ARRAYLIST: ie;
         students.add("Musa");
         students.add("Suleiman");
         System.out.println(students);
+
+        student.add(1,"Sam")        // Adds at a particular index
+        students.addAll(myNumber);  // This is used to add/merge myNumber arraylist to students arraylist.
+        students.addAll(3, myNumber);  
 
 ACCESSING ITEMS
         System.out.println("The first item in the arraylist is: " + students.get(0));

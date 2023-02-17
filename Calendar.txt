@@ -1,6 +1,9 @@
 
 Check timertask for some usage of the Calendar class.
 
+CHECK ALSO: Calendar2.txt (Gregorian Calendar)
+
+NB: For date and time, use Date.txt instead, the modern way
 
         Calendar calendar = Calendar.getInstance();
         int current_year = calendar.get(Calendar.YEAR);

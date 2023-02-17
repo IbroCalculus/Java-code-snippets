@@ -1,0 +1,73 @@
+NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash.
+    E.g C:\\Users\\isuleiman\\IdeaProjects\\JavaPractice1
+
+---------- 1. Writing/Overriding or appending a file --------------
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Type a message: ");
+        String text = input.nextLine();
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("outputfile.txt"));         //This will override the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("outputfile.txt", true));   // Adding the boolean 'true' will append to the file.
+            writer.write(text);
+            writer.write("\nThis is line number 2");
+            writer.write("\n\n\nCreated by:\n");
+            for(String i: names){
+                writer.write(i + " ");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+---------- 2(a). Reading from a file (READ A SINGLE LINE) --------------
+
+        Scanner input2 = new Scanner(System.in);
+        System.out.println("Press any button to read a file");
+        input2.nextLine();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("outputfile.txt"));
+
+            String readText = reader.readLine();  // Reads a single line of text
+            System.out.println(readText);
+            reader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+---------- 2(B). Reading from a file (READ ALL LINES) --------------
+
+        Scanner input2 = new Scanner(System.in);
+        System.out.println("Press any button to read a file");
+        input2.nextLine();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("outputfile.txt"));
+
+            ----------- Printing the text directly from while loop (less efficient, check the one below using StringBuilder class) ----------
+
+            String linesOfText;
+            while ((linesOfText = reader.readLine()) != null){
+                System.out.println(linesOfText);
+            }
+
+
+            ---------- Using StringBuilder instead of the above to modify have the read text in a variable ------
+
+            StringBuilder linesOfText3 = new StringBuilder();
+            String linesOfText;
+            while ((linesOfText = reader.readLine()) != null){
+                System.out.println(linesOfText);
+                linesOfText3.append(linesOfText + "\n");
+            }
+            System.out.println("OUTPUT:\n" + linesOfText3);
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }

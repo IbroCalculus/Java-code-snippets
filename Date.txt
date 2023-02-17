@@ -1,3 +1,6 @@
+
+This is the modern way of working with date and time. Others are deprecated.
+
 import java.time package
 
 Date/Time Classes and Description
@@ -6,19 +9,49 @@ Date/Time Classes and Description
 *LocalTime		Represents a time (hour, minute, second and microsecond (HH-mm-ss-zzz))
 *LocalDateTime		Represents both a date and a time (yyyy-MM-dd-HH-mm-ss.zzz)
 *DateTimeFormatter	Formatter for displaying and parsing date-time objects
+
+*ZonedDateTime	Similar to LocalDateTime, but returns zone, z, unlike the former.
 Also
 *Date
+
+NB: The class returns time in seconds AND nano seconds.
+    Time since Jan 1, 1970, in seconds and nano seconds, unlike others which are in milliseconds.
 
 TODAY'S DATE
 
         LocalDate date = LocalDate.now();
-        System.out.println("Todays date; " + date);
+        System.out.println("Todays date; " + date);  //OUTPUT: Today's date: 2023-02-01
 	//Also, date.other methods like getMonth, etc
+
+----------------- Other date -----------
+        LocalDate ld = LocalDate.of(1994, 12, 20);
+        System.out.println(ld);     //OUTPUT: 1994-12-20
+
+    - Similarly;
+        LocalDate ld = LocalDate.parse("2015-01-29");
+        System.out.println(ld);    //OUTPUT: 2015-01-29
+
+---------------- days from epoch day (Epoch day is Jan-1-1970) ----------------
+        LocalDate ld = LocalDate.ofEpochDay(1000);  //1000 days from the epoch days
+        System.out.println(ld);                     //OUTPUT: 1972-09-27
+
+----------- Modifying the date -----------------
+
+        LocalDate date = LocalDate.now();
+        LocalDate ld2 = ld.plusYears(12);   //Other methods, ie minusMonth, plusDays etc
+        System.out.println(ld2);
+
 
 TODAY'S TIME
 
         LocalTime time = LocalTime.now();
-        System.out.println("The time now is: " + time);
+        System.out.println("The time now is: " + time);  The time now is: 12:44:03.588590900
+
+
+----------- Modifying the time -----------------
+        System.out.println(lt.plusHours(3).plusMinutes(30));   //OUTPUT: 22:54:51.110008700
+
+
 
 TODAY'S DATETIME
         LocalDateTime datetime = LocalDateTime.now();
@@ -34,6 +67,13 @@ FORMATTING THE DATETIME
         System.out.println("After Formatting: " + formattedDateTime);
 
 
+-------------- Formatting using pre-defined constant formats -----------
+
+        DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE;   // ie .ISO_LOCAL_TIME, .ISO_LOCAL_DATE_TIME, etc.
+        String formattedDateTime = datetime.format(datetimeformatter);
+        System.out.println("After Formatting: " + formattedDateTime);
+
+
 
 SOME dateformatter patterns
 
@@ -42,4 +82,16 @@ dd/MM/yyyy						9/09/1988
 dd-MMM-yyyy						29-Sep-1988
 E, MMM dd yyyy						Thu, Sep 29 1988
 E, 'the' dd'th' 'day' 'of' MMM, yyyy HH:mm:ss		Wed, the 09th day of Sep, 2020 11:20:06
+
+y - Year
+M - Month
+d - Day
+
+h - Hour (0 - 12)
+H - Hour (0 - 23)
+m - Minute
+s - Seconds
+S - milliseconds
+z - Time zone
+Z - offset
 

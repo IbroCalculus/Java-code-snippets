@@ -1,6 +1,6 @@
 
 Access modifiers add layers of security to programs.
-The are basically: 
+They are basically: 
 
 DEFAULT: (ie String fName): can only be accessed by classes within the same package.
 

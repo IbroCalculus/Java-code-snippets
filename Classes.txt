@@ -1,11 +1,16 @@
 
-CHECK ALSO; Nested Class
+CHECK ALSO; Nested Class.txt, Singleton Class.txt
 
 Create new Java Class i.e TestClass
 
 public class TestClass {
     String fname = "Ibrahim";
 }
+
+    @Override
+    public String toString() {
+        return "This is the toString of Ibrahim";
+    }
 
 
 CREATE an object of the class in main
@@ -21,6 +26,9 @@ MULTIPLE objects are allowed:
         TestClass testClassObj2 = new TestClass();
         System.out.println(testClassObj1.fname);
         System.out.println(testClassObj2.fname);
+
+        System.out.println("toString value: " + testClassObj);  // OUTPUT: toString value: This is the toString of Ibrahim
+
 
 
 MAY CREATE MULTIPLE CLASSES AS YOU NEED

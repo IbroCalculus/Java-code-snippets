@@ -1,0 +1,21 @@
+Annotations are used for giving attributes or defining the attributes of a class, interface, or method.
+IOW, they are useful for giving meta-deta to classes, interfaces, etc.
+
+Metadata is data about data
+
+CHECK REFERENCE: "Learn JAVA Programming - Beginner to Master -> 207. Buil-in Annotations Java"
+
+
+- Built-in annotations can be classified into 2:
+ -1. Set of annotations that are applied to code.
+        This set of annotations give a hint to the compiler, so it avoids showing your error for warning
+
+ -2. Set of annotations applied to other/user-defined annotations
+
+
+---- SOME IN-BUILT ANNOTATIONS ----
+- @Override
+- @Deprecated
+- @FunctionalInterface
+- @SuppressWarnings.      //E.g: @SuppressWarnings("deprecation")
+- @SafeVarags

@@ -1,0 +1,38 @@
+
+
+Gregorian Calendar
+
+NB: This is deprecated. Check out Date.txt
+
+
+        GregorianCalendar gc = new GregorianCalendar();
+
+
+-------------- CHECK IF IS LEAP YEAR ---------------
+        System.out.println(gc.isLeapYear(2020));   //boolean
+
+
+-------------- GET DATE, YEAR, etc ---------------
+        System.out.println(gc.get(Calendar.DATE));
+        System.out.println(gc.get(Calendar.YEAR));
+        System.out.println(gc.get(Calendar.MONTH));  //First month is 0
+        System.out.println(gc.get(Calendar.DAY_OF_YEAR));
+
+
+-------------- WORKING WITH TIMEZONE -------------
+        GregorianCalendar gc = new GregorianCalendar();
+        TimeZone tz = gc.getTimeZone();
+
+        System.out.println(tz.getID());               // Africa/Lagos
+        System.out.println(tz.getDisplayName());      // West Africa Standard Time
+
+
+-------------- SET TIMEZONE -------------
+
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));  //For America/Los_Angeles, google lists of timezones
+        TimeZone tz = gc.getTimeZone();
+
+        System.out.println(tz.getID());
+        System.out.println(tz.getDisplayName());
+

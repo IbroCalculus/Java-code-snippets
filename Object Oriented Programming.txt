@@ -1,3 +1,9 @@
+The principles of OOP are;
+- Abstraction
+- Encapsulation
+- Inheritance
+- Polymorphism
+
 
 CHECK TUTORIAL: "Android Development for Beginners - Full Course: 2:30:00"
 

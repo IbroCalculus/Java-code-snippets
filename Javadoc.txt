@@ -1,0 +1,39 @@
+This is how we create java documentation for our classes.
+
+What is Javadoc?
+Javadoc is a tool which comes with JDK and it is used for generating Java code documentation in HTML format from Java source code, which requires documentation in a predefined format. (source: https://www.tutorialspoint.com/java/java_documentation.htm)
+
+CHECK REFERENCES: 
+- "Learn JAVA Programming - Beginner to Master" -> 206. Java Documentation - javadoc
+- ALSO, READ, https://www.tutorialspoint.com/java/java_documentation.htm
+
+
+----------------------------
+
+For writing java documentation, write within /** docs statements **/ outside the class.
+Use tags where needed or necessary.
+
+------ Some tags --------
+- @author
+- @version
+- @value
+
+CHECK REFERECES ABOVE
+
+E.g
+
+package javadoc;
+
+/**
+ * @author Ibrahim Musa Suleiman
+ * @version 1.0
+ * @since 28-Jan-2022
+ * 
+ * <h1>Hello, World!</h1>
+ * This is the first line of this javadoc
+ * This is the second line of this javadoc
+ **/
+
+
+public class JavadocSampleClass {
+}
