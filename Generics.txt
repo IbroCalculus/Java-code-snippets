@@ -1,0 +1,149 @@
+Generics enable types (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+
+Much like the more familiar format parameters used in method declarations, type parameters provide a way for you to re-use the same code with different inputs. The difference is that the inputs to formal parameters are values, while the inputs to type parameters are types.
+
+Code that uses generics has many benefits over non-generic code, ie:
+
+- Elimination of casts.
+- Type safety (e.g String will show error if it is used in place of Integer)
+
+
+The generic in java is implemented using the angular bracked '<>' symbol and the type parameter is defined in the bracket.
+The following are the standard type parameters;
+
+- T: Type
+- E: Element
+- N: Number
+- K: Key
+- V: Value
+
+====================================== GENERIC METHOD ==========================================
+ 
+  // Pass in any datatype
+        Welcome(45);
+        Welcome("Somebody");
+        Welcome('C');
+
+    public static <T> void Welcome(T t){
+        System.out.println("Welcome " + t);
+    }
+
+
+---------------------------------------------------------
+
+        id("Ibrahim", 34);
+        id("Ibrahim", "Suleiman");
+        id(123,456);
+
+    public static <T1, T2> void id(T1 t1, T2 t2){
+        System.out.println("ValA: " + t1 + " ValB: " + t2);
+    }
+
+
+
+
+======================================= GENERIC CLASS ========================================
+
+--- WITHOUT GENERICS ---
+
+public class GenericsClass {
+    private Object t;
+
+    public Object getT() {
+        return t;
+    }
+
+    public void setT(Object t) {
+        this.t = t;
+    }
+}
+
+   -- Main ---
+     GenericsClass genericsClass = new GenericsClass();
+     genericsClass.setT("Passing a String");
+
+     String s = (String) genericsClass.getT();  //Requires cast
+     int t = (int) genericsClass.getT();        // This cast will return compile time error. Cast this String to integer not possible
+
+
+--- WITH GENERICS (e.g 1) ---
+
+public class GenericsClass<T> {
+    private T t;
+
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
+}
+
+   -- Main ---
+        GenericsClass<Integer> gc = new GenericsClass();
+        gc.setT(455);
+        System.out.println(gc.getT());
+
+        GenericsClass<String> gc2 = new GenericsClass();
+        gc2.setT("Some random text");
+        System.out.println(gc2.getT());
+
+
+
+
+
+--- WITH GENERICS (e.g 2) ---
+
+public class CarInfo<ID, MODEL>{
+    private ID id;
+    private MODEL model;
+
+    public ID getId() {
+        return id;
+    }
+
+    public void setId(ID id) {
+        this.id = id;
+    }
+
+    public MODEL getModel() {
+        return model;
+    }
+
+    public void setModel(MODEL model) {
+        this.model = model;
+    }
+}
+
+   -- Main ---
+        CarInfo<String, String> carInfo = new CarInfo<>();
+        carInfo.setId("CM-435");
+        carInfo.setModel("MN-34654");
+
+        CarInfo<Integer, Integer> carInfo2 = new CarInfo<>();
+        carInfo2.setId(1221);
+        carInfo2.setModel(9893443);
+
+
+
+===================================== GENERIC INTERFACE ===========================================
+
+public interface GenericsClass<T> {
+    public void printMsg(T t);
+}
+
+
+public class GenericsChild implements GenericsInterface{
+    @Override
+    public void printMsg(Object o) {
+        System.out.println(o);
+    }
+}
+
+    public static void main(String[] args) {
+        GenericsChild gc = new GenericsChild();
+        gc.printMsg("Hello word");
+        gc.printMsg(234);
+        gc.printMsg('C');
+    }

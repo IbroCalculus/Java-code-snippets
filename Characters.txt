@@ -1,0 +1,28 @@
+
+        char one = 'A';
+        char u = 65;
+        char x = '\u02A6';   //unicode
+
+
+        System.out.println(one);  //OUTPUT: A
+        System.out.println(u);    //OUTPUT: A    ASCII-to-CHARACTER
+        System.out.println(x);    //OUTPUT: Ω    UNICODE-to-CHARACTER   
+
+
+
+============ GETTING CHARACTER INPUT ===========
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Type in a character: ");
+
+        char value = input.next().charAt(0);
+        System.out.println(value);
+
+
+=========== GETTING INT VALUE AND CONVERTING THE ASCII =========
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Type in a character: ");
+
+        int value = input.next().charAt(0);                    //INPUT: A    
+        System.out.println("The ASCII equivalent: " +value);   //OUTPUT: The ASCII equivalent: 65

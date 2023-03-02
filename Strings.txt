@@ -6,6 +6,19 @@ CHECK ALSO: Char Arrays.txt  ---> Similar to Strings
 CHECK ALSO: StringTokenizer.txt
 
 
+========== Multiplying a string ========
+
+ System.out.println("Hello ".repeat(3));   //OUTPUT: Hello Hello Hello
+
+   --- OR using StringBuilder class ----
+
+        StringBuilder name1 = new StringBuilder("");
+        for(int i=1; i<=3; i++){
+            name1.append("Ibrahim ");
+        }
+        System.out.println(name1);  //OUT Ibrahim Ibrahim Ibrahim
+
+
 =============== MULTILINE STRING ==================
         String v = """
                 Hello, 

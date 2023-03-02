@@ -1,11 +1,31 @@
 
- NB: I still find the ordering in the queue confusing, it is random
 
- Works on the First-In-First-Out (FIFO) arrangement.
+
+ Queue is an interface. Its concrete classes include; PriorityQueue and LinkedList.
+ 
+
+It is an ordered list of objects with its use limited to insert elements at the end of the list and deleting elements from the start of the list, It works on the First-In-First-Out (FIFO) principle.
+
+To insert/push element is known as ENQUEUE
+To remove/pop element is known as DEQUEUE (pronuounced DEQ)
+
  NB: Head-> first element, Tail->last element.
 
 
+======================	USING LINKEDLIST	========================================
+
+        String data[] = {"To","Be","Or","Not","To","Be"};
+        Queue<String> queue = new LinkedList<>();
+
+        for(String str: data){
+            queue.add(str);
+        }
+        System.out.println("Queue: " + queue);   //OUTPUT: Queue: [To, Be, Or, Not, To, Be]
+
+
+===================	USING PRIORITYQUEUE (I still find the ordering confusing. Using LinkedList above	=======================
         NB: Arranged alphabetically, A is first, Z is last on the queue
+
         Queue<String> countries = new PriorityQueue<>();
 
         countries.add("Nigeria");
@@ -16,9 +36,12 @@
         System.out.printf("COUNTRIES IN QUEUE: %s\n", countries);
 
 
+----------------------------------- Methods associated with Queues ------------------------------------------
+
+
  --- Remove first-most element in the queue ----
         String removedItem = countries.remove();
-        System.out.printf("AFTER REMOVE: %s\n", countries
+        System.out.printf("AFTER REMOVE: %s\n", countries)
 
  --- Peek / View front-most element in the queue ---
         String topElement = countries.peek();
@@ -28,5 +51,8 @@
         String removedTopMostElement = countries.poll();
         System.out.printf("REMOVED TOPMOST ELEMENT: %s", removedTopMostElement);
 
+ --- Check if Queue is empty ---
+        System.out.println(queue.isEmpty());
 
-
+--- Size ---
+        queue.size()

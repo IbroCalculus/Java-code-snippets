@@ -1,0 +1,19 @@
+- It is used for comparing elements of arryaList
+
+- The compareTo method within the interface returns either of 3:
+
+   * A negative number to indicate a less than relationship
+   * A Zero (0) to indicate an equality relationship
+   * A positive number to indicate a greater than relationship.
+
+
+------------ Comparing arrays of Integer types -------------------------------     
+        ArrayList<Integer> list2 = new ArrayList<>(Arrays.asList(7,10,9));
+        System.out.println(list2);
+        System.out.println(list2.get(1).compareTo(list2.get(2)));  //OUTPUT: 1
+
+
+------------ Comparing arrays of String types -------------------------------
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("A","B","C","D"));
+        System.out.println(list);
+        System.out.println(list.get(3).compareTo(list.get(0)));    //OUTPUT: 3

@@ -1,3 +1,6 @@
+CHECK ALSO: Directory.txt
+
+
 NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash
     E.g C:\\Users\\isuleiman\\IdeaProjects\\JavaPractice1
 
@@ -51,6 +54,13 @@ ALSO,
         System.out.println("Writeable: " + myObj.canWrite());
         System.out.println("Readable " + myObj.canRead());
         System.out.println("File size in bytes " + myObj.length());
+
+        System.out.println("File name: " + myFileObj.getName());
+        System.out.println("Get path: " + myFileObj.getPath());
+        System.out.println("Parent: " + myFileObj.getParent());
+        System.out.println("Exists?: " + myFileObj.exists());
+        System.out.println("Is file a directory?: " + myFileObj.isDirectory());
+        System.out.println("Is file a file?: " + myFileObj.isFile());
         
         } else
         {

@@ -1,3 +1,7 @@
+A map is an interface, it is implemented by 3 concrete classes, ie;
+- HashMap
+- LinkedHashMap
+- TreeMap
 
 	Maps are similar to dictionaries in Python. Store data in Key-Value pair
 
@@ -8,14 +12,12 @@
         eMailList.put("Mark", "mark@email.com");
 
 
-        ====================== GET THE VALUES OF A HASMAP =========================
-	System.out.printf("Ibrahim's Email is %s \n", eMailList.get("Ibrahim"));
-        System.out.printf("Suleiman's Email is %s \n", eMailList.get("Suleiman"));
-        System.out.printf("Mark's Email is %s \n", eMailList.get("Mark"));
+      ===================== GET THE VALUES OF A HASMAP =========================
+	System.out.printf(eMailList.get("Ibrahim"));  // OUTPUT: 'ibrahim@email.com
 
 
 	============================ GET THE NUMBER OF ITEMS IN A HASMAP ===================
-        System.out.printf("The number of elements in the Hasmap is: %s \n", eMailList.size());
+        System.out.printf(eMailList.size());
 
 
 	============================= REMOVE ITEMS =========================================
@@ -24,6 +26,37 @@
 
 
 	=========================== CHECK IF HASHMAP CONTAINS A KEY ========================
-        System.out.printf("This map contains the Key Ibrahim, TRUE or FALSE? : %b \n", eMailList.containsKey("Ibrahim"));
-        System.out.printf("This map contains the Value Ibrahim, TRUE or FALSE? : %b \n", eMailList.containsValue("Ibrahim"));
+        System.out.printf(eMailList.containsKey("Ibrahim"));
+
+
+---- Other methods ---
+
+map.isEmpty()
+
+map.keySet()   //Returns an array of the keys
+
+map.values()
+
+
+
+============== HashMap vs LinkedHashMap vs TreeMap ======================
+
+
+----------------- HashMap -------------------------------- 
+- Returns the values randomly.
+- It performs a bit faster than Treemap
+- Stores any type of data
+
+
+------------- LinkedHashMap --------------
+   It lets us iterate through a set in the order in which the elements where inserted.
+   NOT in alphabetical or numeric order. Rather, in the order in which they were inserted.
+
+------- TreeMap --------------- 
+- Returns values by keys ordered in ascending manner.
+- It performs a bit less slower than HashMap.
+
+
+
+
         

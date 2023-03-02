@@ -1,0 +1,39 @@
+This is an interface that is implemented by; Hashset, LinkedHashset, and Treeset
+
+Set excludes duplicate, the elements are unordered, we can store at most 1 null value.
+
+
+        Set<String> s1 = new HashSet<>();
+        Set<String> s2 = new LinkedHashSet<>();
+        Set<String> s3 = new TreeSet<>();
+
+======== Differences between all 3 =====================
+
+1. HashSet:
+   Uses a hash table for storage that places elements into specific positions based upon integers called hash codes.
+   The elements are unordered.
+
+        s1.add("One");
+        s1.add("Two");
+        s1.add("Two");
+        s1.add("Three");
+        System.out.println(s1); //OUTPUT: [One, Two, Three] at a random order, neither asceding nor desceding, nor order at which they were inserted.
+
+        Iterator<String> iterator = s1.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+2. LinkedHashSet:
+   It is ordered form of hashset
+   It lets us iterate through a set in the order in which the elements where inserted.
+   NOT in alphabetical or numeric order. Rather, in the order in which they were inserted.
+
+        Set<String> s2 = new LinkedHashSet<>();
+
+
+
+3. TreeSet:
+   It uses a tree for storage. The access and retrieval time is quite fast.
+   It uses a binary search tree to store its elements in sorted order.
+   The elements in Treeset are stored in ascending order.

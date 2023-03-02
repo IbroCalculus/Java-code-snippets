@@ -55,3 +55,6 @@ Unboxing; conversion of wrapper class to primitive data type, E.g:
         }
 
 
+        Integer x = 9;
+        
+        int y = x.intValue();

@@ -2,7 +2,10 @@
 === Combining both interface and class(or abstract class) ===
 public class Staff extends Salary2 implements Salary, Payment {
 
-Interface is more restrictive(strict) compared to abstract class
+Interface is more restrictive(strict) compared to abstract class.
+For such, we can use the annotation, @FunctionalInterface
+
+If an interface is having just one abstract method, then it is called an functional interface.
 
 NB: You cannot define concrete methods in interface,
     Any declared variable must be instantiated

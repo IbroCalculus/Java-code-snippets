@@ -1,4 +1,4 @@
-CHECK ALSO: TreeSet.
+CHECK ALSO: Set.txt
 
 Stores data in the array randomly, unlike TreeSet which is ordered alphabetically.
 

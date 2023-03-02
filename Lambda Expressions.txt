@@ -1,1 +1,118 @@
-Lambda expressions are used for defining anonymous methods or nameless funtions
+Lambda expressions are used for defining anonymous methods or nameless funtions.
+They are defined with the help of interfaces.
+
+
+If an interface is having just one abstract method, then it is called an functional interface.
+Lambda expressions uses funtional interfaces.
+
+
+
+================ METHOD 1. The long approach to implementing an anonymous function (Don't use this, just for understanding, check Method 2) ================
+
+---- 1. Create an interface 'MyLambda' ----
+
+@FunctionalInterface
+interface MyLambda {
+    void display();
+}
+
+
+---- 2. Create a class 'My', that implements the interface -----
+
+public class My implements MyLambda{
+    @Override
+    public void display() {
+        System.out.println("This implements the interface, 'MyLambda'");
+    }
+}
+
+
+---- 3. Within the main method, create an object of the class and call the method -----
+
+        My m = new My();
+        m.display();
+
+
+
+================ METHOD 2. ================
+
+---- 1. Create an interface ----
+
+@FunctionalInterface
+interface MyLambda {
+    void display();
+}
+
+
+---- 2. Implement the Lambda expression within the main class. (No need to create a separate class to implement the interface) ----
+
+        MyLambda m = () -> {
+            System.out.println("The functional interface is implemented here");  //This overrides the method, 'display'.
+        };
+        m.display();
+
+     ------- OR ------------
+
+        MyLambda m = () -> {System.out.println("The functional interface is implemented here");};
+        m.display();
+
+
+
+
+============ PASSING ARGUMENTS TO A LAMBDA EXPRESSION =============
+
+@FunctionalInterface
+---- 1. Create an interface ----
+
+interface LambdaGreeting {
+    void sayHello(String fName, int age);
+}
+
+
+---- 2. Within main -----
+
+        LambdaGreeting greeting;
+
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter your first name: ");
+        String fName = input.nextLine();
+
+        System.out.println("Enter your age: ");
+        int age = input.nextInt();
+
+        greeting = (f, a)->{System.out.println("You are welcome " + fName + ", age: " + age);};
+        greeting.sayHello(fName, age);
+
+
+
+---------- Same, but returning ------------
+
+@FunctionalInterface
+public interface LambdaMultiplier {
+    int mult(int a, int b);
+}
+
+
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int numA = input.nextInt();
+
+        System.out.print("Enter second number: ");
+        int numB = input.nextInt();
+
+        LambdaMultiplier m1 = (a,b)->{return a*b;};
+        //LambdaMultiplier m1 = (a,b)-> a*b;
+
+        System.out.println(m1.mult(numA,numB));
+
+
+
+==========================================================
+
+
+
+

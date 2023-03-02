@@ -1,3 +1,5 @@
+CHECK ALSO: Directory.txt
+
 NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash.
     E.g C:\\Users\\isuleiman\\IdeaProjects\\JavaPractice1
 

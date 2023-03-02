@@ -4,3 +4,5 @@ Java collections refer to a collection of individual objects that are represente
 They are multiple types of collections in Java; ie:
 
 1- Arraylist
+2- LinkedList
+3- HashMap

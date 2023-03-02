@@ -1,0 +1,43 @@
+================= LinkedList vs ArrayList ===========
+
+Both are similar, with identical method calls, except for how they work backend.
+The differences between both is:
+
+1. ArrayList is faster for getting or retrieving elements from any index, while
+2. LinkedList is faster for inserting and removing elements
+
+For small lists, it does not matter which of either is used.
+
+
+Linear data structures, Data are not saved sequentially.
+
+Similar to arraylist, more methods
+
+        LinkedList<String> myList = new LinkedList<>();
+        myList.add("First");
+        myList.add("Second");
+        myList.addFirst("Added First");
+        myList.addLast("Added Last");
+        myList.add(1, "Added @ index 1");
+
+
+
+
+================ MORE ON LINKEDLIST ========================
+
+Java LinkedList class uses a doubly linked list to store the elements. It provides a linked-list data structure.
+
+The important points about Java LinkedList are:
+ - Java LinkedList class can contain duplicate elements.
+ - Java LinkedList class maintain insertion order.
+ -
+
+
+
+
+
+
+
+
+
+

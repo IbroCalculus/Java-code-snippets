@@ -106,7 +106,7 @@ But functions/methods can be of public access modifiers
 
 ============================================================================
 
-Enum is just a way to create our own customozied types. (Enumerator data types)
+Enum is just a way to create our own customozied types or names constants. (Enumerator data types)
 
 
         enum  Player{

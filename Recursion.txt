@@ -1,0 +1,38 @@
+Recursion is a programming technique in which you describe actions to be repeated using a method that calls itself.
+
+
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many iteratons do you want?: ");
+        int iterationNumber = input.nextInt();
+        sayHello(iterationNumber);
+    }
+
+
+
+    private static void sayHello(int n) {
+        if(n == 0){
+            System.out.println("Recursive iteration completed!");
+        }else{
+            System.out.println("Recursion No: " + n);
+            sayHello(n-1);
+        }
+    }
+
+
+
+================ Factorial using recursion ==============
+
+    private static int factorialOf(int x) {
+        if(x == 0){
+            return 1;
+        }else{
+            return x * factorialOf(x-1);
+        }
+    }
+
+
+
+=============== Fibonacci Sequence using recursion ===========

@@ -1,0 +1,34 @@
+CHECK ArrayLIst.txt for an example looping through using Iterator
+
+An iterator is an object that implements the interface Iterator.
+
+
+public Iterator<E>{
+  boolean hasNext();    // Returns true if the iterator has more elements
+  E next();			// Returns the next element in the iteration.
+  void remove();		// Removes the last element returned by the iterator.
+}
+
+
+The purpose of iterators is to provide a uniform way of accessing Collection elements sequentially, so, whatever kinf of collection you are dealing with, and however it is implemented, you always know how to process its elements in turn.
+
+
+--- Iterable ---
+This code will work with anything that implements the interface Iterable. That is, anything that can produce an Iterator.
+This is the declaration of Iterable.
+
+public Iterable<T>{
+   Iterator<T> iterator();	//Returns an iterator over elements of type T
+}
+
+
+---------- Example ------------
+
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("One","Two","Three","Four"));
+        Iterator<String> iterator = list.iterator();
+
+        int count = 0;
+        while (iterator.hasNext()){
+            System.out.println(++count + " - " + iterator.next());
+        }
+        System.out.println("Iteration completed");

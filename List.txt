@@ -1,0 +1,3 @@
+It is an interface of Collections that is implemented by ArrayList, LinkedList, stack and queue.
+
+Check all via their individual .txt files

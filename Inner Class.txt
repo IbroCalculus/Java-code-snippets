@@ -1,2 +1,57 @@
 
-CHECK; Nested class
+CHECK ALSO; Nested class
+
+
+==== Outer class containing innerclass ====
+
+public class OuterClass {
+    int outerNumber = 6;
+
+    public void hello(){
+        System.out.println("Hello from the outer class");
+    }
+
+//------------------- Non-static innerclass -----------------
+
+    public class InnerClass{
+        int innerNumber = 6;
+
+        public void whatsup(){
+            System.out.println("Whatsup from the inner class");
+        }
+    }
+
+
+// ----------------- Static innerclass
+    public static class StaticInnerClass{
+        int innerStaticNumber = 9;
+
+        public void goodDay(){
+            System.out.println("Good day from the static inner class");
+        }
+    }
+}
+
+
+
+
+========================= WITHIN MAIN ==========================
+
+//--------- Accessing the non static inner class --------------------
+
+        OuterClass outerClass = new OuterClass();
+        OuterClass.InnerClass innerClass = outerClass.new InnerClass();
+        innerClass.whatsup();
+
+
+
+
+//--------- Accessing the static inner class -------------------
+
+        OuterClass.StaticInnerClass innerClass1 = new OuterClass.StaticInnerClass();
+        innerClass1.goodDay();
+
+
+
+
+

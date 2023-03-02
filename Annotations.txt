@@ -3,6 +3,8 @@ IOW, they are useful for giving meta-deta to classes, interfaces, etc.
 
 Metadata is data about data
 
+In other words, annotations is used to pass extra information to the compiler or at run time.
+
 CHECK REFERENCE: "Learn JAVA Programming - Beginner to Master -> 207. Buil-in Annotations Java"
 
 

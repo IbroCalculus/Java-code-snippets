@@ -1,0 +1,44 @@
+Begin from File.txt
+
+=============== MAKE DIRECTORY ================
+
+        File myDirObj = new File("myNewDirectory");
+        myDirObj.mkdir();
+
+
+        System.out.println(myDirObj.getAbsolutePath());  //Path location starting from C:\Users...\myNewDirectory
+
+
+============== CREATE FILE INSIDE A DIRECTORY ====================
+
+        File myDirObj = new File("myNewDirectory");
+        myDirObj.mkdir();
+
+        System.out.println(myDirObj.getAbsolutePath());
+
+        File myFileObj = new File(myDirObj.getAbsolutePath() + "\\mySampleFile.txt");
+        try {
+            if(myFileObj.createNewFile()){
+                System.out.println("File created " + myFileObj.getName());
+            }
+        } catch (IOException e) {
+            System.out.println("Error creating file");
+            e.printStackTrace();
+        }
+
+
+
+
+============= GET THE LIST OF FILES/DIRECTORIES INSIDE A GIVEN DIRECTORY ===============
+
+        File myDirObj = new File("myNewDirectory");
+        myDirObj.mkdir();
+
+        if(myDirObj.isDirectory()){
+            System.out.println("Directory Name: " + myDirObj.getName());
+            String[] dirList = myDirObj.list();
+            System.out.print("List of files in " + myDirObj.getName() + " : ");
+            for(String item: dirList){
+                System.out.print(" " + item);
+            }
+        }

@@ -1,3 +1,8 @@
+CHECK ALSO: LinkedLists.txt, see the differences between both there.
+
+NB: To compare elements of an arraylist to see which is greater(integer), comes first (ie Strings), check Comparable Interface.txt
+
+
 NB: 2D ArrayList section down below
 
 We use arrays in place of arraylists because arrays perform faster.
@@ -13,6 +18,7 @@ NB: THERE ARE TWO WAYS OF DIFINING AN ARRAYLIST: ie;
         1- ArrayList<String> students  = new ArrayList<>(); OR (Deprecated for Java Version < 1.8) ... new ArrayList<String>();
         2- List<String> myList2 = new ArrayList<>();    "BETTER METHOD"
         3- List<String> myList3 = new ArrayList<>(List.of("John","Doe"));   // Arraylist with values.
+        3- List<String> myList3 = new ArrayList<>(Arrays.asList("John","Doe"));   // Arraylist with values.
 
         String[] namess = {"Samuel", "Kehinde", "Thompson"};   // Arraylist from Array
         ArrayList<String> names2 = new ArrayList<>(List.of(namess));
@@ -29,8 +35,20 @@ NB: THERE ARE TWO WAYS OF DIFINING AN ARRAYLIST: ie;
         students.addAll(myNumber);  // This is used to add/merge myNumber arraylist to students arraylist.
         students.addAll(3, myNumber);  
 
-ACCESSING ITEMS
+ACCESSING ELEMENTS
         System.out.println("The first item in the arraylist is: " + students.get(0));
+
+
+REPLACING ELEMENTS
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("One");
+        list.add("2");
+        list.add("Three");
+
+        System.out.println("List: " + list);
+        list.set(1, "Two");
+        System.out.println("Replaced list: " + list);
 
 
 CHECK IF ITEM IN ARRAYLIST
@@ -55,7 +73,16 @@ REMOVE ALL ITEMS
 ARRAY SIZE (length)
         System.out.println(students.size());	//3
 
-LOOP THROUGH AN ARRAYLIST
+GET INDEX OF ITEM
+        int indexOfItem = myList1.indexOf("Ibrahim"); \\Else returns -1
+
+
+COMPARE ELEMENTS WITHIN AN ARRAYLIST
+	  CHECK: Comparable Interface.txt
+
+================================ LOOPING THROUGH AN ARRAYLIST ====================================
+
+LOOP THROUGH AN ARRAYLIST USING FOR LOOP
         for(int i=0; i<students.size(); i++){
             System.out.println(i + " " + students.get(i));
 
@@ -64,9 +91,16 @@ LOOP THROUGH AN ARRAYLIST USING FOR-EACH LOOP
             System.out.println(i);
         }
 
-GET INDEX OF ITEM
-        int indexOfItem = myList1.indexOf("Ibrahim"); \\Else returns -1
+LOOP THROUGH AN ARRAYLIST USING ITERATOR INTERFACE
 
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("One","Two","Three","Four"));
+        
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+NB: Iterable is also what allows the use of for each loop, which can be used in the above.
 =============================================== 2D ARRAYLIST ======================================
 2D Arraylist is a dynamic list of lists. It's a list of separate lists.
 
