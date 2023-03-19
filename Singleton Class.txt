@@ -1,1 +1,117 @@
-It is a class that can create only a single object.
+It is a class that can create only a single object of a class. 
+
+It is useful when working with a database.
+
+
+========== Example =============
+--- Create a class Database with a variable 'name'. Generate constructor(private, instead of public), getters and setters.
+--- Below the variable created, create 'private static synchronized Database instance;'. Note same name as the class.
+    generates its own getter method and modify as shown below.
+
+---------------------------- SINGLETON CLASS -----------------
+public class Database {
+
+    private String name;
+    private static Database instance;    
+
+    public static synchronized Database getInstance(String name) {
+        if(null == instance){
+            instance = new Database(name);
+        }
+        return instance;
+    }
+
+    private Database(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @Override
+    public String toString() {
+        String msg = "Database Class Name: " + this.getName();
+        return msg;
+    }
+}
+
+---- WITHIN MAIN -----
+        Database db = Database.getInstance("my_db");
+        Database db2 = Database.getInstance("rt");
+
+        System.out.println(db.getName());
+        System.out.println(db2.getName());   // OUTPUT is 'my_db', NOT 'rt'
+
+
+
+
+============================================= EXAMPLE 2 ===========================================
+--------------------------- SINGLETON CLASS 2 --------------------------
+
+public class Database2 {
+    private String fName;
+    private int age;
+    private char gender;
+    private static Database2 instance;
+
+
+    public static synchronized Database2 getInstance(String fName, int age, char gender) {
+        if(null == instance){
+            instance = new Database2(fName, age, gender);
+        }
+        return instance;
+    }
+
+    private Database2(String fName, int age, char gender) {
+        this.fName = fName;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        String msg = "Database2 Class Info\n " +
+                "FirstName: " + fName + ", Age: " + getAge() + ", gender: " + gender;
+        return msg;
+    }
+}
+
+
+
+---- WITHIN MAIN -----
+
+        Database2 person = Database2.getInstance("Ibrahim", 45,'m');
+        Database2 person2b = Database2.getInstance("Suleiman", 678,'f');
+
+        System.out.println(person.getfName());
+        System.out.println(person2b.getfName());  // OUTPUT is 'Ibrahim', NOT Suleiman

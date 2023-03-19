@@ -2,8 +2,11 @@ Generics enable types (classes and interfaces) to be parameters when defining cl
 
 Much like the more familiar format parameters used in method declarations, type parameters provide a way for you to re-use the same code with different inputs. The difference is that the inputs to formal parameters are values, while the inputs to type parameters are types.
 
-Code that uses generics has many benefits over non-generic code, ie:
+Generics can be applied in 4 ways;
+ - Generic Constructor, Method, Class and Interface.
 
+Code that uses generics has many benefits over non-generic code, ie:
+- Stronger type checks at compile time.
 - Elimination of casts.
 - Type safety (e.g String will show error if it is used in place of Integer)
 
@@ -19,6 +22,8 @@ The following are the standard type parameters;
 
 ====================================== GENERIC METHOD ==========================================
  
+------------------------------------------ Method return void ------------------------------------
+E.g 1:
   // Pass in any datatype
         Welcome(45);
         Welcome("Somebody");
@@ -28,9 +33,8 @@ The following are the standard type parameters;
         System.out.println("Welcome " + t);
     }
 
-
----------------------------------------------------------
-
+	------------------------------------
+E.g 2:
         id("Ibrahim", 34);
         id("Ibrahim", "Suleiman");
         id(123,456);
@@ -39,8 +43,33 @@ The following are the standard type parameters;
         System.out.println("ValA: " + t1 + " ValB: " + t2);
     }
 
+	------------------------------------
+E.g 3:
+        addOrConcatenate(12,45);				// OUTPUT: The sum of 12 and 45 = 57
+        addOrConcatenate("Ibrahim ", "Suleiman" );	// OUTPUT: The concatenated value is: Ibrahim  Suleiman
 
+    private static <T1,T2> void addOrConcatenate(T1 t1, T2 t2) {
+        if((((Object) t1).getClass().getSimpleName()).equals("Integer") && (((Object) t1).getClass().getSimpleName()).equals("Integer")){
+            String t1s = String.valueOf(t1);
+            String t2s = String.valueOf(t2);
+            int sum = Integer.valueOf(t1s) + Integer.valueOf(t2s);
+            System.out.println("The sum of " + t1 + " and " + t2 + " = " + sum);
+        }else if((((Object) t1).getClass().getSimpleName()).equals("String") && (((Object) t1).getClass().getSimpleName()).equals("String")){
+            System.out.println("The concatenated value is: " + t1 + " " + t2);
+        }
+    }
 
+     ------ OR --------
+    private static <T1,T2> void addOrConcatenate(T1 t1, T2 t2) {
+        if (t1 instanceof Integer && t2 instanceof Integer){
+            String t1s = String.valueOf(t1);
+            String t2s = String.valueOf(t2);
+            int sum = Integer.valueOf(t1s) + Integer.valueOf(t2s);
+            System.out.println("The sum of " + t1 + " and " + t2 + " = " + sum);
+        }else if(t1 instanceof String && t2 instanceof String){
+            System.out.println("The concatenated value is: " + t1 + " " + t2);
+        }
+    }
 
 ======================================= GENERIC CLASS ========================================
 

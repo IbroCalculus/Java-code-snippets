@@ -1,3 +1,5 @@
+Also known as SAM (Single Abstract Interface)
+
 Lambda expressions are used for defining anonymous methods or nameless funtions.
 They are defined with the help of interfaces.
 

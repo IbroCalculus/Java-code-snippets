@@ -1,0 +1,25 @@
+A functional interface is an interface that contains only one method
+
+
+@FunctionalInterface
+public interface A {
+    void hello();
+}
+
+
+------------- IN MAIN -------------
+
+public class Main {
+    public static void main(String[] args) {
+              A a = new A() {
+                  @Override
+                  public void hello() {
+                      System.out.println("Saying hello");
+                  }
+              };
+
+              a.hello();
+    }
+}
+
+

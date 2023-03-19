@@ -1,0 +1,23 @@
+Reader is an abstract class. check its .png
+
+
+        char[] charArray = new char[100];
+
+        try {
+            FileReader reader = new FileReader("myNewFile.txt");
+
+            //Checks if reader is ready
+            System.out.println("Is reader ready? " + reader.ready());
+
+            //Reading characters
+            reader.read(charArray);
+            System.out.println("Data in the stream: ");
+            System.out.println(charArray);
+
+            reader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }

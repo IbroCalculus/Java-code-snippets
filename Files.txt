@@ -1,4 +1,4 @@
-CHECK ALSO: Directory.txt
+CHECK ALSO: Directory.txt, Reader.txt
 
 
 NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash

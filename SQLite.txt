@@ -1,0 +1,260 @@
+
+CHECK ALSO; SQLite2.txt
+
+JDBC - Java DataBase Connectivity.
+DDL - Data Definition Language: It is used by database administrator to define the schema. ie; CREATE, ALTER, DROP etc
+DML - Data Manipulation Language: It is used by database user to manipulate data in a database. ie; SELECT, INSERT, UPDATE, DELETE etc.
+
+=========== The 3 execute methods ==================
+
+1 .executeUpdate() is used to execute DML statements apart from SELECT (ie UPDATE, DELETE). It returns an integer value representing the number of rows affected.
+  ie
+      String insertData = "INSERT INTO Employee("
+         + "Name, Salary, Location) VALUES "
+         + "('Amit', 30000, 'Hyderabad'), "
+         + "('Kalyan', 40000, 'Vishakhapatnam'), "
+         + "('Renuka', 50000, 'Delhi'), "
+         + "('Archana', 15000, 'Mumbai')";
+
+      int i = stmt.executeUpdate(insertData);
+      System.out.println("Rows inserted: "+i);
+
+2 .executeQuery() is used to execute statements that returns tabular data (ie SELECT).  It returns an object of the class ResultSet.
+  ie
+      ResultSet rs = stmt.executeQuery("Select *from Employee");
+
+      while(rs.next()) {
+         System.out.print("Name: "+rs.getString("Name")+", ");
+         System.out.print("Salary: "+rs.getInt("Salary")+", ");
+         System.out.print("City: "+rs.getString("Location"));
+         System.out.println();
+      }
+
+
+3 .execute() is used to execute DDL statements (ie CREATE, ALTER, DROP). it returns a boolean value specifying weather the ResultSet object can be retrieved.
+  ie 
+      String createTable = "CREATE TABLE Employee( "
+         + "Name VARCHAR(255), "
+         + "Salary INT NOT NULL, "
+         + "Location VARCHAR(255))";
+      boolean bool = stmt.execute(createTable);
+
+      System.out.println(bool);
+
+
+===========================================================================
+
+Driver is used to:
+ 1. Establish connection between java and the database (ie SQLite, MySQL, Oracle server, etc).
+ 2. Enable datatype conversion between java and the database (ie Java String should convert to SQLite Text, etc).
+
+Java has a built-in class for connection which is available in; java.sql package.
+
+
+===== DRIVERS =====
+If Java wants to communicate with Oracle, it will need an Oracle driver, likewise a different driver for MySQL, likewise a different one for SQLite. etc.
+Likewise applies to every other programming languages, ie Python, C#, etc with different databases.
+
+ALTHOUGH, microsoft has provided a solution to the above. Instead of different drivers for different databases, it introduced ODBC (Open Database Connectivity) driver. This is available on windows OS by default. All databases supports the ODBC driver.
+In this case, Java will only need a driver for ODBC, not for each databases.
+
+Java supports 4 different types of drivers, ie;
+1. Type-1
+   JDBC-OBDC Bridge (partial)  // Discussed above.
+
+2. Type-2
+   Native-API (partial):	ie The programming language is Java, the database (ie MySQL)  is written in its native language (eg C language). To communicate between the program and the database, we use a bridge/an interface related to the Database, eg OCI (Oracle Call Interface).
+
+We use the Type-2 for Java and SQLite.
+
+3. Type-3
+   Java-Net Protocol Driver(pure):	Programming language communicates via a driver with a shared server, which in turn communicates with the database.
+
+4. Type-4
+   Thin Driver (pure):	Direct connection between the programming language and the database. (Database must be of same programming language)
+
+
+FOR JAVA-SQLIte Database, We use the Type-2 for Java and SQLite.
+
+
+===========================================================================================================
+============================================= JAVA - SQLite ===============================================
+===========================================================================================================
+- Download jdbc sqlite driver jar file from mvn repository website (https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc).
+- Copy the sqlite-jdbc-3.41.0.0.jar file to the folder C:\Program Files\Java	(Not compulsory, the folder can be anywhere).
+
+
+========= WITHIN JAVA CODE =================
+For every project that deals with JDBS, add the .jar file as a library;
+(InteliJ; File -> Project Structure -> libraries -> + Java -> sqlite-jdbc-3.41.0.0.jar (located C:\Program Files\Java\sqlite-jdbc-3.41.0.0.jar)
+
+
+----------------- 1. CREATE A DATABASE's TABLE ------------------
+
+    private static void createDBTable() {
+        Connection conn;
+        Statement statement;
+
+        String dbLocation = "univ.db";
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            statement = conn.createStatement();
+
+            statement.execute("CREATE TABLE IF NOT EXISTS temp(a INTEGER, b FLOAT)");
+            System.out.println("Database table created successfully!");
+
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+---------------- 2. READ DATA FROM DATABASE's TABLE -------------------
+NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
+
+    private static void readFromDBTable() {
+        Connection conn;
+        Statement statement;
+        ResultSet resultset;		\\ This is used to hold the tables returned after reading.
+
+        String dbLocation = "C:\\sqlite\\Databases\\univ.db";
+        String dbLocation2 = "testjava2.db";	//This will create the .db file within the java project directory if not already exist.
+
+
+        try {
+            // Class.forName("org.sqlite.JDBC");					// Enable driver. 	This line is not required in modern version(>= 4.0) of jdbc drivers. Ignore!
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);	// Establish connection
+            statement = conn.createStatement();
+            resultset = statement.executeQuery("SELECT * FROM dept");		
+
+            int deptno;
+            String dname;
+
+            while (resultset.next()){
+                deptno = resultset.getInt("deptno");				// deptno = resultset.getInt(1);   Using column indeces in place of column name. index starts from 1
+                dname = resultset.getString("dname");
+                System.out.println(deptno + " <----> " + dname);
+            }
+
+            resultset.close();
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+}
+
+
+---------------- 3. INSERT DATA INTO A DATABASE's TABLE (Check SQLite2.txt to insert using preparedStatement (variables) ) -------------------
+NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
+
+    private static void insertIntoDB() {
+
+        Connection conn;
+        Statement statement;
+
+        String dbLocation = "univ.db";
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            statement = conn.createStatement();
+
+            statement.executeUpdate("INSERT INTO dept VALUES (60,'Chem')");
+            System.out.println("Data insert successfully!");
+
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+------------------- 4. DELETE DATA FROM A DATABASE's TABLE (check SQLite2.txt to delete using preparedStatement (variables) ) -------------------------
+NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
+
+    private static void deleteFromDB() {
+        Connection conn;
+        Statement statement;
+
+        String dbLocation = "univ.db";
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            statement = conn.createStatement();
+
+            statement.executeUpdate("DELETE FROM dept WHERE deptno > 50");
+            System.out.println("Data deleted successfully!");
+
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+-------------------- 5. UPDATE DATA INTO A DATABASE's TABLE (check SQLite2.txt to update using preparedStatement (variables) ) -------
+NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
+
+    private static void updateIntoDB() {
+
+        Connection conn;
+        Statement statement;
+
+        String dbLocation = "univ.db";
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            statement = conn.createStatement();
+
+            statement.executeUpdate("UPDATE dept SET dname='Chem' WHERE deptno=50");
+            System.out.println("Data updated successfully!");
+
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+----------------------- 6. DROP TABLE FROM A DATABASE ------------------------
+
+    private static void dropDBTable() {
+        Connection conn;
+        Statement statement;
+
+        String dbLocation = "univ.db";
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            statement = conn.createStatement();
+
+            statement.execute("DROP TABLE temp");
+            System.out.println("Table dropped/ deleted successfully!");
+
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            System.out.println("The table specified does not exist!");
+            e.printStackTrace();
+        }
+
+    }
+
+
+===================== JDBC classes and statements ==========
+- DriverManager (class): This is used to establish connection between the Java program and the database by utitlizing the driver already invoked by Class.forName(...);
+
+
+

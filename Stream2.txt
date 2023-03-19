@@ -1,0 +1,163 @@
+CHECK ALSO; Reader.txt
+
+In general, a stream means a continuous stream of data. Streams are a clean way to process input/output without every part of your code understanding the physical layer.
+
+When reading data from source, we use the input stream,
+when writing data to destination, we use the output stream.
+
+
+-----------------------------------
+Java defines 2 types of streams, ie Byte streams, and character streams.
+- Character streams are used for working with characters or strings, while
+- Byte streams are used when working with Bytes or other binary objects.
+
+
+Java's stream based I/O is built upon 4 abstract classes:
+- InputStream
+- OutputStream
+- Reader
+- Writer
+
+InputStream and OutputStream are designed for byte streams.
+Reader and Writer are designed for characters and strings.
+
+
+
+============================= InputStream (For reading) =========================================
+CHECK: InputStream.png
+
+InputStream is an abstract class. All its method will throw an IOException
+
+
+        try {
+            InputStream inputStream = new FileInputStream("myNewFile.txt"); //FileNotFoundException
+            int data = inputStream.read();    // IOException
+            System.out.println((char) data + "\n=================");
+            while (data != -1){               // while not empty
+//                System.out.print(data);           // char int value (ASCII table)
+                System.out.print((char) data);    // int to char value
+                data = inputStream.read();
+            }
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+============================= OutputStream (For writing) ===========================
+CHECKk OutputStream.png
+
+OutputStream is an abstract class. All its method will throw an IOException
+
+        String data = "\n\n" + "It is what it is...";
+
+        try {
+            OutputStream outputStream = new FileOutputStream("myNewFile.txt"); //FileNotFoundException
+//            OutputStream outputStream = new FileOutputStream("myNewFile.txt", true); // Will enable file appending.
+            byte[] dataBytes = data.getBytes();   //Convert the strings into byte.
+            try {
+                outputStream.write(dataBytes);   //IOException
+                System.out.println("Data written successfully!");
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+======================== ObjectOutputStream (For writing objects =======================================
+
+Used to write objects to files
+NB: The content generated within the file is encoded data.
+
+
+ ---- 1. Create a class and implement Serializable ----
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+    private String name;
+    private int age;
+
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+
+
+---- 2. Within the Main method -----
+
+
+        Employee emp1 = new Employee("Tom", 34);
+        Employee emp2 = new Employee("Sarah", 28);
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("myNewFile.txt"); //FileNOtFoundException
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);  //IOException
+
+            objectOutputStream.writeObject(emp1);
+            objectOutputStream.writeObject(emp2);
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+======================== ObjectOutputStream (For reading objects) =======================================
+Assume using same class as above.
+NB: This prints only the first object in the file. research on how to get all objects.
+
+---- Within the Main method ----
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream("myNewFile.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            Employee employee = (Employee) objectInputStream.readObject(); //ClassNotFoundException
+
+            System.out.println("Employee name: " + employee.getName());
+            System.out.println("Employee age: " + employee.getAge());
+
+            objectInputStream.close();
+            fileInputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+

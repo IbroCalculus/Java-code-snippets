@@ -1,0 +1,88 @@
+- A network is a system of computers connected together so they can share resources and communicate with each other.
+- Networking refers to how the connected computers communicate.
+- In java, the java.net package contains the classes needed to establish connections between computers and then send messages between them.
+- When writing networking code, you will need to be familiar with Threads and Input/Output streams.
+- Networking can also be used when you want applications running on the same machine (host) to communicate with each other. ie networking can be involved even when only one machine is involved.
+
+- Computers on a network (which includes the internet) communicate with each oter using a transport protocol (TP), among which are TCP (Transport Control Protocol) and UDP ().
+- Each application that needs data from a network is assigned a port. When data arrives, the port number is used to route the data to the application that is waiting for it.
+
+
+- The java.net pacakge contains 2 sets of APIs; The low-level API, and the high-level API.
+- When using the low-levelp API, you will have to be more aware of networking concepts.
+
+- TCP (Transport Control Protocol) establishes a 2-way connection between hosts, and this connection is reliable in the sense tha the two hosts talk to each other. When used with the internet addresses, you get the TCP/IP, which uses the client/server model.
+- When communicating using TCP/IP, the sequence of events is as follows:
+	1. The client opens a connection to the server.
+	2. The client sends a request to the server.
+	3. The server sends a response to the client.
+	4. The client closes the connection to the server.
+	Steps 2 and 3 may be repeated multiple times before the connection is closed.
+
+When using the low-level networking API, you will use sockets to establish connections, send requests, and receive responses. A socket is one end-point of the two-way connection. The client will have a socket, and the server will have a socket.
+
+When you have multiple clients connecting to the same server, they will use the same port number, but each client will have its own socket. You will use the Socket class for the client socket, and the ServerSocket class for the server's socket.
+
+Handshaking: This is when specific messages have to be sent to establish a connection between the client and the server.
+Packets: This refers to the data sent as bits in a specific format.
+
+
+
+==================== SERVER CODE AWAITING CONNECTION FROM CLIENT =========================
+
+    public static void main(String[] args) {
+
+        try(ServerSocket serverSocket = new ServerSocket(5000)) { // 5000 = port number. Can be between 0 - 65,535.
+            Socket socket = serverSocket.accept();       		//This is going to hold until a client connects to the server.
+            System.out.println("Client connected successfully!");
+
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);		// true; automatically flush the output stream the printwriter is using.
+
+            while (true){
+                String echoString = input.readLine();
+                if(echoString.equals("exit")){
+                    break;
+                }
+                output.println("Echo from server >>> " + echoString);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Server exception: " + e.getMessage());
+        }
+    }
+
+NB: Running this alone will execute, although without displaying the "Client connected successfully". This is because the server is waiting for a client to connect.
+    You may stop the server from waiting by stopping the programming manually, ie InteliJ red stop button.
+
+
+===================== CLIENT CODE TO ENABLE CONNECTION TO SERVER ==============================
+
+    public static void main(String[] args) {
+
+        // Port number for client is same for server.
+
+        try(Socket socket = new Socket("localhost", 5000)){  //OR "127.0.0.1", 5000.  "localhost"/"127.0.0.1 Because server is running locally.
+            BufferedReader echoes = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter stringToEcho = new PrintWriter(socket.getOutputStream(), true);
+
+            Scanner input = new Scanner(System.in);
+            String echoString;
+            String response;
+
+            do {
+                System.out.print("Enter string to be echoed: ");
+                echoString = input.nextLine();
+
+                stringToEcho.println(echoString);
+                if(!echoString.equals("exit")){
+                    response = echoes.readLine();
+                    System.out.println(response);
+                }
+
+            }while (!echoString.equals("exit"));
+
+        }catch (IOException e){
+            System.out.println("Client error " + e.getMessage());
+        }
+    }

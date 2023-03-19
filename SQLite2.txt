@@ -1,0 +1,125 @@
+
+CHECK ALSO; SQLite2.txt
+
+JDBC - Java DataBase Connectivity.
+DDL - Data Definition Language: It is used by database administrator to define the schema. ie; CREATE, ALTER, DROP etc
+DML - Data Manipulation Language: It is used by database user to manipulate data in a database. ie; SELECT, INSERT, UPDATE, DELETE etc.
+
+.executeUpdate() is used to execute DML statements apart from SELECT (ie INSERT, UPDATE, DELETE)
+.executeQuery() is used for getting data from database (ie SELECT)
+.execute() is used to execute DDL statements (ie CREATE, ALTER, DROP)
+
+
+
+===================================== QUERY USING PREPARED STATMENT ==============================
+
+1. ------------------------- Read data from a table ------------------------------
+
+The schema for the table used in the example below is: CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT);
+
+    private static void readFromDB() {
+        Connection conn;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        String dbLocation = "testjava2.db";
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            preparedStatement = conn.prepareStatement("SELECT * FROM contacts WHERE name=? AND phone=?");
+
+            String nameValue = "user2";
+            int phoneValue = 12342;
+
+            preparedStatement.setString(1, nameValue);  //indexing starts from 1, not 0
+            preparedStatement.setInt(2,phoneValue);
+            resultSet = preparedStatement.executeQuery();
+
+            String nameValue2;
+            int phoneValue2;
+            String email2;
+
+            while (resultSet.next()){
+                nameValue2 = resultSet.getString("name");
+                phoneValue2 = resultSet.getInt("phone");
+                email2 = resultSet.getString("email");
+                System.out.println("NAME: " + nameValue2 + " ---- PHONE: " + phoneValue2 + " ---- EMAIL: " + email2);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+2. ------------------------- Insert data into a table Using Prepared Statement ---------------------------------
+The schema for this table is: CREATE TABLE students(roll INTEGER PRIMARY KEY, name TEXT, city TEXT, deptno INTEGER, FOREIGN KEY(deptno) references dept(deptno));
+
+
+    private static void insertIntoDB2() {
+        Connection conn;
+        PreparedStatement preparedStatement;
+
+        String dbLocation = "univ.db";
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            preparedStatement = conn.prepareStatement("INSERT INTO students VALUES (?,?,?,?)");
+
+            int roll = 3;
+            String name = "Samuel";
+            String city = "Jericho";
+            int deptno = 40;
+
+            preparedStatement.setInt(1,roll);
+            preparedStatement.setString(2,name);
+            preparedStatement.setString(3,city);
+            preparedStatement.setInt(4,deptno);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Data insert successfully!");
+
+            preparedStatement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+3. ---------------------- Update data into a table using prepared statement -------------------------
+
+    private static void updateIntoDB2() {
+        Connection conn;
+        PreparedStatement preparedStatement;
+
+        String dbLocation = "univ.db";
+
+
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
+            preparedStatement = conn.prepareStatement("UPDATE students SET city=?, name=?, deptno=? WHERE roll=?");
+
+            int roll = 2;
+            String city = "Lagos";
+            String name = "Segun";
+            int deptno = 30;
+
+            preparedStatement.setString(1,city);
+            preparedStatement.setString(2,name);
+            preparedStatement.setInt(3,deptno);
+            preparedStatement.setInt(4,roll);
+
+            preparedStatement.executeUpdate();
+            System.out.println("Data updated successfully!");
+
+            preparedStatement.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }

@@ -1,3 +1,10 @@
+CHECK ALSO; Functional Interface.txt
+
+They are 3 types of interfaces;
+1- Normal interface (can declare multiple public abstract method)
+2- Functional Interface (Declare only one public abstract method)
+3- Marker Interface ( Contains NO method declaration. It is blank/empty)
+
 
 === Combining both interface and class(or abstract class) ===
 public class Staff extends Salary2 implements Salary, Payment {

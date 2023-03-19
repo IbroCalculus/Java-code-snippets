@@ -39,3 +39,34 @@ float	4 bytes	Stores whole numbers from -32,768 to 32,767	float number = (float)
 
 === CONVERTING INTEGER DATATYPES TO BINARY ====
         System.out.println("Binary equivalent of Decimal: " + 100 + " is = " + value);
+
+
+
+ ============= GETTING THE DATATYPE OF A VALUE =============
+
+        String x = "sample";
+        int y = 2345;
+
+        System.out.println( ((Object) x).getClass().getSimpleName() );   //OUTPUT: String
+        System.out.println( ((Object) y).getClass().getSimpleName() );   //OUTPUT: Integer
+
+        if((((Object) y).getClass().getSimpleName()).equals("String")){
+            System.out.println("Type is string");
+        }else if((((Object) y).getClass().getSimpleName()).equals("Integer")){
+            System.out.println("Type is integer");
+        }
+
+ ============= COMPARE THE DATATYPE OF A VALUE (ie check if it is an integer, string, etc) =============
+
+NB: Every variable must be of type wrapper (ie Integer instead of int, BOOLEAN instead of boolean, Character instead of char, etc. CHECK Wrapper Class.PNG
+
+        String x = "sample";
+        Integer y = 2345;
+        Boolean choice = false;
+        Float f = 456.78f;
+
+        System.out.println("y is an integer: " + (y instanceof Integer));
+        System.out.println("choice is a boolean value: " + (choice instanceof Boolean));
+        System.out.println("f is a double: " + (f instanceof Float));     
+
+
