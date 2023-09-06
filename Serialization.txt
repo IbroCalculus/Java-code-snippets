@@ -1,0 +1,167 @@
+FOR MORE, CHECK Bro Code Java course, about 10:50:00
+
+======== SERIALIZATION =============
+It is the process of converting an object into a byte stream.
+The benefit of this is that the object persists (saves the state) of the object after the program exists.
+This byte stream can be saved as a file or sent over a network
+This byte stream can sent to a different machine.
+Byte stream can be saved as a file (.ser) which is platform independent.
+
+Think of serialization as if your are saving a file with the object's information)
+
+
+======== DESERIALIZATION ============
+It is the reverse process of converting a byte stream into an object. 
+
+Think of deserialization as if your are loading a saved file 
+
+
+
+================= STEPS TO SERIALIZE =====================
+ ----- Within The Object's Class ------
+1. The object class should implement Serializable interface
+2. Add 'import java.io.Serializable'
+
+ ----- Within Java Main ------
+3. FileOutputStream fileOut = new FileOutputStream(file path);
+5. ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+6. objOut.writeObject(objectName);
+7. objOut.close();
+8. fileOut.close();
+
+NB: CHECK BELOW TO SEE STEPS TO DESERIALIZATION
+
+
+EXAMPLE:
+==================== 1. SERIALIZATION ================================
+
+-------------- Objects Class ---------------
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+    String name;
+    String password;
+
+    public void sayHello(){
+        System.out.println("Hello " + name);
+    }
+}
+
+
+--------------- Main Class -------------
+
+public class Main {
+    public static void main(String[] args) {
+
+        User user = new User();
+        user.name = "Admin_user";
+        user.password = "admin_password";
+
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream("UserClass.ser");
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(user);
+            objOut.close();
+            fileOut.close();
+
+            System.out.println("Serialization successful. Object's info saved!");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+
+
+NB: The file 'UserClass.ser' will be saved within the project's directory.
+
+
+
+
+================= STEPS TO DESERIALIZE =====================
+ ----- Within The Object's Class ------
+1. The object's class should implement Serializable interface (CHECK EXAMPLE BELOW ON BOTH Serialization & Deserialization)
+2. Add import 'java.io.Serializable
+
+ ----- Within Java Main ------
+3. Declare your object (Do not instantiate)
+4. FileInputStream fileIn = new FileInputStream(file path);
+5. ObjectInputStream objIn = new ObjectInputStream(fileIn);
+6. 'The Object name' = ('Cast to the class name') objIn.readObject();
+7. objIn.close();
+8. fileIn.close();
+
+
+EXAMPLE:
+==================== 2. DESERIALIZATION ================================
+
+-------------- Objects Class (Similar to the one for the serialized file) ---------------
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+    String name;
+    String password;
+
+    public void sayHello(){
+        System.out.println("Hello " + name);
+    }
+}
+
+
+--------------- Main Class -------------
+
+        User user;
+        try {
+            FileInputStream fileIn = new FileInputStream("UserClass.ser");
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            user = (User) objIn.readObject();
+            objIn.close();
+            fileIn.close();
+
+            System.out.println("Deserialization successful!");
+
+            System.out.println(user.name);
+            System.out.println(user.password);
+            user.sayHello();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

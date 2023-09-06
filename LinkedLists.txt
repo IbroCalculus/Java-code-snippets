@@ -20,6 +20,20 @@ Similar to arraylist, more methods
         myList.addLast("Added Last");
         myList.add(1, "Added @ index 1");
 
+------------ Remove element ------------
+        myList.remove("Second");
+        myList.removeFirst();
+        myList.removeLast();
+
+------------ Index of ------------
+        System.out.println(myList.indexOf("First"));
+
+------------ Peak first element ------------
+        System.out.println(myList.peekFirst());
+
+------------ Peak last element ------------
+        System.out.println(myList.peekLast());
+
 
 
 

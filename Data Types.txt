@@ -47,8 +47,8 @@ float	4 bytes	Stores whole numbers from -32,768 to 32,767	float number = (float)
         String x = "sample";
         int y = 2345;
 
-        System.out.println( ((Object) x).getClass().getSimpleName() );   //OUTPUT: String
-        System.out.println( ((Object) y).getClass().getSimpleName() );   //OUTPUT: Integer
+        System.out.println(x.getClass().getSimpleName() );   //OUTPUT: String.   
+        System.out.println(y.getClass().getSimpleName() );   //OUTPUT: Integer
 
         if((((Object) y).getClass().getSimpleName()).equals("String")){
             System.out.println("Type is string");

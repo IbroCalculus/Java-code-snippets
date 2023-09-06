@@ -1,0 +1,50 @@
+There are 2 methods of creating a singleton. 
+Disadvantage of this method is that the purpose of a singleton can be overriden if we implement cloneable interface to the class, ie we can create multiple instances.
+Check Udemy course "The complete java developer course", by Abbas Masri, Singleton Design Pattern, Section 28.
+
+Check Also Singleton pattern2.txt for the second method.
+
+
+
+
+=======	1. Singleton Class (NB: We did not implement cloneable interface here, so it is not cloneable) ===============
+
+They are 3 steps, ie;
+1. Create a static field containing its only instance.
+2. Create a private Constructor
+3. Create a static factory method for obtaining the instance
+
+
+public class SingletonConn {
+
+//    1. Create a static field containing its only instance
+    private static SingletonConn onlyInstance;
+
+//    2. Create a private Constructor
+    private SingletonConn(){
+
+    }
+
+//    3. Create a static factory method for obtaining the instance
+    public static SingletonConn getOnlyInstance(){
+
+//        If no previous instance of this class, then create.
+        if(onlyInstance == null){
+            onlyInstance = new SingletonConn();
+        }
+//        Else return the existing instance.
+        return onlyInstance;
+    }
+
+}
+
+
+======	2. WITHIN MAIN	====
+
+//        Connecting to Database
+        SingletonConn singletonConn = SingletonConn.getOnlyInstance();
+        System.out.println(singletonConn.toString());
+
+//        Connecting to Database by tring to create another instance.
+        SingletonConn singletonConn2 = SingletonConn.getOnlyInstance();
+        System.out.println(singletonConn2.toString());      // Same as the above. No new instance created.

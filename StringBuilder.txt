@@ -38,6 +38,8 @@ Because StringBuffer is thread-safe, this makes it a little slower compared to S
         sb3.delete(8,13);
         System.out.println("Deleted: " + sb3);
 
+	  Also; deleteCharAt(index);
+
  ----- 7. CONVERTING STRINGBUILDER INSTANCES TO STRINGS ------
         Converting a StringBuilder instance to a string
         String sb3String = sb3.toString();

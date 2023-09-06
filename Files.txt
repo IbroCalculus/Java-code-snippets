@@ -1,8 +1,9 @@
 CHECK ALSO: Directory.txt, Reader.txt
 
 
-NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash
+NB: To reference an absolute path, use double back slashes (\\) instead of a single back slash OR a single forward slash
     E.g C:\\Users\\isuleiman\\IdeaProjects\\JavaPractice1
+    E.g C:/Users/isuleiman/IdeaProjects/JavaPractice1
 
 import java.io.File;
         
@@ -27,27 +28,26 @@ mkdir()			Boolean			Creates a directory
 
 
 =========== CREATE NEW FILE ====================
-try
-        {
-            File myFileObj = new File("myNewFile.txt");		//File myObj = new File("C:\\Users\\MyName\\myNewFile.txt");
-            if(myFileObj.createNewFile())
-            {
-                System.out.println("File created " + myFileObj.getName());
-            }else
-            {
-                System.out.println("File already exists");
+
+
+        File myFile = new File("myFile.txt");			//File myFile = new File("C:\\Users\\MyName\\myNewFile.txt");
+        if(!myFile.exists()){
+            try {
+                myFile.createNewFile();
+                System.out.println("File created successfully");
+            } catch (IOException e) {
+                System.out.println("Could not create file!");
+                e.printStackTrace();
             }
-        }
-        catch(IOException e)
-        {
-            System.out.println("An error occurred");
-            e.printStackTrace();
+        }else{
+            System.out.println("File already exists");
         }
 
 ALSO,
+==================
 
 	File myObj = new File("myNewFile.txt");
-        if (myObj.exists())
+        if (myObj.exists())					//Checks if file 'myNewFile.txt' exists
         {
         System.out.println("File name: " + myObj.getName());
         System.out.println("Absolute path: " + myObj.getAbsolutePath());
@@ -73,7 +73,7 @@ try
         {
             FileWriter myFileWriter = new FileWriter("myNewFile.txt");
             myFileWriter.write("This is a test file text");
-	    myFileWriter.append("This is an appended text");
+	      myFileWriter.append("This is an appended text");
             myFileWriter.close();
             System.out.println("File written into successfully");
         }catch (IOException e)
@@ -84,6 +84,9 @@ try
 
 
 =========== READ A FILE ======================
+FileReader reads the contents of a file as a stream of characters, one by one.
+.read() returns an int value which contains the byte value of the particular single character.
+when .read() returns -1, there is no more data to be read.
 
         try {
             FileReader reader = new FileReader("myNewFile.txt");
@@ -116,6 +119,11 @@ try{
             System.out.println("An error occured");
             e.printStackTrace();
         }
+
+
+=========== DELETE FILE =================
+        myFile.delete();
+        System.out.println("File deleted!");
 
 Note:
  There are many available classes in the Java API that can be used to read and write files in Java: FileReader, BufferedReader, Files, Scanner, FileInputStream, FileWriter, BufferedWriter, FileOutputStream, etc. Which one to use depends on the Java version you're working with and whether you need to read bytes or characters, and the size of the file/lines etc.

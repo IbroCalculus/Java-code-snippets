@@ -1,0 +1,123 @@
+================== 1. Printing the rows of data =======================
+
+Where 'students.csv' in this case is located withing the same src directory as the .java file. It has columns: 'student', 'grade', 'pass/fail'.
+
+        String csvFile = "src\\students.csv";
+        readCSV(csvFile);
+
+
+    private static void readCSV(String csvFile) {
+        String file = csvfile;
+        BufferedReader reader = null;
+        String line = "";
+
+        try{
+            reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null){
+                String row[] = line.split(",");
+                for(String index: row){
+                    System.out.print(index + " ");
+                }
+                System.out.println();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+================== 2. Reading the above values on Column basis and appending to arrayList =======================
+
+        String csvFile = "src\\students.csv";
+        readCSV(csvFile);
+
+    private static void readCSV(String csvfile) {
+        String file = csvfile;
+        BufferedReader reader = null;
+        String line = "";
+
+        ArrayList<String> studentColum = new ArrayList<>();
+        ArrayList<String> gradeColumn = new ArrayList<>();
+        ArrayList<String> pass_failColumn = new ArrayList<>();
+
+        try{
+            reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null){
+                String row[] = line.split(",");
+
+                studentColum.add(row[0]);
+                gradeColumn.add(row[1]);
+                pass_failColumn.add(row[2]);
+            }
+            for(String student: studentColum){
+                System.out.println("Students: " + student);
+            }
+            for(String grade: gradeColumn){
+                System.out.println("Grade: " + grade);
+            }
+            for(String pass_fail: pass_failColumn){
+                System.out.println("Pass_Fail: " + pass_fail);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+================== 3. Return the above as an arrayList =======================
+
+        String csvFile = "src\\students.csv";
+        ArrayList<String> csvContent = readCSV(csvFile);
+        for(String row: csvContent){
+            System.out.println(row);
+	}
+
+    private static ArrayList<String> readCSV(String csvfile) {
+        String file = csvfile;
+        BufferedReader reader = null;
+        String line = "";
+
+        ArrayList<String> csvColumns = new ArrayList<>();
+
+        ArrayList<String> studentColumn = new ArrayList<>();
+        ArrayList<String> gradeColumn = new ArrayList<>();
+        ArrayList<String> pass_failColumn = new ArrayList<>();
+
+        try{
+            reader = new BufferedReader(new FileReader(file));
+            while ((line = reader.readLine()) != null){
+                String row[] = line.split(",");
+
+                studentColumn.add(row[0]);
+                gradeColumn.add(row[1]);
+                pass_failColumn.add(row[2]);
+            }
+            csvColumns.add(String.valueOf(studentColumn));
+            csvColumns.add(String.valueOf(gradeColumn));
+            csvColumns.add(String.valueOf(pass_failColumn));
+
+            return csvColumns;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return csvColumns;
+    }

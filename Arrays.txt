@@ -16,7 +16,9 @@ String cars[] = {"first Car", "Second car", "Third car"};
 ACCESS ARRAY ELEMENT
         String cars[] = {"first Car", "Second car", "Third car"};
         System.out.println(cars[1]);;
-        System.out.println(cars.length - 1); l
+        System.out.println(cars.length - 1); 
+
+        System.out.println(Arrays.toString(cars));
 l
 CHANGE ARRAY ELEMENT
         String cars[] = {"first Car", "Second car", "Third car"};
@@ -49,6 +51,12 @@ LOOP THROUGH ARRAY USING FOR-EACH/ ENHANCE FOR LOOP
             System.out.println(i);
         }
 
+LOOP THROUGH AN ARRY USING STREAMS
+
+	  String cars[] = {"first Car", "Second car", "Third car"};
+        cars[1] = "New Second car";
+        Arrays.stream(cars).forEach(System.out::println);  //OUTPUT the elements just like for each loop
+
 MULTIDIMENSIONAL ARRAY:
  ------- 2D ARRAY ------:
 	int nums[][] = {{1,2,3},{4,5,6}};
@@ -56,6 +64,19 @@ MULTIDIMENSIONAL ARRAY:
         int y = nums[0][2];
         System.out.println(y);
         System.out.println(nums.length);	//2
+
+        System.out.println(Arrays.deepToString(cars));  //Show to list of 2d arrays as a string.
+
+ANOTHER WAY OF POPULATING A 2D ARRAY
+
+        char board[][] = new char[][] {
+                new char[]{'-','A','B'},
+                new char[]{'0','C','D'},
+                new char[]{'X','E','F'},
+        };
+
+        System.out.println(Arrays.deepToString(board));
+
 
 LOOP THROUGH MULTIDIMENSIONAL ARRAY
 	int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };

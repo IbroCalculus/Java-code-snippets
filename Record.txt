@@ -1,0 +1,95 @@
+- The purpose of the record is to replace the boilerplate code of the POJO, but to be more restrictive.
+- The record is a special class that contains data, that's not meant to be altered. ie it seeks to achieve immutability for the data in its members.
+- It contains only the most fundamental methods, such as constructors and accessors.
+
+- If you want to modify data on your class, you won't be using the record, rather use the POJO.
+  But if you are reading a whole lot of records, from a database or file source, and simply passing this data around, then the record is a big improvement.
+
+==== DIFFERENCE BETWEEN POJO AND RECORD ====
+- It generates private fields for all member variables.
+- It makes all the fields final as well.
+- It generates public getter methods for all member variables.
+- It generates a parameterised constructor. (known as canonical constructor)
+- It generates implementation for the toString, equals and Hashcode methods.
+- It does not generate a setter method, because it is immutable.
+- It can accept creating instance methods and static methods.
+- It can accept creating static fields as well.
+- BUT it cannot accept creating non-static instant fields.
+- It cannot extend another class.
+- BUT it can implemented interfaces.
+- It cannot be extended by other classes, because it is implicitly final.
+- It accepts constructor overloading. (It must be same parameter as in the header. Useful for maybe data validation)
+
+====== CREATING A RECORD ========
+Create a record;
+
+public record LPAStudent(String id, String name, String dateOfBirth, String classList) {     //All within the () is the record header.
+}
+
+
+--- In Main java ---
+
+        LPAStudent s1 = new LPAStudent("001","John Doe", "12/03/2012", "Python MasterClass");
+        System.out.println(s1.name());  // Not getName()
+        System.out.println(s1);	    // getString()
+
+
+
+================================================================================================================================================
+		ALSO, COMPARE THE CONCRETE POJO CLASS AND THE RECORD CLASS BELOW
+================================================================================================================================================
+
+------ 1. POJO ---------------
+
+public class EmployeeClass {
+    private final String name;
+    private final int employeeNumber;
+
+    public EmployeeClass(String name, int employeeNumber) {
+        this.name = name;
+        this.employeeNumber = employeeNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeClass{" +
+                "name='" + name + '\'' +
+                ", employeeNumber=" + employeeNumber +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeClass that = (EmployeeClass) o;
+        return employeeNumber == that.employeeNumber && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, employeeNumber);
+    }
+}
+
+
+-------- 2. Record ----------
+
+public record EmployeeClass2(String name, int employeeNumber) {
+
+    public void sayHello(){
+        System.out.println("This simply says hello");
+    }
+    public void sayHello(String name){
+        System.out.println("Welcome " + this.name);
+    }
+
+}

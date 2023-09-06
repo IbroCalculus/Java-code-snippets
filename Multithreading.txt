@@ -176,6 +176,21 @@ class Thread2 extends Thread{
         });
         myRunnable1.start();
 
+         ----- OR SIMPLY ----
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int j=0; j<=10; j++){
+                    System.out.println("Anonymous runnable class interface, Iteration: " + j);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
 
 ==================== USING Thread class VS Runnable interface ===========================
 Runnable interface is mostly used; anonymous runnable class interface.
@@ -251,8 +266,11 @@ class Thread2 extends Thread{
 
 
 
-============ INTERRUPT THREAD ==================
+============ INTERRUPT THREAD (JOIN)==================
 Getting one thread to interrupt another thread.
+	thread1.join()		// main thread will wait for thread1 to finish before it will immediately start.
+	thread1.join(3000)	// main thread will wait for 3000 milliseconds after thread1 starts to before it will start.
+	
 
 
 ====== THREAD METHODS (getter, setters and enquiry methods) =======

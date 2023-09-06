@@ -30,6 +30,14 @@ CHECK ALSO: StringTokenizer.txt
         String value2 = new String("This is another string");   //creates the string outside the string pool, within the heap memory.
         int x = value.length();
 
+--------------- Join strings using a delimeter ----------------
+        String[] vals = {"20","12","1998"};
+        System.out.println(String.join("-", vals));  //OUTPUT: 20-12-1998
+
+
+------------- Split string using delimeter (Check: StringTokenizer.txt) -----------------
+
+
 OTHER methods can be seen after value. E.g: .concat(parameter), .toLowerCase(), .endswith ...
 
 ======== LOOPING THROUGH A STRING =========

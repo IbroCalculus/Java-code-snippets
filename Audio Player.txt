@@ -1,6 +1,10 @@
 
 About Java full course, 5:20:00. Check For more
 
+NB: 
+- import javax.sound.sampled.*;		//Supports only .wav file, not MP3
+- paste wave file within project directory (NOT src)
+
 public class SamPle {
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         Scanner input = new Scanner(System.in);

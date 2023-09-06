@@ -29,7 +29,7 @@ E.g 1:
         Welcome("Somebody");
         Welcome('C');
 
-    public static <T> void Welcome(T t){
+    public static <T> void Welcome(T t){		// Place <T> before the return type. In this case, before 'void'.
         System.out.println("Welcome " + t);
     }
 
@@ -176,3 +176,48 @@ public class GenericsChild implements GenericsInterface{
         gc.printMsg(234);
         gc.printMsg('C');
     }
+
+
+
+=========================== BOUNDED TYPES =========================
+With this, you can create the objects of a generic class to have data of specific derived types. E.g; Numbers (This can allow only numbers, ie ints, doubles, floats etc)
+
+------------------------------------------------------
+
+public class MyGenericClass <T1 extends Number, T2>{
+    T1 t1;
+    T2 t2;
+
+    public MyGenericClass(T1 t1, T2 t2) {
+        this.t1 = t1;
+        this.t2 = t2;
+    }
+
+    public T1 getT1() {
+        return t1;
+    }
+
+    public void setT1(T1 t1) {
+        this.t1 = t1;
+    }
+
+    public T2 getT2() {
+        return t2;
+    }
+
+    public void setT2(T2 t2) {
+        this.t2 = t2;
+    }
+}
+
+-------------------------------------------------------
+        MyGenericClass<Integer, String> mg1 = new MyGenericClass(765,"Presently!");
+        MyGenericClass<Float, String> mg2 = new MyGenericClass(76.05,"Sample String");
+
+        System.out.println(mg1.t1);
+        System.out.println(mg1.getT2());
+
+
+
+
+

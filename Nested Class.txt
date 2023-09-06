@@ -3,66 +3,84 @@ Nested class is a class defined inside another class.
 
 
 There are 2 types of nested classes.
-i- Non-static Nested Class (Inner Class)
-ii- Static Nested Class
+i-  Nested Class (Static nested class)
+ii- Inner Class (Non-static Nested Class) 
+
+i. ----------- static nested class ------------------
+- This is a static class defined inside another class. It is not bound to a specific instance of the outer class.
+- It does not directly have access to other members (ie non-static variables & methods) of the outer class because it is static. Although it can access static members.
+
+ii. ----------- Inner class ---------------
+- This is a non-static class defined inside another class. It is bound to a specific instance of the outer class.
+- It has access to all the members (ie static and non-static variables, & methods) of its outer class.
+- It also has access to private variables & methods of its outer class.
 
 
-1. --------- Non-static nested (Inner) Class ---------------
-This may have access to all the members ie static and non-static variables, methods of its outer class.
-May also access private variables and methods of its outer class.
-Example:
 
-package nestedclass;
+EXAMPLE:
 
-public class InnerClassExample {
-
-    static  int a = 5;
-    private static  int b = 10;
-    int c = 15;
-
-    class InnerClass {
-        
-        void displ(){
-            System.out.println("a = " + a);
-            System.out.println("b = " + b);
-            System.out.println("c = " + c);  //We can access non-static variable
-        }
-    }
-}
-
----------- Within main class and method ------------------
-
-
-2. =============== Static nested class =================
-This does not have direct access to non-static variables and methods of its outer class
-Example:
-
-package nestedclass;
+1 =================== STATIC NESTED CLASS ===========================
+a. ------------- Within Class ----------------
 
 public class StaticNestedExample {
 
-    static  int a = 5;
-    private static  int b = 10;
+    static int a = 5;
+    private static int b = 10;
     int c = 15;
+    private int d = 20;
 
-    //Static nested class
-    static class StaticNestedClass {
 
-        void disp(){
+    static class StaticNestedClass{
+        void show(){
             System.out.println("a = " + a);
             System.out.println("b = " + b);
-//            System.out.println("c = " + c);  //Cannot access this
+//            System.out.println("c = " + c);  // Not accessible because variable c is non-static.
+//            System.out.println("d = " + d);  // Not accessible because variable d is non-static.
         }
     }
 }
 
----------- Within main class and method ------------------
+
+
+b. ------------- Within Main Class -------------
 
     public static void main(String[] args) {
         
-        StaticNestedExample.StaticNestedClass nestObj = new StaticNestedExample.StaticNestedClass();
-        nestObj.disp();
+        StaticNestedExample.StaticNestedClass nested = new StaticNestedExample.StaticNestedClass();
+        nested.show();
     }
 
 
+
+
+
+2. ======================== Inner Class (Non-Static) ========================
+a. ------------- Within Class ----------------
+
+public class InnerClassExample {
+
+    static int a = 5;
+    private static int b = 10;
+    int c = 15;
+    private int d = 20;
+
+
+    class InnerClass{
+        void show(){
+            System.out.println("a = " + a);
+            System.out.println("b = " + b);
+            System.out.println("c = " + c);
+            System.out.println("d = " + d);
+        }
+
+    }
+}
+
+
+b. ------------- Within Main Class -------------
+
+        InnerClassExample outer = new InnerClassExample();
+        InnerClassExample.InnerClass inner = outer.new InnerClass();
+
+        inner.show();
 

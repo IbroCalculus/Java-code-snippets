@@ -2,6 +2,14 @@ CHECK also Heap
 
 Stack represents a last-in-first-out (LIFO) stack of objects.
 
+=== USES OF STACKS ====
+- Undo/Redo features in text editors.
+- Moving back/forward through browser history
+- Can be implemented in backtracking algorithms (ie, navigate a maze, search through a file directories).
+- When  calling functions
+
+
+
         Stack<String> countries = new Stack<>();
 
         countries.push("Nigeria");
@@ -11,11 +19,24 @@ Stack represents a last-in-first-out (LIFO) stack of objects.
 
         System.out.printf("COUNTRIES IN STACK: %s", countries);
 
+----- Size of stack
+	System.out.println(countries.size());
 
 ----- Remove (Pop Last Item in the stack) -------
 
         String poppedItem = countries.pop();
         System.out.printf("AFTER POP: %s", countries);
+
+------ Search for an item --------------
+
+        Stack<String> countries = new Stack<>();
+        countries.push("Nigeria");
+        countries.push("Ghana");
+        countries.push("France");
+        countries.push("Germany");
+        countries.push("India");
+
+        System.out.println(countries.search("Germany"));  // OUTPUT 2, count does not begin from 0.  If not exist, returns -1.
 
 
 ----- View Top most or Last input element (Peek) -------
@@ -24,3 +45,5 @@ Stack represents a last-in-first-out (LIFO) stack of objects.
         System.out.printf("LAST IN: %s", topElement);
 
 
+----- Check if stack is empty --------
+	System.out.println(stack.empty);

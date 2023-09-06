@@ -30,7 +30,7 @@ FOR STRING
         }
 
 
-CONVERTING the above to rule switch on Netbeans gives:
+The above can also be written as:
 
 	String text = "Test";
 	switch(text)

@@ -1,6 +1,8 @@
 It is a class that can create only a single object of a class. 
-
 It is useful when working with a database.
+
+
+CHECK: Perhaps, start with 'Singleton pattern1.txt' and 'Singleton pattern2.txt'
 
 
 ========== Example =============

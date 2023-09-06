@@ -1,3 +1,68 @@
+Enum is a special type. It is a list of predefined constants. The main purpose of enum is to define our own datatypes.
+
+----------------------------- Example 1 --------------------------------
+
+Create a new Enum, ie Color
+
+public enum Color {
+    RED, YELLOW, GREEN;
+}
+
+	----- Within Main ------
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a color: ");
+        String inputColor = input.next();
+
+        try {
+            Color color = Color.valueOf(inputColor.toUpperCase());
+
+            switch (color) {
+                case RED:
+                    System.out.println("Red is a primary color");
+                    break;
+                case GREEN:
+                    System.out.println("You entered the color green");
+                    break;
+                case YELLOW:
+                    System.out.println("Taxis are painted color yellow");
+                    break;
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
+
+--------------------------- Example 2 ----------------------------
+
+Create a new Enum, ie TrafficLight
+
+public enum TrafficLight {
+    RED ("Stop"),
+    YELLOW ("Wait"),
+    GREEN ("Go");
+
+    private String action;
+    TrafficLight(String action) {
+        this.action = action;
+    }
+
+    public String getAction() {
+        return action;
+    }
+}
+
+	----- Within Main ---------
+
+        TrafficLight[] lights = TrafficLight.values();
+
+        for (TrafficLight light: lights) {
+            System.out.println("Light: " + light.name() + ", Action: " + light.getAction());
+        }
+
+
+---------------------------------- Example ---------------------------
 
 public enum DaysOfTheWeek {
     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;

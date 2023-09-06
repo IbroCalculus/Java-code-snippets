@@ -1,14 +1,10 @@
       
         Random random = new Random();
-        int x = random.nextInt();
-        //double x = random.nextDouble();
-        //Boolean x = random.nextBoolean();
+        int x = random.nextInt();			OUTPUT range –2,147,483,648 to +2,147,483,647, inclusive.
+        //double x = random.nextDouble();		//OUTPUT random values between 0 and 1.
+        //Boolean x = random.nextBoolean();	//OUTPUT random Boolean values (true or false).
         System.out.println(x); 
 	
-	OUTPUT range –2,147,483,648 to +2,147,483,647, inclusive.
-	//OUTPUT random values between 0 and 1.
-	//OUTPUT random Boolean values (true or false).
-
 
         Random random = new Random();
         int x = random.nextInt(3);

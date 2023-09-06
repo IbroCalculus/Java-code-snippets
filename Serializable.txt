@@ -1,0 +1,4 @@
+
+Serializable is basically just a label for java that tells java that this class can be written to things like databases and files.
+
+CHECK ALSO; POJO and Java Bean.txt

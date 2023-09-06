@@ -1,0 +1,66 @@
+POJO (Plain Old Java Objects)
+
+A POJO is basically any class that can be used on its own.
+It basically has the following properties;
+
+===== PROPERTIES OF POJO ====
+1. Cannot extend any other class (i.e Can't be a child class of another class)
+2. Cannot implement any interfaces
+3. No outside annotations.
+
+
+Example
+
+------------------- No extend, no implement (No external class) ---------
+public class Cat {
+    int age;
+    String name;
+}
+
+----------- Some annotations are allowed --------
+E.g @Entity, because this an Hibernate annotation that will need Hibernate to work with (Hibernate is something external from this class)
+
+
+
+============== DIFFERENCES BETWEEN POJO AND JAVA BEAN ==================
+
+NB: All Java beans are pojos, but not vice-versa
+
+------ JAVA BEAN -------
+java bean has some additional requirements compared to the POJO. ie;
+
+1. Must have a public No-args constructor   (POJO has this even if not explictly stated. ie Cat myCat = new Cat(); )
+2. All of its properties or instance variables have to be private.
+3. Must have public getters and setters
+4. Must be serializable (ie implement the Serializable interface).
+
+------ POJO ------------
+1. May or may not have a contrcutor, whether no-args or parametarized.
+2. Can have any access modifiers
+3. May have public getters and setters or not.
+4. MUST NOT implement the Serializable interface
+
+
+Example
+NB: Serializable is basically just a label for java that tells java that this class can be written to thinngs like databases and files.
+
+public class Cat implements Serializable {
+    private int age;
+    private String name;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

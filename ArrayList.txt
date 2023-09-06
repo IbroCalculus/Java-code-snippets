@@ -52,7 +52,7 @@ REPLACING ELEMENTS
 
 
 CHECK IF ITEM IN ARRAYLIST
-        boolean containsValue = myList1.contains("Ibrahim");	
+        boolean containsValue = myList1.contains("Ibrahim"); // Returns a boolean	
 
 CHECK IF ARRAYLIST IS EMPTY
         boolean emptyOrNot = myList1.isEmpty();
@@ -90,6 +90,9 @@ LOOP THROUGH AN ARRAYLIST USING FOR-EACH LOOP
         for (String i: students){
             System.out.println(i);
         }
+
+  ---- OR -------
+	student.forEach(System.out::println)
 
 LOOP THROUGH AN ARRAYLIST USING ITERATOR INTERFACE
 

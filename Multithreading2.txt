@@ -1,6 +1,111 @@
+==================== TERMINATING A THREAD ============================
+A thread will terminate either implicitly or explicitly.
+
+1- Implicitly: When it reaches the end of the run method
+2- Explicitly: When it executes a return statement.
+
+
+======================= INTERRUPT ========================
+We interrupt a thread when we want to stop what it is doing, and do something else.
+ie thread 1 is in sleep for 10 seconds, but due to some reason, thread 2 may wake thread 1 to action before the 10 seconds elapses.
+
+They are 2 ways for a thread to notice it has been interrupted. 
+1- Catch the InterruptedException
+2- It should call the interrupted method periodically to check whether it has been interrupted.
+   That method will return a boolean to indicate if anothe method has interrupted it.
+
+
+================== Example 1: Using the InterruptedException (You need a thread instance, ie named Thread class, 'anotheThread' in this case ==================
+
+The thread 'AnotherThread' will be terminated by the main thread after 3 seconds.
+
+---- AnotherThread class -------
+
+public class AnotherThread extends Thread{
+    @Override
+    public void run() {
+        
+        for(int i=0; i<=10; i++){
+            System.out.println(" another thread: " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("This thread has been terminated by the main thread after 3 seconds!");
+                return;
+            }
+        }
+    }
+}
+
+
+---- On the main class ------
+
+        Thread anotherThread = new AnotherThread();
+        anotherThread.start();
+
+        try {
+            Thread.sleep(3000);
+            anotherThread.interrupt();
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
 
+=========== .JOIN() method ================
+2 threads instances, 'thread1' created in a new class 'Thread1', and 'thread2', an instance of 'Thread' created in the main class. NB: thread2 can be an anonymous class.
+Interrupt 'thread2' while 'thread1' proceed to the end.
+
+NB: We can pass time in milliseconds to the .join() method. ie it will end the .join after the time passed has elapsed, even if the other thread has not finished executing.
+
+------ Thread1 class -----
+
+public class Thread1 extends Thread{
+    @Override
+    public void run() {
+        for(int j=0; j<=10; j++){
+            System.out.println("First thread, iteration: " + j);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("This Thread.sleep has been interrupted!");   // This did not show in the output when run
+            }
+        }
+    }
+}
+
+
+------ Main Class -----
+
+    public static void main(String[] args) {
+
+        Thread thread1 = new Thread1();
+        thread1.start();
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.println("Second Thread, iteration: " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.out.println("This Thread.sleep has been interrupted!");
+                    }
+                    if(i==5){
+                        try {
+                            thread1.join();  					// Let thread1 proceed to finish, while this thread; thread2 is on hold
+                            // thread1.join(3000);  					// After 3 seconds, thread2 will proceed even if thread1 has not finished executing.
+                        } catch (InterruptedException e) {
+                            System.out.println("This thread interrupted!");
+                        }
+                    }
+                }
+            }
+        });
+        thread2.start();
+    }
 
 
 ======= SYNCHRONISATION (Sync)  ========

@@ -1,0 +1,11 @@
+Modules were introduced in Java in JDK 9.
+The purpose is to solve the problems typically involved with developing and deploying java applications prior to Java 9.
+
+A module is a name of collection of data and code.
+Modules can contain Java code that is organized as a set of packages. Each package can contain classes, interfaces and so on.
+You can think of a module as a container of packages.
+
+Every module needs to have some configurations;
+	- name: unique name of the module.
+	- inputs: What the module needs to use and what is required for the module to be compiled and run.
+	- outputs: What the module outputs or exports to other modules.

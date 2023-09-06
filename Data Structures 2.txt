@@ -1,0 +1,44 @@
+SOURCE: Amigoscode
+------------------------------------------------------------
+
+Data structures is a simply a way for us to organise and manipulate data.
+
+================= 1. ARRAYS =================
+Check Arrays.txt
+
+------ Properties of Arrays --------
+- Fixed in size
+- Fast for data retrievals
+- Compact memory usage if size is known
+- Delete operation very hard
+- Buiding blocks of 2D Arrays
+
+
+
+================= 2. LIST INTERFACE (Backed by an array) =====================
+Check List.txt
+
+- It is an ordered collection (ie sequence)
+- Allows duplicates
+- Not fixed in size like arrays
+- Fast for data retrievals
+- Various implementations (ie ArrayList, Stack, Vector, etc)
+
+
+================ 3. Stack ===============
+Check stacks.txt
+
+================ 4. Queue ===============
+Check Queues.txt
+
+================ 5. LinkedLIst ============
+Check LinkedList.txt
+
+================ 6. Set ============
+Check Sets.txt
+
+=============== 7. Map ===========
+Check Map.txt
+
+=============== 8. PriorityQueue ===========
+Check PriorityQueue.txt

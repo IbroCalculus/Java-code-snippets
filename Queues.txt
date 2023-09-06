@@ -1,8 +1,5 @@
 
-
-
- Queue is an interface. Its concrete classes include; PriorityQueue and LinkedList.
- 
+Queue is an interface. Its concrete classes include; PriorityQueue and LinkedList. 
 
 It is an ordered list of objects with its use limited to insert elements at the end of the list and deleting elements from the start of the list, It works on the First-In-First-Out (FIFO) principle.
 
@@ -10,6 +7,12 @@ To insert/push element is known as ENQUEUE
 To remove/pop element is known as DEQUEUE (pronuounced DEQ)
 
  NB: Head-> first element, Tail->last element.
+
+
+====== Where are queues useful? ======
+1. Keyboard Buffer (letters should appear on the screen in the order they are pressed)
+2. Printer Queue (Print jobs should be completed in order)
+3. Used in LinkedLists, PriorityQueues, Breadth-first search.
 
 
 ======================	USING LINKEDLIST	========================================
@@ -37,7 +40,8 @@ To remove/pop element is known as DEQUEUE (pronuounced DEQ)
 
 
 ----------------------------------- Methods associated with Queues ------------------------------------------
-
+---- Add/insert element -----------
+	countries.offer("Palestine")
 
  --- Remove first-most element in the queue ----
         String removedItem = countries.remove();
@@ -56,3 +60,6 @@ To remove/pop element is known as DEQUEUE (pronuounced DEQ)
 
 --- Size ---
         queue.size()
+
+--- Contains -----
+        System.out.println(queue.contains("Nigeria));

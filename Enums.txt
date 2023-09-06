@@ -5,11 +5,20 @@ OBJECTIVE SETTING
 
 Enum is used for enumerator data types, we can define our own data type.
 
-Just like classes are used to define user-defined datatypes, enum is also used for user-defined datatypes
+Just like classes are used to define user-defined datatypes, enum is also used for user-defined datatypes.
+
+========= KEY POINTS OF ENUM TYPE ================
+- It can have a constructor (private or default)
+- The constants are implicitly Static and final.
+- They can be used in switch case, like String, int data type.
+- '==' and 'equals()' method are used to compare enum constants.
+- Cannot create an instance of enum by using the 'new' keyword.
 
 
 ------------------------------------------------------
-        enum Dept{
+Create a new Enum Class, ie Dept
+
+        public enum Dept{
             CS, IT, CIVIL, ECE
         }
 
@@ -23,6 +32,68 @@ Just like classes are used to define user-defined datatypes, enum is also used f
         for(Dept x: deptList){
             System.out.println(x);
         }
+
+
+======================== EXAMPLE 1 ========================
+Create a new Enum, ie Color
+
+public enum Color {
+    RED, YELLOW, GREEN;
+}
+
+
+	----- Within Main ------
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a color: ");
+        String inputColor = input.next();
+
+        try {
+            Color color = Color.valueOf(inputColor.toUpperCase());
+
+            switch (color) {
+                case RED:
+                    System.out.println("Red is a primary color");
+                    break;
+                case GREEN:
+                    System.out.println("You entered the color green");
+                    break;
+                case YELLOW:
+                    System.out.println("Taxis are painted color yellow");
+                    break;
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
+
+================================ EXAMPLE 2 ======================================
+Create a new Enum, ie TrafficLight
+
+public enum TrafficLight {
+    RED ("Stop"),
+    YELLOW ("Wait"),
+    GREEN ("Go");
+
+    private String action;
+    TrafficLight(String action) {
+        this.action = action;
+    }
+
+    public String getAction() {
+        return action;
+    }
+}
+
+	----- Within Main ---------
+
+        TrafficLight[] lights = TrafficLight.values();
+
+        for (TrafficLight light: lights) {
+            System.out.println("Light: " + light.name() + ", Action: " + light.getAction());
+        }
+
 
 -------------------- USE CASE, ie Switch Statement -------------------------------
 

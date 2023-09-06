@@ -1,0 +1,14 @@
+
+For this method, in addition to the 3 steps in 'Singleton pattern1.txt', we add a 4th step to prevent cloning via the cloneable interface;
+
+
+=======	1. Singleton Class ===============
+
+They are 3 steps, ie;
+1. Create a static field containing its only instance.
+2. Create a private Constructor
+3. Create a static factory method for obtaining the instance
+4. Prevent cloning
+
+
+---- Rewatch Abbas Masri's course for better understanding ...
