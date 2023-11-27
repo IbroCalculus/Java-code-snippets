@@ -1,5 +1,6 @@
 
 CHECK ALSO; SQLite2.txt
+CHECK ALSO: MySQL.txt
 
 JDBC - Java DataBase Connectivity.
 DDL - Data Definition Language: It is used by database administrator to define the schema. ie; CREATE, ALTER, DROP etc
@@ -89,168 +90,162 @@ For every project that deals with JDBS, add the .jar file as a library;
 (InteliJ; File -> Project Structure -> libraries -> + Java -> sqlite-jdbc-3.41.0.0.jar (located C:\Program Files\Java\sqlite-jdbc-3.41.0.0.jar)
 
 
------------------ 1. CREATE A DATABASE's TABLE ------------------
+----------------- WORKING WITH DATABASE ------------------
+Create a class to handle all database operations, ie SQLConnection.java in this case
 
-    private static void createDBTable() {
-        Connection conn;
-        Statement statement;
 
-        String dbLocation = "univ.db";
+import java.sql.*;
 
+public class SQLConnection {
+
+    static Connection conn;
+    static Statement statement;
+    static ResultSet resultSet;
+    static PreparedStatement preparedStatement;
+    static String dbName = "univ.db";
+
+//    ---------- ESTABLISHING CONNECTION ----------------
+    public static boolean establishConnect() {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
-            statement = conn.createStatement();
-
-            statement.execute("CREATE TABLE IF NOT EXISTS temp(a INTEGER, b FLOAT)");
-            System.out.println("Database table created successfully!");
-
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
+            if (conn != null) {
+                statement = conn.createStatement();
+                System.out.println("Connection successful!");
+                return true;
+            } else {
+                System.out.println("Error connecting!");
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
     }
 
----------------- 2. READ DATA FROM DATABASE's TABLE -------------------
-NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
 
-    private static void readFromDBTable() {
-        Connection conn;
-        Statement statement;
-        ResultSet resultset;		\\ This is used to hold the tables returned after reading.
-
-        String dbLocation = "C:\\sqlite\\Databases\\univ.db";
-        String dbLocation2 = "testjava2.db";	//This will create the .db file within the java project directory if not already exist.
-
-
+    //    ---------- CLOSING CONNECTION ----------------
+    public static void closeConnection() {
         try {
-            // Class.forName("org.sqlite.JDBC");					// Enable driver. 	This line is not required in modern version(>= 4.0) of jdbc drivers. Ignore!
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);	// Establish connection
-            statement = conn.createStatement();
-            resultset = statement.executeQuery("SELECT * FROM dept");		
-
-            int deptno;
-            String dname;
-
-            while (resultset.next()){
-                deptno = resultset.getInt("deptno");				// deptno = resultset.getInt(1);   Using column indeces in place of column name. index starts from 1
-                dname = resultset.getString("dname");
-                System.out.println(deptno + " <----> " + dname);
+            if (resultSet != null) {
+                resultSet.close();
             }
-
-            resultset.close();
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            System.out.println("Connection closed.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+
+    //    ---------- CREATING TABLES ----------------
+    public static void createTable() {
+        try {
+            statement.execute("CREATE TABLE IF NOT EXISTS dept (deptno INT PRIMARY KEY, dname TEXT)");
+            System.out.println("Table created or already exists.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //    ---------- READING DATA FROM DATABASE ----------------
+    public static void readDatabase() {
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM dept");
+            while (resultSet.next()){
+                int deptno = resultSet.getInt("deptno");
+                String dname = resultSet.getString("dname");
+
+                System.out.println("DEPT NO.: " + deptno + ", DEPT NAME: " + dname);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //    ---------- INSERTING DATA INTO TABLES ----------------
+    public static boolean insertData(int deptno, String dname) {
+    try {
+        String query = "INSERT INTO dept (deptno, dname) VALUES (?, ?)";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, deptno);
+        preparedStatement.setString(2, dname);
+        int rowsInserted = preparedStatement.executeUpdate();
+        preparedStatement.close();
+        
+        if (rowsInserted > 0) {
+            System.out.println("Data inserted successfully!");
+            return true; // Data was inserted successfully
+        } else {
+            System.out.println("No data inserted.");
+            return false; // No data was inserted
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
 }
 
 
----------------- 3. INSERT DATA INTO A DATABASE's TABLE (Check SQLite2.txt to insert using preparedStatement (variables) ) -------------------
-NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
 
-    private static void insertIntoDB() {
-
-        Connection conn;
-        Statement statement;
-
-        String dbLocation = "univ.db";
-
+    //    ---------- UPDATING DATA INTO A DATABASE ----------------
+    public static boolean updateData(int deptno, String newDname) {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
-            statement = conn.createStatement();
-
-            statement.executeUpdate("INSERT INTO dept VALUES (60,'Chem')");
-            System.out.println("Data insert successfully!");
-
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            String query = "UPDATE dept SET dname = ? WHERE deptno = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, newDname);
+            preparedStatement.setInt(2, deptno);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            if (rowsUpdated > 0) {
+                System.out.println("Data updated successfully!");
+                return true;
+            } else {
+                System.out.println("No data updated.");
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
 
-------------------- 4. DELETE DATA FROM A DATABASE's TABLE (check SQLite2.txt to delete using preparedStatement (variables) ) -------------------------
-NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
-
-    private static void deleteFromDB() {
-        Connection conn;
-        Statement statement;
-
-        String dbLocation = "univ.db";
+    //    ---------- DELETING DATA FROM A DATABASE ----------------
+    public static boolean deleteData(int deptno) {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
-            statement = conn.createStatement();
-
-            statement.executeUpdate("DELETE FROM dept WHERE deptno > 50");
-            System.out.println("Data deleted successfully!");
-
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            String query = "DELETE FROM dept WHERE deptno = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, deptno);
+            int rowsDeleted = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            if (rowsDeleted > 0) {
+                System.out.println(rowsDeleted + " number of rows deleted successfully!");
+                return true;
+            } else {
+                System.out.println("No data deleted.");
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
+}
 
+---------------------- USING THIS IN Main method -----------------------------
 
--------------------- 5. UPDATE DATA INTO A DATABASE's TABLE (check SQLite2.txt to update using preparedStatement (variables) ) -------
-NB: The schema of the table dept is: CREATE TABLE dept (deptno INTEGER PRIMARY KEY, dname TEXT);
+public class Main {
+    public static void main(String[] args) {
 
-    private static void updateIntoDB() {
-
-        Connection conn;
-        Statement statement;
-
-        String dbLocation = "univ.db";
-
-        try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
-            statement = conn.createStatement();
-
-            statement.executeUpdate("UPDATE dept SET dname='Chem' WHERE deptno=50");
-            System.out.println("Data updated successfully!");
-
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SQLConnection.establishConnect();
+        SQLConnection.readDatabase();
+        SQLConnection.closeConnection();
 
     }
-
------------------------ 6. DROP TABLE FROM A DATABASE ------------------------
-
-    private static void dropDBTable() {
-        Connection conn;
-        Statement statement;
-
-        String dbLocation = "univ.db";
-
-        try {
-            conn = DriverManager.getConnection("jdbc:sqlite:" + dbLocation);
-            statement = conn.createStatement();
-
-            statement.execute("DROP TABLE temp");
-            System.out.println("Table dropped/ deleted successfully!");
-
-            statement.close();
-            conn.close();
-
-        } catch (Exception e) {
-            System.out.println("The table specified does not exist!");
-            e.printStackTrace();
-        }
-
-    }
+}
 
 
 ===================== JDBC classes and statements ==========

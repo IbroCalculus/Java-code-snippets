@@ -1,0 +1,29 @@
+Universally Unique Identifier
+Also known as GUID (Globally Unique Identifier)
+
+
+import java.util.UUID;
+
+==================== 1. Generate UUID randomly ========================
+
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+
+OUTPUT: Something like: 5518ebe0-424a-48b1-9ffd-773d2a569791 	(8-4-4-4-12 = 32)
+NB: The 4 in -48b1 shows that it is a version 4 UUID. UUID.randomUUID() generates a version 4 UUID
+
+
+==================== 2. Generate UUID from String ========================
+
+    public static String generateUUIDFromString(String input) {
+        UUID uuid = UUID.nameUUIDFromBytes(input.getBytes());
+        return uuid.toString();
+    }
+
+        String generatedUUID = generateUUIDFromString("Ibrahim Calculus");
+        System.out.println(generatedUUID);
+
+OUTPUT: 5e3c1667-effd-3054-b927-e91b0ff8bea9
+NB: The 3 in -3054 shows that it is a version 3 UUID. UUID.nameUUIDFromBytes(StringValue.getBytes()) generates a version 4 UUID.
+
+Google or ChatGPT "versions of UUID" to know about versions and their differences if interested. Presently, 5 or 6 versions according to chatGPT.

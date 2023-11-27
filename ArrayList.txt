@@ -76,6 +76,17 @@ ARRAY SIZE (length)
 GET INDEX OF ITEM
         int indexOfItem = myList1.indexOf("Ibrahim"); \\Else returns -1
 
+SORT ARRAY IN ASCENDING ORDER
+                    Collections.sort(stringList);
+
+SORT ARRAY IN DESCENDING ORDER
+        Collections.sort(stringList, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s2.compareTo(s1); // Compare in descending order
+            }
+        });
+
 
 COMPARE ELEMENTS WITHIN AN ARRAYLIST
 	  CHECK: Comparable Interface.txt

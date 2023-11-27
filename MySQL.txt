@@ -1,0 +1,64 @@
+
+CHECK ALSO; SQLite.txt
+===========================================================================================================
+============================================= JAVA - MySQL ===============================================
+===========================================================================================================
+- Download jdbc sqlite driver jar file from MySQL website (https://dev.mysql.com/downloads/connector/j/). select 'platform indepent', download and copy .jar
+- Copy the mysql-connector-j-8.1.0.jar file to the folder C:\Program Files\Java	(Not compulsory, the folder can be anywhere).
+
+
+========= WITHIN JAVA CODE =================
+For every project that deals with JDBC, add the .jar file as a library;
+Create a folder titled lib within the project, and paste the .jar file within
+(InteliJ; File -> Project Structure -> Modules -> Dependencies + JARS or Directories -> mysql-connector-j-8.1.0.jar (located lib\mysql-connector-j-8.1.0.jar)
+
+
+----------------- 1. CONNECT TO MySQL Database and Read contents from a table ------------------
+
+public class Main {
+
+    static ResultSet resultSet;
+    static Connection conn;
+    static Statement statement;
+    static String database_name = "login_schema";				// Name of schema/database
+    static String url = "jdbc:mysql://localhost:3306/" + database_name;		// Alternative to localhost, create another connection and copy the IP, ie 127.0.0.1
+
+    public static void main(String[] args) {
+
+        try {
+            conn = DriverManager.getConnection(url,"root","Admin123");		// Create the connection
+            if(conn != null){
+                System.out.println("Connection established successfully!");
+                statement = conn.createStatement();
+
+                readDatabase();
+
+                resultSet.close();
+                statement.close();
+                conn.close();
+            }else{
+                System.out.println("Failed to establish connection, check exception thrown");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private static void readDatabase() {
+        try{
+            resultSet = statement.executeQuery("SELECT * FROM user");
+
+            while(resultSet.next()){
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+
+                System.out.println("Username: " + username + ", Password: " + password);
+            }
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+}

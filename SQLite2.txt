@@ -1,5 +1,5 @@
 
-CHECK ALSO; SQLite2.txt
+CHECK ALSO; SQLite.txt
 
 JDBC - Java DataBase Connectivity.
 DDL - Data Definition Language: It is used by database administrator to define the schema. ie; CREATE, ALTER, DROP etc

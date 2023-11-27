@@ -17,4 +17,4 @@ This is used to create mutable strings.
         System.out.println(fullName.length());
 
 Some methods include;
-length, insert, reverse, delete. etc
+length, insert, replace, reverse, delete. etc

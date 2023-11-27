@@ -31,7 +31,7 @@ ARRAY LENGTH
 
 ARRAYS TO ARRAYLIST
         String[] names = {"John", "James", "Kamal"};
-        ArrayList<String> names2 = (ArrayList<String>) Arrays.asList(names);
+        ArrayList<String> names2 = new ArrayList<>(Arrays.asList(names));
         names2.add("Sammy");
 
 

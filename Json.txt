@@ -4,3 +4,28 @@ Reference: W3Schools
 JSON (JavaScript Object Notation) is a text format for storing and transporting data.
 E.g: {"name":"John", "age":30, "car":null}'
 It defines an object with 3 properties: name, age, car. Each property has a value: John, 30, null
+
+============== JSON Parsing using JSONObject ===========================
+Download the jar file, create directory lib and paste lib, then add to libraries. (If not remember how to add to libraries, check SQLite.txt)
+NB: Current java is present in C/Program Files/Java
+
+        try{
+            String jsonData = "{\"name\":\"John Doe\",\"age\":30,\"city\":\"New York\",\"email\":\"johndoe@example.com\",\"employee\":{\"name\":\"Ibrahim\",\"age\":45}}";
+
+            JSONObject jsonObject = new JSONObject(jsonData);
+
+            String name = jsonObject.getString("name");
+            int age = jsonObject.getInt("age");
+            String city = jsonObject.getString("city");
+            String email = jsonObject.getString("email");
+            JSONObject employee = jsonObject.getJSONObject("employee");
+
+            System.out.println("Name is: " +name);
+            System.out.println("Age is: " +age);
+            System.out.println("City is: " +city);
+            System.out.println("Email is: " +email);
+            System.out.println("Employee is: " +employee.toString());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
