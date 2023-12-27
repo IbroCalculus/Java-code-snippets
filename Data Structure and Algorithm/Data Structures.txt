@@ -1,6 +1,6 @@
 
 WHAT ARE DATA STRUCTURES?
-Data structure is the way to store and organise data so that it can be used efficiently.
+Data structure is a way to organize and store data efficiently. Efficiency in terms of performance and in terms of memory.
 
 There are basically 3 types of data structures in java
 
@@ -23,4 +23,10 @@ Some Algorithms are:
 2. Shuffling
 3. Composition
 4. Data manipulations
+
+
+
+===================== TIME COMPLEXITY =======================
+It is the measure of how the running time of an algorithm increases with the size of the input data.
+This is related to Big O Notation. Check Big_O_Notation.txt
 

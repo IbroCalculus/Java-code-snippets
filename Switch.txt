@@ -39,3 +39,52 @@ The above can also be written as:
             case "Test" -> System.out.println("You used TEST");
             default -> System.out.println("Nothing used");
         }
+
+
+=========== More =================
+
+        int switchValue = 3;
+
+        switch (switchValue){
+            case 1:
+                System.out.println("Value is 1");
+                break;
+            case 2:
+            case 3:
+            case 4:							// Can also be written as;	 case 2: case 3: case 4:
+                System.out.println("Value is 2, 3 or 4");
+                break;
+            default:
+                System.out.println("Value is neither 1,2,3 nor 4");
+                break;
+        }
+
+------------- Same as above, but as Enhanced Switch Statement --------------
+
+        int switchValue = 3;
+
+        switch (switchValue) {
+            case 1 -> System.out.println("Value is 1");
+            case 2, 3, 4 -> System.out.println("Value is 2, 3 or 4");
+            default -> {
+                System.out.println("Value is neither 1,2,3 nor 4");
+                System.out.println("This is the default switch values");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

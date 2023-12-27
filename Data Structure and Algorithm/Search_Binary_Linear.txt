@@ -1,0 +1,33 @@
+They are 2 ways to search for data in an array; By linear method, or by Binary search method.
+
+=============================== Linear Search ==================
+
+=============================== Binary Search method ====================
+
+        // Example usage with an array of integers.
+        int[] sortedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int targetElement = 7;
+
+        // Performing binary search using Arrays.binarySearch
+        int result = Arrays.binarySearch(sortedArray, targetElement);
+
+        if (result >= 0) {
+            System.out.println("Element " + targetElement + " found at index " + result);
+        } else {
+            System.out.println("Element " + targetElement + " not found in the array");
+        }
+
+--------------- Similarly, for an array of Strings -------------
+
+        // Example usage with an array of strings
+        String[] sortedArray2 = {"apple", "banana", "cherry", "date", "grape", "kiwi", "orange", "pear", "quince", "strawberry"};
+        String targetElement2 = "kiwi";
+
+        // Performing binary search using Arrays.binarySearch
+        int result2 = Arrays.binarySearch(sortedArray2, targetElement2);
+
+        if (result2 >= 0) {
+            System.out.println("Element " + targetElement + " found at index " + result);
+        } else {
+            System.out.println("Element " + targetElement + " not found in the array");
+        }

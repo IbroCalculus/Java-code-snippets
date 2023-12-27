@@ -1,0 +1,10 @@
+Big O notation is a way to express the efficiency or complexity of an algorithm in terms of the worst-case scenario. In Java, or any other programming language, Big O notation helps analyze how the runtime or space requirements of an algorithm grow as the input size increases.
+
+For example:
+
+O(1) means constant time complexity. The algorithm's runtime or space requirements remain the same, regardless of the input size.
+O(log n) represents logarithmic time complexity, common in binary search algorithms.
+O(n) indicates linear time complexity. The runtime or space requirements grow linearly with the input size.
+O(n^2) represents quadratic time complexity, typical in nested loops.
+O(2^n) indicates exponential time complexity.
+In summary, Big O notation provides a high-level understanding of how the efficiency of an algorithm scales with input size, helping programmers and analysts compare and choose algorithms based on their performance characteristics.
