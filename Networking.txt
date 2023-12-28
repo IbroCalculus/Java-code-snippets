@@ -1,3 +1,5 @@
+CHECK ALSO: Socket.txt
+
 - A network is a system of computers connected together so they can share resources and communicate with each other.
 - Networking refers to how the connected computers communicate.
 - In java, the java.net package contains the classes needed to establish connections between computers and then send messages between them.
