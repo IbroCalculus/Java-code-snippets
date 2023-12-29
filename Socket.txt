@@ -1,0 +1,203 @@
+A socket is an end-point of communication between 2 devices.
+
+For 2 devices to communicate, they must each have sockets. Each sockets will have both an input stream and an output stream.
+An input stream is for reading incoming data, while an output stream is for sending out data.
+
+=== SERVER SOCKET ===
+A ServerSocket waits for an incoming client connection request. There's no socket on the server initialy, only a server socket.
+Once a connection request from the client is received and accepted, that's when a socket object will be created on the server and a connection will then bbe established between the two devices.
+
+So, the two points about the server socket are thus:
+- It waits for incoming client connnection requests.
+- It accepts connections and a socket is created.
+
+* So, for network communication, there can be either be client-server implementation, or a peer-to-peer implementation.
+
+
+*********** ESTABLISHING CONNECTION BETWEEN SERVER AND CLIENT *****************
+NB: Run the server code first
+
+--------------------------- SERVER CODE AWAITING CONNECTION FROM CLIENT ---------------------------
+
+public class ServerSide {
+    public static void main(String[] args) {
+
+
+        System.out.println("Waiting for clients...");
+        try {
+            try (ServerSocket serverSocket = new ServerSocket(5000)) { // 5000 = port number. Can be between 0 - 65,535.
+                Socket socket = serverSocket.accept();                      //This is going to hold until a client connects to the server.
+            	System.out.println("socket connection established successfully!");
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to establish connection");
+            throw new RuntimeException(e);
+        }
+        
+        
+    }
+}
+
+
+--------------------------- CLIENT CODE TO ENABLE CONNECTION TO SERVER ---------------------------
+
+public class ClientSide {
+    public static void main(String[] args) {
+        
+
+        System.out.println("Client started");
+        try {
+            try (Socket socket = new Socket("localhost", 5000)) {  //OR "127.0.0.1", 5000.  "localhost"/"127.0.0.1 Because server is running locally.
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        
+
+    }
+}
+
+
+
+=========================================================== SENDING/ RECEIVING DATA BETWEEN CLIENT AND SERVER ==============================================
+
+--------------------------- CLIENT CODE TO SEND DATA TO SERVER ---------------------------
+
+public class ClientSide {
+    public static void main(String[] args) {
+
+
+        System.out.println("Client started");
+        try {
+            try (Socket socket = new Socket("localhost", 5000)) {  //OR "127.0.0.1", 5000.  "localhost"/"127.0.0.1 Because server is running locally.
+
+                BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Enter any message: ");
+                String msg = userInput.readLine();
+
+//                This is for sending data to the server
+                PrintWriter outputStream = new PrintWriter(socket.getOutputStream(), true);
+                outputStream.println(msg);
+
+//                This is for reading the data received from the server.
+                BufferedReader inputData = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                System.out.println(inputData.readLine());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+}
+
+
+
+--------------------------- SERVER CODE TO RECEIVE AND PROCESS DATA FROM CLIENT ---------------------------
+
+public class ServerSide {
+    public static void main(String[] args) {
+
+        System.out.println("Waiting for clients...");
+        try {
+            try (ServerSocket serverSocket = new ServerSocket(5000)) { // 5000 = port number. Can be between 0 - 65,535.
+                Socket socket = serverSocket.accept();                      //This is going to hold until a client connects to the server.
+                System.out.println("socket connection established successfully!");
+
+                BufferedReader inputData = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String receivedData = inputData.readLine();
+                System.out.println("Message from client: " + receivedData);
+
+//               This is used for sending the same received data back to the client
+                PrintWriter outputStream = new PrintWriter(socket.getOutputStream(), true);
+                outputStream.println("Message from server: " + receivedData);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to establish connection");
+            throw new RuntimeException(e);
+        }
+
+
+    }
+}
+
+
+
+===================== EXAMPLE 2; Sending request to server to carry out factorial of a number, and return response to client ===================
+
+--------------------------- CLIENT CODE TO SEND DATA TO SERVER ---------------------------
+
+public class ClientSide2 {
+    public static void main(String[] args) {
+
+
+        System.out.println("ClientServer2 started");
+        try {
+            try (Socket socket = new Socket("localhost", 1234)) {  //OR "127.0.0.1", 1234.  "localhost"/"127.0.0.1 Because server is running locally.
+
+                System.out.println("Connection established");
+
+                BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Enter an integer value. (NB: No try-catch to handle exception incase of non-string");
+                int msg = Integer.parseInt(userInput.readLine());
+
+
+//                This is for sending data to the server
+                PrintWriter outputStream = new PrintWriter(socket.getOutputStream(), true);
+                outputStream.println(msg);
+
+//                This is for reading the data received from the server.
+                BufferedReader inputData = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                System.out.println(inputData.readLine());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+}
+
+--------------------------- SERVER CODE TO RECEIVE AND PROCESS DATA FROM CLIENT ---------------------------
+
+public class ServerSide2 {
+    public static void main(String[] args) {
+
+        System.out.println("Waiting for clients...");
+        try {
+            try (ServerSocket serverSocket = new ServerSocket(1234)) { // 5000 = port number. Can be between 0 - 65,535.
+                Socket socket = serverSocket.accept();                      //This is going to hold until a client connects to the server.
+                System.out.println("ClientSide2 successfully established connection to this server!");
+
+                BufferedReader inputData = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                int receivedData = Integer.parseInt(inputData.readLine());
+                System.out.println("Message from client: " + receivedData);
+                long ans = factorialUsingRecursion(receivedData);
+
+//               This is used for sending the same received data back to the client
+                PrintWriter outputStream = new PrintWriter(socket.getOutputStream(), true);
+                outputStream.println("Message from server: " + ans);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to establish connection");
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+// The function for finding factorial
+    public static long factorialUsingRecursion(int n) {
+        if (n <= 2) {
+            return n;
+        }
+        return n * factorialUsingRecursion(n - 1);
+    }
+}
+
+
+
