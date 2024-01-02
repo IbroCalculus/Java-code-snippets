@@ -71,88 +71,78 @@ E.g 3:
         }
     }
 
+E.g 4:
+
+        PrintIntegerArray<String> printIntegerArray = new PrintIntegerArray<>();
+        printIntegerArray.printIntArray(new String[]{"One","Two","Three","Four"});
+
+        PrintIntegerArray<Integer> printIntegerArray = new PrintIntegerArray<>();
+        printIntegerArray.printIntArray(new Integer[]{1,2,3,4,5,6});
+
+public class PrintIntegerArray<T> {
+
+    public <T> void printIntArray(T[] arr){
+        for(T value: arr){
+            System.out.println("The value is: " + value);
+        }
+    }
+
+}
+
 ======================================= GENERIC CLASS ========================================
 
---- WITHOUT GENERICS ---
+------------------------------------------
 
-public class GenericsClass {
-    private Object t;
+        PrintIntegerArray<String> printIntegerArray = new PrintIntegerArray<>();
+        printIntegerArray.printIntArray(new String[]{"One","Two","Three","Four"});
 
-    public Object getT() {
-        return t;
+        PrintIntegerArray<Integer> printIntegerArray = new PrintIntegerArray<>();
+        printIntegerArray.printIntArray(new Integer[]{1,2,3,4,5,6});
+
+public class PrintIntegerArray<T> {
+
+    public <T> void printIntArray(T[] arr){
+        for(T value: arr){
+            System.out.println("The value is: " + value);
+        }
     }
 
-    public void setT(Object t) {
-        this.t = t;
+}
+
+--------------------------------------------------
+
+public class User<T,U> {
+
+    private T studentId;
+    private U firstName;
+
+    public User(T studentId, U firstName) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+    }
+
+    public T getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(T studentId) {
+        this.studentId = studentId;
+    }
+
+    public U getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(U firstName) {
+        this.firstName = firstName;
     }
 }
 
-   -- Main ---
-     GenericsClass genericsClass = new GenericsClass();
-     genericsClass.setT("Passing a String");
+-- --
 
-     String s = (String) genericsClass.getT();  //Requires cast
-     int t = (int) genericsClass.getT();        // This cast will return compile time error. Cast this String to integer not possible
-
-
---- WITH GENERICS (e.g 1) ---
-
-public class GenericsClass<T> {
-    private T t;
-
-    public T getT() {
-        return t;
-    }
-
-    public void setT(T t) {
-        this.t = t;
-    }
-}
-
-   -- Main ---
-        GenericsClass<Integer> gc = new GenericsClass();
-        gc.setT(455);
-        System.out.println(gc.getT());
-
-        GenericsClass<String> gc2 = new GenericsClass();
-        gc2.setT("Some random text");
-        System.out.println(gc2.getT());
-
-
-
-
-
---- WITH GENERICS (e.g 2) ---
-
-public class CarInfo<ID, MODEL>{
-    private ID id;
-    private MODEL model;
-
-    public ID getId() {
-        return id;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
-
-    public MODEL getModel() {
-        return model;
-    }
-
-    public void setModel(MODEL model) {
-        this.model = model;
-    }
-}
-
-   -- Main ---
-        CarInfo<String, String> carInfo = new CarInfo<>();
-        carInfo.setId("CM-435");
-        carInfo.setModel("MN-34654");
-
-        CarInfo<Integer, Integer> carInfo2 = new CarInfo<>();
-        carInfo2.setId(1221);
-        carInfo2.setModel(9893443);
+        User user = new User(1,"Kalahari");
+        User<String, Integer> user1 = new User<>("alhpa-01", 12345);
+        User<String, String> user2 = new User<>("U12345", "Alice");
 
 
 
@@ -180,9 +170,28 @@ public class GenericsChild implements GenericsInterface{
 
 
 =========================== BOUNDED TYPES =========================
-With this, you can create the objects of a generic class to have data of specific derived types. E.g; Numbers (This can allow only numbers, ie ints, doubles, floats etc)
+Bounded types are used to restrict the types that can be passed to a type parameter.
+With this, you can create the objects of a generic class to have data of specific derived types. E.g; Numbers (This can allow only numbers, ie byte, short, int, long, double, float)
 
-------------------------------------------------------
+
+----------------------- E.g 1 --------------------------------
+
+public class PrintSum<T extends Number> {
+    public void sumOfArray(T[] arr){
+        double sumOfAll = 0;
+        for(T val: arr){
+//            sumOfAll += val.doubleValue();
+            sumOfAll += Double.parseDouble(String.valueOf(val));
+        }
+        System.out.println("The sum of all in the array = " + sumOfAll);
+    }
+}
+
+        PrintSum<Integer> printSum = new PrintSum<>();
+        printSum.sumOfArray(new Integer[]{1,2,3,4,5});
+
+
+------------------------ E.g 2------------------------------
 
 public class MyGenericClass <T1 extends Number, T2>{
     T1 t1;
@@ -210,12 +219,14 @@ public class MyGenericClass <T1 extends Number, T2>{
     }
 }
 
--------------------------------------------------------
         MyGenericClass<Integer, String> mg1 = new MyGenericClass(765,"Presently!");
         MyGenericClass<Float, String> mg2 = new MyGenericClass(76.05,"Sample String");
 
         System.out.println(mg1.t1);
         System.out.println(mg1.getT2());
+
+
+
 
 
 

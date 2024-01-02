@@ -1,5 +1,7 @@
 CHECK ALSO: Multithreading.txt
 
+NB: .start() runs the thread asynchronously, while .run() runs the thread synchronously by the running thread it is invoked from
+
 A thread is a unit of execution in a program (Kind of like a virtual CPU)
 The JVM allows an application to have multiple threads running concurrently.
 Each thread can execute parts of your code in parallel with the main thread.
@@ -157,3 +159,8 @@ thread1.start();
 thread1.join();
 thread1.join(3000);	//Delay of 300 miliseconds
 thread2.start();
+
+
+============================================== SYNCHRONIZATION ==============================================
+Threads share the same memory space, i.e. they can share can share resources (objects).
+However, there are critical situations where it is desirable that only one thread at a time has access to a shared resource.

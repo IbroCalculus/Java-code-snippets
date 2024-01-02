@@ -1,3 +1,7 @@
+CHECK: Thread.txt for Synchronization
+
+NB: .start() runs the thread asynchronously, while .run() runs the thread synchronously by the running thread it is invoked from
+
 ==================== TERMINATING A THREAD ============================
 A thread will terminate either implicitly or explicitly.
 

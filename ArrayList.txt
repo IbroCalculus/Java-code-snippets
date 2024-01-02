@@ -103,7 +103,7 @@ LOOP THROUGH AN ARRAYLIST USING FOR-EACH LOOP
         }
 
   ---- OR -------
-	student.forEach(System.out::println)
+	student.forEach(System.out::println)	// If Custom type, it will print the toString value
 
 LOOP THROUGH AN ARRAYLIST USING ITERATOR INTERFACE
 
