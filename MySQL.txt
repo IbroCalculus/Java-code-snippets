@@ -3,7 +3,7 @@ CHECK ALSO; SQLite.txt
 ===========================================================================================================
 ============================================= JAVA - MySQL ===============================================
 ===========================================================================================================
-- Download jdbc sqlite driver jar file from MySQL website (https://dev.mysql.com/downloads/connector/j/). select 'platform indepent', download and copy .jar
+- Download jdbc mysql driver jar file from MySQL website (https://dev.mysql.com/downloads/connector/j/). select 'platform indepent', download and copy .jar
 - Copy the mysql-connector-j-8.1.0.jar file to the folder C:\Program Files\Java	(Not compulsory, the folder can be anywhere).
 
 
@@ -12,6 +12,17 @@ For every project that deals with JDBC, add the .jar file as a library;
 Create a folder titled lib within the project, and paste the .jar file within
 (InteliJ; File -> Project Structure -> Modules -> Dependencies + JARS or Directories -> mysql-connector-j-8.1.0.jar (located lib\mysql-connector-j-8.1.0.jar)
 
+NB: In javaFx project, go to; src -> main -> java -> module-info.java:
+
+module com.example.cardealership {
+    requires javafx.controls;
+    requires javafx.fxml;
+    
+    requires java.sql;						// ADD THIS LINE
+
+    opens com.example.cardealership to javafx.fxml;
+    exports com.example.cardealership;
+}
 
 ----------------- 1. CONNECT TO MySQL Database and Read contents from a table ------------------
 

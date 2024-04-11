@@ -1,0 +1,15 @@
+Unit tests are software tests of the lowest level.They test single unit or component of software. In Java, these are typically methods.
+Therefore, a unit test in java typically checks if a given method returns correct result.
+
+===== ADVANTAGES =======
+- Increased confidence during development
+- Cleaner, more reusable code
+- Lower cost of mistakes
+
+* Unit tests are typically written by software developers, not software testers.
+
+NB: If you try to write a unit test for a class and cannot do it, it is most likely that the class logic is wrong.
+
+
+- JUnit is the standard framework for Java, it is often combined with Mockito
+- JUnit4 released in 2006, while JUnit 5 released in 2017

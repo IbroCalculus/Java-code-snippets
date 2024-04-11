@@ -1,6 +1,8 @@
 CHECK: Thread.txt for Synchronization
 
 NB: .start() runs the thread asynchronously, while .run() runs the thread synchronously by the running thread it is invoked from
+NB: To get reference of main thread; 
+        Thread mainThread = Thread.currentThread();
 
 ==================== TERMINATING A THREAD ============================
 A thread will terminate either implicitly or explicitly.
@@ -112,8 +114,15 @@ public class Thread1 extends Thread{
     }
 
 
-======= SYNCHRONISATION (Sync)  ========
-It is the coordination or understanding inbetween two entities. ie 2 people, 2 process, 2 threads.
+======== Race condition =======
+This is a situation where multiple threads try to update a mutually shared resource (data) at the same time. Synchronization prevents that.
+
+============================================== SYNCHRONIZATION ==============================================
+
+Threads share the same memory space, i.e. they can share resources (objects).
+However, there are critical situations where it is desirable that only one thread at a time has access to a shared resource.
+
+Synchronization in Java multithreading refers to the coordination and control of access to shared resources to avoid data inconsistencies and race conditions when multiple threads are concurrently executing. In a multithreaded environment, where multiple threads can access and modify shared data, synchronization mechanisms are essential to ensure the orderly execution of the program and prevent issues like data corruption or unexpected behavior.
 
 
 === TERMS ASSOCIATED WITH SYNCHRONISATION ====
@@ -121,7 +130,7 @@ It is the coordination or understanding inbetween two entities. ie 2 people, 2 p
 
 -2. Critical section: Particular lines of codes from multiple threads that are accessing the shared resource
 
--3. Mutual Exclusion: More than one thread cannot access a shared resource at the same time. It is preventing thread B from accessing shared resource when thread A is already accessing the shared resource.
+-3. Mutual Exclusion: Only one thread can execute a block of code at a given time, or do updates on shared data. This is achieved via synchronization.
 
  --- methods used to achieve Mutual Exclusion ---
 -4. Locking/Mutex: 
@@ -129,3 +138,48 @@ It is the coordination or understanding inbetween two entities. ie 2 people, 2 p
 -6. Monitor (most recommended):
 -7. Race condition:
 -8. Inter-Thread communication:
+
+
+======== Volatile keyword ========
+This keyword can only be used in field declarations. Volatile variables are never cached and are read directly from the memory.
+    The volatile keyword ensures visibility without mutual exclustion.
+
+NB: Mutual Exclusion (Atomicity): This means that only one thread can execute a block of code at a given time, or do updates on shared data. This is achieved via synchronization.
+NB: Visibility: This means that changes done by one thread to shared data are visible to other threads or processes. It is achieved using the volatile keyword.
+    
+
+    To achieve visibilty and atomicity, use the synchronize keyword.
+
+    private static volatile int interest = 30;
+
+
+
+=============== SYNCHRONIZATION =================
+
+---- a. Method 1 -----------
+    public void display(String str){
+        synchronized (this) {
+            for (int i = 0; i < str.length(); i++) {
+                System.out.print(str.charAt(i));
+            }
+        }
+    }
+
+---- b. Method 2 -----------
+
+    public synchronized void display(String str){
+            for (int i = 0; i < str.length(); i++) {
+                System.out.print(str.charAt(i));
+            }        
+    }
+
+============================================== EXECUTORS ==============================================
+They are capable of running asynchronous tasks and manage a pool of threads. All threads belonging to the pool wil be reused for new tasks. We can run as many concurrent tasks as we want through-out the lifecyle of our application with a single executor service. 
+
+Executors have to be stopped explicitly, otherwise they keep listening for new tasks. They are 2 methods for such purpose;
+	a. shutdown -> Waits for currently running tasks to finish
+	b. shutdownNow -> Interrupts all running tasks and shuts the executor down.
+
+
+
+

@@ -1,0 +1,40 @@
+Maven (Apache Maven): Is a command line tool that helps programmers manage their projects and all the things they need to build their programs.
+These includes; dependencies management, building and testing of projects, as well as packaging the projects.
+
+
+==== RUNNING MAVEN =======
+./mvnw clean compile
+
+- ./mvnw: This is a Maven wrapper script. It is used to run Maven goals without having to install Maven separately on your system. The ./ indicates that the script is located in the current directory.
+- Clean (clean): It removes the target directory and cleans the project.
+- Compile (compile): It compiles the source code of the project.
+
+=== MAVEN PHASES ===
+Maven has 3 phases; ie clean, default and site. A phase is somewhat like a lifecycle,
+* clean - Removes temporary directories and files
+* default - Where the most useful goals live.		(A goal is something specific you aim to achieve, while a lifecyle is the order of those goals. A phase can contain one or more goals)
+* site - Where documentation is generated
+
+* clean - This contains:
+	- pre-clean: Hook for before cleaning
+	- clean: - Does the actual cleaning
+	- post-clean: Hook for after cleaning 
+> ./mvnw clean 
+
+
+* default - This contains:
+	- compile: Compiles your code into bytecode
+	- test: Runs unit tests
+	- package: Creates a jar or war file
+	- verify: Runs checks and integration tests
+> ./mvnw compile  
+
+
+
+======== BUILDING A MAVEN PROJECT jar =========
+
+ ./mvnw clean package
+Then locate the generated jar file within 'target' directory (ie demo-0.0.1-SNAPSHOT.jar): 
+Then run the project via cmd: java -jar demo-0.0.1-SNAPSHOT.jar
+Then open in browser (ie localhost:8080//api/v1/student)
+

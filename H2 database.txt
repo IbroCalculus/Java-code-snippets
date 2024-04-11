@@ -1,0 +1,150 @@
+H2 is a pure java sql database.
+It can be embedded in java applications
+
+Main features:
+	- Very fast, open source, JDBC API
+	- Can be used in embedded & server modes; in-memory databases.
+	- Can use browser-based console applications to access it
+	- It has very small footprint: about 2.5 MB jar file size
+	
+
+======== DOWNLOADING AND INSTALLING H2 DATABASE ENGINE =========
+- Download zip file from h2database.com
+- Save and extract somewhere (ie C:\Program Files\Java)
+
+ *** To run the web console app for the h2 database ***
+- open cmd in: C:\Program Files\Java\h2-2023-09-17\h2\bin
+- run the jar file, ie: java -jar h2-2.2.224.jar	(This will open the console in the web)
+
+
+========= WITHIN THE UI ===========
+Others left at default:
+	JDBC URL:	jdbc:h2:~/test		(Where test is the name of the database)
+	User Name:	(My usual database username)
+	Password:	(My usual database password)
+ Connect
+
+- Write SQL script as required, ie CREATE TABLE students (ID INT AUTO_INCREMENT PRIMARY KEY,  name VARCHAR(48));
+
+* LOCATE THE DATABASE WITHIN THE COMPUTER AT:-> C:\Users\ibrahimsuleiman\test.mv.db
+
+* TO STOP THE H2 CONSOLE APPLICATION: Within the console, Ctrl + C
+
+
+======= SETUP H2 DATABASE CONFIGURATION IN PROJECT =========
+
+For every project that deals with H2 database, add the .jar file as a library;
+Create a folder titled lib within the project, and paste the .jar file within
+(InteliJ; File -> Project Structure -> Modules -> Dependencies + JARS or Directories -> h2-2.2.224.jar (located lib\h2-2.2.224.jar)
+
+
+
+NB: Always close the server console before running the application, else; database already in use error
+
+
+
+
+
+======= CONNECT TO H2 DATABASE EMBEDDED MODE =========
+
+Create a class to handle all database operations, ie SQLConnection.java in this case
+
+    static String url = "jdbc:h2:~/test";           // Creates the test database in the root directory of the pc (ie C:\Users\ibrahimsuleiman\test.mv.db)  BETTER TO USE THIS
+//    static String url = "jdbc:h2:./test";           // Creates the test database in the current directory of the pc
+//    static String url = "jdbc:h2:D:/data/test";     // Creates the test database in the absolute directory of the pc
+
+
+
+import java.sql.*;
+
+public class SQLConnection {
+    static Connection connection;
+    static ResultSet resultSet;
+    static Statement statement;
+    static String url = "jdbc:h2:~/test";        // The syntax is: jdbc:h2:~/dbname
+    static String username = "admin";
+
+    
+//    Function to establish connection
+    public static boolean establishConnection() {
+
+        try {
+            Class.forName("org.h2.Driver");
+            connection = DriverManager.getConnection(url, username, "");	// WHERE "" is password, which is empty
+
+            if (connection != null) {
+                statement = connection.createStatement();
+                System.out.println("Connected to the database!");
+                return true;
+            } else {
+                System.out.println("Failed to connect to the database!");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    
+//    Function to close database connection
+    public static void closeConnection() {
+        try {
+            // Closing the connection if it is not null
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Connection closed.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+//    Function to read data from database
+    public static void readDatabase() {
+        try {
+            resultSet = statement.executeQuery("SELECT * FROM students");
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+
+                System.out.println("ID: " + id + ", NAME: " + name);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+
+----------------- USAGE IN MAIN -------------------------
+
+public class Main {
+    public static void main(String[] args) {
+
+        SQLConnection.establishConnection();
+        SQLConnection.readDatabase();
+        SQLConnection.closeConnection();
+    }
+}
+
+
+
+======= CONNECT TO H2 DATABASE IN-MEMORY MODE =========
+
+The main difference between the above and this, is;
+    static String url = "jdbc:h2:mem:test";
+
+ SIMPLY USE THE ABOVE METHOD (EMBEDDED MODE)
+
+
+
+
+
+
+
+

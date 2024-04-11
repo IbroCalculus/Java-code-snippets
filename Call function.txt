@@ -1,0 +1,28 @@
+// Define a functional interface for the callback function
+@FunctionalInterface
+public interface Callback {
+    void execute();
+}
+
+
+// Method that takes a callback function as a parameter
+    public void doSomethingWithCallback(Callback callback) {
+        System.out.println("Doing something...");
+        // Execute the callback function
+        callback.execute();
+    }
+
+
+// Main class to demonstrate the usage of the callback
+public class Main {
+    public static void main(String[] args) {
+
+        // Define the callback logic using a lambda expression
+        Callback callback = () -> {
+            System.out.println("Callback executed!");
+        };
+
+        // Pass the callback to the method
+        doSomethingWithCallback(callback);			// OR SIMPLY PASS IN THE LAMBDA EXPRESSION DIRECTLY INTO IT.
+    }
+}

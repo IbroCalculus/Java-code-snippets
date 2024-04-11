@@ -90,6 +90,18 @@ For every project that deals with JDBS, add the .jar file as a library;
 (InteliJ; File -> Project Structure -> libraries -> + Java -> sqlite-jdbc-3.41.0.0.jar (located C:\Program Files\Java\sqlite-jdbc-3.41.0.0.jar)
 
 
+NB: In javaFx project, go to; src -> main -> java -> module-info.java:
+
+module com.example.cardealership {
+    requires javafx.controls;
+    requires javafx.fxml;
+    
+    requires java.sql;						// ADD THIS LINE
+
+    opens com.example.cardealership to javafx.fxml;
+    exports com.example.cardealership;
+}
+
 ----------------- WORKING WITH DATABASE ------------------
 Create a class to handle all database operations, ie SQLConnection.java in this case
 

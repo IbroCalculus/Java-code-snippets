@@ -1,17 +1,9 @@
 CHECK ALSO: Multithreading.txt
 
+
+NB: To get reference of main thread; 
+        Thread mainThread = Thread.currentThread();
 NB: .start() runs the thread asynchronously, while .run() runs the thread synchronously by the running thread it is invoked from
-
-A thread is a unit of execution in a program (Kind of like a virtual CPU)
-The JVM allows an application to have multiple threads running concurrently.
-Each thread can execute parts of your code in parallel with the main thread.
-Each thread has a priority.
-Threads with higher priority are executed in preference compared to threads with lower priority.
-
-The JVM continues to execute threads until either of the following occures:
-1. The exit method of class Runtime has been called 
-2. All user threads have died.
-
 NB: There are 2 different kinds of threads: Daemon threads and user threads(Non-Daemon thread)
 
 When a JVM starts up, there is a thread which calls the main method, this thread is called "main"
@@ -42,31 +34,19 @@ JVM terminates itself when all user threads (non-daemon threads) finish their ex
 =========== CHECK IF THREAD DAEMON ================
         System.out.println(newThread1.isDaemon());
 
+=========== Count active threads ===========
+        int activeThreadCount = Thread.activeCount();
+        System.out.println("Number of active threads: " + activeThreadCount);	//NB: for any number of thread running, count will be +1, ie + daemon thread
+
 =========== SET THREAD TO DAEMON ================
         NewThread1 newThread1 = new NewThread1();
         newThread1.setDaemon(true);
 
 ========= SLEEP THREAD (like pause the thread)	===========
-        System.out.println(newThread1.isDaemon());
-
-    public static void main(String[] args) throws InterruptedException {
-        for (int i=3; i>=0; i--){
-            System.out.println(i);
             Thread.sleep(1000);				//milliseconds
-        }
-    }
-
-
 
 
 ================= MULTI-THREADING =========
-
-Multithreading is the process of executing multiple threads simultaneously.
-It helps maximum utilization of CPU.
-Threads are independent, they don't affect the execution of other threads. 
-An exception in one thread will not interrupt other threads
-useful for serving multiple clients, multiplayer games, or other mutually independent tasks.
-
 There are 3 methods to doing this. I find method 3 Best, easiest.
 
 ------- Method 1 - Create a class for the thread and extends Thread ---------------
@@ -149,18 +129,132 @@ public class MyRunnable implements Runnable{
             Thread.sleep(1000);
         }
 
+===================================================================================================
+------- Anonymous class --------------
+Within the Main method, I created 2 anonymous threads as shown below.
+
+    public static void main(String[] args) {
+        
+        new Thread(){
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.println("Anonymous thread 1, Iteration " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
+        new Thread(){
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.println("Anonymous thread 2, Iteration " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
+
+
+------- anyonymous runnable class interface --------------
+-------------------------------------------------------------
+
+    public static void main(String[] args) {
+
+        Thread myRunnable1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int j=0; j<=10; j++){
+                    System.out.println("Anonymous runnable class interface, Iteration: " + j);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        myRunnable1.start();
+
+         ----- OR SIMPLY ----
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int j=0; j<=10; j++){
+                    System.out.println("Anonymous runnable class interface, Iteration: " + j);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
 
 ============ JOIN METHOD IN THREAD =====================
-This is used to join 2 threads such as one thread will not start until the other thread has finished execution.
-Assuming thread1 and thread2.
-Want thread2 to begin only after thread1: 
+This is used to join multiple threads such that other threads will not start until the other thread/threads has finished execution.
+Assume we want thread3 and thread4 to begin only after thread1 and thread2 are done executing: 
 
 thread1.start();
-thread1.join();
-thread1.join(3000);	//Delay of 300 miliseconds
 thread2.start();
 
+thread1.join();
+thread2.join();
+thread1.join(3000);	//Delay of 300 miliseconds
 
-============================================== SYNCHRONIZATION ==============================================
-Threads share the same memory space, i.e. they can share can share resources (objects).
-However, there are critical situations where it is desirable that only one thread at a time has access to a shared resource.
+thread3.start();
+thread4.start();
+
+
+========================== YIELD ======================
+If 2 threads, Thread1 and Thread2, if we want Thread1 to give room for Thread2 to have more execution time by the CPU we yield Thread1
+ie Thread1.yield(); 
+
+
+========================== INTERRUPTING A THREAD ============================
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.println("Thread 1: " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+
+                        System.out.println("Thread 1 has been interrupted!");
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
+                }
+            }
+        });
+
+        thread.start();
+
+
+//--- This is running on the main thread, and will interrupt the above thread ---
+
+        for(int i=0; i<=10; i++){
+            System.out.println("Main thread: " + i);
+            if(i==3){
+                thread.interrupt();
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
