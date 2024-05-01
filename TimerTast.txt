@@ -1,6 +1,8 @@
 
 Check Also; Count Down Timer
 
+Check also delay.txt (similar to python's timer.sleep(5))
+
 // Timer: A facility for threads to schedule tasks for future execution in a background thread.
 	  IOWs: It keeps track of the time in a background thread. 
 

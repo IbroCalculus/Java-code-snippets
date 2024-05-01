@@ -1,1 +1,2 @@
 Check Date.txt
+Check also delay.txt (for delaying, ie timer)
