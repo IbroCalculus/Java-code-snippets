@@ -1,0 +1,75 @@
+READING:
+
+==================== 1. READING ARRAY OF BYTE DATA (ByteArrayInputStream) ==============
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+        byte[] data = {72, 101, 108, 108, 111};
+        ByteArrayInputStream inputStream = null;
+
+        try {
+            inputStream = new ByteArrayInputStream(data);
+
+            int byteData;
+            StringBuilder sb = new StringBuilder();
+
+            while ((byteData = inputStream.read()) != -1) {
+                sb.append((char) byteData); // Convert byte to character and append to StringBuilder
+            }
+            System.out.println("Data read from the byte stream: " + sb);
+
+        } catch (Exception e) {
+//            e.printStackTrace();
+            Logger.getLogger(StreamsExamples.class.getName()).log(Level.SEVERE, "Error reading data", e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+//            e.printStackTrace();
+                    Logger.getLogger(StreamsExamples.class.getName()).log(Level.SEVERE, "Error closing input stream", e);
+                }
+            }
+        }
+
+
+WRITING:
+FileOutputStream: Writes bytes directly to a file. You specify the file name to save the data.
+BufferedOutputStream: Enhances performance by buffering data before writing larger chunks, speeding up the process for large datasets.
+DataOutputStream: Writes primitive data types (e.g., int, float) in a machine-independent way, useful for saving data in binary format across different systems.
+
+
+==================== 2. Write bytes directly to a file (FileOutputStream) ==============
+
+        String data = "Hello, FileOutputStream!";
+
+        try (FileOutputStream fos = new FileOutputStream("exampleY.txt")) {
+            // Write data to the file
+            fos.write(data.getBytes());
+            System.out.println("Data written to file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+==================== 3. Write bytes directly to a file (FileOutputStream) ==============
+
+        String data = "Hello, BufferedOutputStream!";
+
+        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("buffered_example.txt"))) {
+            // Write data to the buffer
+            bos.write(data.getBytes());
+            System.out.println("Data written using BufferedOutputStream.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+==================== 4. Write bytes directly to a file (FileOutputStream) ==============
+
+
+
+
