@@ -68,7 +68,7 @@ The finally statement lets you execute code, after try...catch, regardless of th
             int nums[] = {1,2,3,5};
             System.out.println(nums[10]);
         }
-        catch(IOException| SQLException e)
+        catch(IOException | SQLException e)
         {
             System.out.println("An error occurred of type " + e);
         }
@@ -96,11 +96,26 @@ If balance is less than 5000, the exception is called.
 
 
 --- Create custom exception class ----
+NB: For checked custom extension, extends Exception
+    For unchecked custom extension, extends RuntimeException
+
 
 public class LowBalanceException extends Exception{
     @Override
     public String toString() {
         return "Balance should not be less than 5000";
+    }
+}
+
+-------- OR USING CONSTRUCTORS ---------
+
+public class LowBalanceException extends Exception{
+    public LowBalanceException() {
+        super("Balance should not be less than 5000");
+    }
+
+    public LowBalanceException(String message) {
+        super(message);
     }
 }
 
@@ -115,7 +130,7 @@ public class Main {
         int number = input.nextInt();
         if(number <5000){
             try {
-                throw new LowBalanceException();
+                throw new LowBalanceException();	// First one
             } catch (LowBalanceException e) {
                 System.out.println(e);
             }
@@ -128,8 +143,8 @@ public class Main {
 
 ============ THROW vs THROWS ==============
 
-throws like its name suggests, throws the exception-handling forward to the next method to handle.
-The exception must be handled somewhere within a try-catch block, even if it is at the last method call, which is main
+throws like its name suggests, throws the exception-handling forward to the next method to handle. Mainly for handling CHECKED exceptions.
+The exception must be handled somewhere within a try-catch block, even if it is at the last method call, which is main.
 throw is used to call an exception, default or custom
 
     static int area(int l, int b) throws Exception {
@@ -151,7 +166,7 @@ throw is used to call an exception, default or custom
     }
 
 
----------------------- OR, Using a custom exception inplace of Exception -----------------------------------
+---------------------- OR, Using a custom exception in place of Exception -----------------------------------
 
 public class NegativeDimensionException extends Exception{
     @Override
@@ -171,6 +186,7 @@ public class NegativeDimensionException extends Exception{
     static void meth1() throws NegativeDimensionException {
         System.out.println("Area is: " + area(25,-4));
     }
+sss
     public static void main(String[] args) {
         try {
             meth1();
@@ -180,6 +196,44 @@ public class NegativeDimensionException extends Exception{
     }
 
 
+
+========================= TRY-WITH =================================
+This is a compact way of using finally block, ie to release resource from file handler or database connection.
+It is similar to using context manager in python
+
+-------------- a. Without try-with ---------------
+
+FileReader reader = null;
+
+try {
+    reader = new FileReader("file.txt");
+    var value = reader.read();
+}
+catch (IOException e) {
+    System.out.println("Could not read data.");
+}
+finally {
+    if (reader != null) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+-------------- b. With try-with ---------------
+
+try (
+	var reader = new FileReader("file.txt");
+	var writer = new FileWriter("...");
+) {
+    var value = reader.read();
+}
+catch (IOException e) {
+    System.out.println("Could not read data.");
+}
 
 
 

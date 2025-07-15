@@ -4,6 +4,21 @@ CHECK ALSO: Thread.txt for Synchronization
 NB: To get reference of main thread; 
         Thread mainThread = Thread.currentThread();
 
+==== Process =======
+A process is an independent program running in memory. 
+Each process has its own address space, memory, and system resources.
+Example: Running VS Code, Chrome, and Spotify — each is its own process.
+
+
+==== Thread =======
+A thread is the smallest unit of execution within a process.
+All threads in a process share: The same memory, The same open files, The same global variables.
+Threads allow parallel tasks within the same program.
+Example: A browser has multiple tabs running as threads within a single process.
+
+Each process has at least one thread, called the main thread. We can create additional threads.
+
+
 === Multiprogramming ===
  Multiprogramming is a term associated with multithreading.
  Multiprogramming is running multiple programs on a single computer

@@ -14,7 +14,13 @@ JVM terminates itself when all user threads (non-daemon threads) finish their ex
 
 
 ============ SHOW NUMBER OF THREADS RUNNING ============
-        System.out.println(Thread.activeCount());
+        int activeThreadCount = Thread.activeCount();
+        System.out.println("Number of active threads: " + activeThreadCount);	
+
+	//NB: for any number of thread running, count will be +1, ie + daemon thread (Runs the gabbage collector, which removes unused objects from memory)
+
+============ SHOW TOTAL NUMBER OF AVAILABLE THREADS (It will depend on computer being used) ============
+        System.out.println("Number of threads available: " + Runtime.getRuntime().availableProcessors());
 
 ========== SHOW NAME OF CURRENT THREADS ===========
         System.out.println(Thread.currentThread().getName());
