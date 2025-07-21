@@ -1,8 +1,15 @@
-CHECK ALSO: Thread.txt
-CHECK ALSO: Thread.txt for Synchronization
 
 NB: To get reference of main thread; 
         Thread mainThread = Thread.currentThread();
+
+NB: .start() runs the thread asynchronously, while .run() runs the thread synchronously by the running thread it is invoked from
+NB: There are 2 different kinds of threads: Daemon threads and user threads(Non-Daemon thread)
+
+When a JVM starts up, there is a thread which calls the main method, this thread is called "main"
+
+Daemon thread is a low priority thread that runs in background to perform tasks such as garbage collection
+JVM terminates itself when all user threads (non-daemon threads) finish their execution.
+
 
 ==== Process =======
 A process is an independent program running in memory. 
@@ -16,8 +23,76 @@ All threads in a process share: The same memory, The same open files, The same g
 Threads allow parallel tasks within the same program.
 Example: A browser has multiple tabs running as threads within a single process.
 
-Each process has at least one thread, called the main thread. We can create additional threads.
+- Each process has at least one thread, called the main thread. We can create additional threads.
+- All other threads are spawned from the main thread, using .start(). ("Spawned" means a new thread is created and started by an existing thread.)
+- The main() method can then finish, but the program will keep running until all user threads have completed.
+- The runtime environment distinguishes between user threads and daemon threads.
 
+
+======= DAEMON THREAD / USER THREAD ===========
+In Java, every thread is either:
+ - A user thread (also called a non-daemon thread ), or
+ - A daemon thread
+This distinction affects the lifecycle of your Java application.
+
+User Thread
+- A user thread is a thread that prevents the JVM from exiting until it finishes.
+- The JVM will not terminate as long as at least one user thread is still running.
+- These are typically used for core application logic that must complete.
+- All threads you create in Java are user threads by default.
+- The main() thread is also a user thread.
+
+
+Daemon Thread
+- A daemon thread is a background thread that does not prevent the JVM from exiting when the program finishes.
+- Daemon threads are meant for background tasks like garbage collection, monitoring, logging, etc.
+- When only daemon threads are left running, the JVM exits .
+- You must call setDaemon(true) before starting the thread.
+
+When to Use Daemon Threads
+Use daemon threads for tasks that are not critical to the application’s lifecycle:
+ - Periodic monitoring or logging
+ - Background garbage collection
+ - Auto-save features
+ - Clean-up services
+
+Example:
+public class DaemonThreadExample {
+    public static void main(String[] args) {
+
+        Thread daemonThread = new Thread(() -> {
+            while (true) {
+                System.out.println("Daemon thread is running...");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+
+        daemonThread.setDaemon(true);  					// Make it a daemon thread
+        daemonThread.start();
+
+        // Main thread exits after 3 seconds
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread ends.");
+    }
+}
+
+The JVM will exit after 3 seconds , even though the daemon thread is still running. 
+
+======== PROCESS VS THREADS (COMPARISON) ==========
+-1: A process is an instance of a running program . It has its own private memory space, (code, data, heap). While, 
+A thread is the lightweight unit of execution within a process. A process can have multiple threads , all sharing the same memory space (code, data, heap).
+
+-2: Context switching between threads is usually less expensive that between processes.
+-3: The cost of communication between threads is relatively low.
 
 === Multiprogramming ===
  Multiprogramming is a term associated with multithreading.
@@ -29,6 +104,9 @@ Each process has at least one thread, called the main thread. We can create addi
    --- A form of multi-tasking is multi-threading:
      Multithreading is a type of multi-tasking. It is when multiple operations are running in a particular single application or program.
      E.g: A single webpage having more than one operations running on the same page
+
+
+
 
 
 
