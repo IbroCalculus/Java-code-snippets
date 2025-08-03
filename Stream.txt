@@ -1,6 +1,10 @@
  
- Stream is an API
- Just like streaming movies on youtube. Get data bit by bit instead of whole.
+Stream is an API
+Just like streaming movies on youtube. Get data bit by bit instead of whole.
+
+What are Streams?
+A Stream in Java is a sequence of elements that supports various operations to process data in a declarative way. 
+Streams don't store data; they process data from a source (like collections, arrays, or I/O channels) and produce results.
 
  E.g1:
 ============ Stream Map (like lambda function) ================

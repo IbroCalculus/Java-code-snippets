@@ -1,0 +1,97 @@
+Two (2) methods of executing multithreading; Via Runnable, via ExecutorService (Modern and recommended)
+
+===================1. Runnable Method ===============================
+
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=0; i<=10; i++){
+                    System.out.printf("Running loop: %d\n", i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int j=11; j<=20; j++){
+                    System.out.printf("Runngin loop: %d\n", j);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        thread.start();
+        thread2.start();
+
+        for(int k=21; k<=30; k++){
+            System.out.printf("Executing loop: %d\n", k);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+===================2. ExecutorService Method ===============================
+
+
+        // Create a fixed thread pool with 3 threads
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        // Task 1: loop 0–10
+        Runnable task1 = () -> {
+            for (int i = 0; i <= 10; i++) {
+                System.out.printf("Running loop: %d\n", i);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // Task 2: loop 11–20
+        Runnable task2 = () -> {
+            for (int j = 11; j <= 20; j++) {
+                System.out.printf("Running loop: %d\n", j);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // Task 3: loop 21–30 (main thread logic)
+        Runnable task3 = () -> {
+            for (int k = 21; k <= 30; k++) {
+                System.out.printf("Executing loop: %d\n", k);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // Submit tasks to executor
+        executor.submit(task1);
+        executor.submit(task2);
+        executor.submit(task3);
+
+        // Shutdown executor after tasks are submitted
+        executor.shutdown();
+
+

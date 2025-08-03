@@ -46,7 +46,7 @@ E.g 2:
 	------------------------------------
 E.g 3:
         addOrConcatenate(12,45);				// OUTPUT: The sum of 12 and 45 = 57
-        addOrConcatenate("Ibrahim ", "Suleiman" );	// OUTPUT: The concatenated value is: Ibrahim  Suleiman
+        addOrConcatenate("Ibrahim ", "Suleiman" );		// OUTPUT: The concatenated value is: Ibrahim  Suleiman
 
     private static <T1,T2> void addOrConcatenate(T1 t1, T2 t2) {
         if((((Object) t1).getClass().getSimpleName()).equals("Integer") && (((Object) t1).getClass().getSimpleName()).equals("Integer")){

@@ -1,4 +1,4 @@
-A functional interface is an interface that contains only one method
+A functional interface is an interface that contains only one abstract method
 
 
 @FunctionalInterface
