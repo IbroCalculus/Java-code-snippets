@@ -1,0 +1,6 @@
+CHECK ALSO: MySQL.txt
+
+==================== WHAT IS JDBC =================
+JDBC allows Java applications to connect to a relational database
+
+Structure: Java Application <-------- JDBC -------> Relational Database
